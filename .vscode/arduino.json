@@ -1,0 +1,6 @@
+{
+    "board": "esp32:esp32:esp32",
+    "port": "192.168.0.184",
+    "sketch": "ota_upload/ota_upload.ino",
+    "configuration": "PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=115200,DebugLevel=none"
+}
