@@ -9,3 +9,10 @@
  * @copyright Copyright (c) 2022
  *
  */
+
+#include "alexa_interaction.h"
+
+AlexaInteraction::AlexaInteraction(void (*callback)(bool, int)) {
+  callback(0, 0);
+  return;
+}

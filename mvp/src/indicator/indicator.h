@@ -10,12 +10,16 @@
  *
  */
 
-#pragma once
+#ifndef _INDICATOR_INCLUDE_GUARD
+#define _INDICATOR_INCLUDE_GUARD
+
+#include "../config/config.h"
 
 class Indicator {
 public:
   /**
-   * @brief Construct a new Indicator object
+   * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
+   * RGBLED
    *
    */
   Indicator();
@@ -27,8 +31,14 @@ public:
   ~Indicator();
 
   /**
-   * @brief Hello
+   * @brief Updates the color of LED by using mapping from status to color of
+   * LED
    *
+   * @param status: Device Status to be used for updation
+   * @return true: if the updation was successful
+   * @return false: otherwise
    */
-  void test_function();
+  bool updateStatus(CONFIG_SET::DEVICE_STATUS status);
 };
+
+#endif

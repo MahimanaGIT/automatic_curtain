@@ -9,26 +9,23 @@
  *
  */
 
-#pragma once
+#ifndef _ALEXA_INT_INCLUDE_GUARD
+#define _ALEXA_INT_INCLUDE_GUARD
 
 class AlexaInteraction {
 public:
   /**
-   * @brief Construct a new AlexaInteraction object
+   * @brief Construct a new AlexaInteraction object, will receive the function
+   * to be called
    *
    */
-  AlexaInteraction();
+  AlexaInteraction(void (*)(bool, int));
 
   /**
    * @brief Destroy the AlexaInteraction object
    *
    */
   ~AlexaInteraction();
-
-private:
-  /**
-   * @brief Construct a new test function object
-   *
-   */
-  void test_function();
 };
+
+#endif

@@ -10,12 +10,16 @@
  *
  */
 
-#pragma once
+#ifndef _CONNECTIVITY_INCLUDE_GUARD
+#define _CONNECTIVITY_INCLUDE_GUARD
+
+#include "../config/config.h"
 
 class Connectivity {
 public:
   /**
-   * @brief Construct a new Connectivity object
+   * @brief Construct a new Connectivity object, connects to wifi or starts
+   * hotspot
    *
    */
   Connectivity();
@@ -26,10 +30,45 @@ public:
    */
   ~Connectivity();
 
-private:
   /**
-  * @brief Construct a new test function object
-  *
-  */
-  void test_function();
+   * @brief Set the up Arduino OTA
+   *
+   */
+  void setupOTA();
+
+  /**
+   * @brief Check if the device is connected, if not, try to connect it
+   *
+   * @return true : wifi is connected
+   * @return false : failed to connect, device is no longer connected, despite
+   * of trying
+   */
+  bool ensureConnectivity();
+
+  /**
+   * @brief Displays webpage (for getting WiFi creds and device name), might be
+   * a blocking function, returns after a timeout or a submission request is
+   * made
+   *
+   * @return true : if submission was successful, updates CONFIG_SET::WiFi_CRED
+   * and CONFIG_SET::DEVICE_ID
+   * @return false : otherwise
+   */
+  bool displayWebpage();
+
+  /**
+   * @brief Regular call function for syncing OTA requests
+   *
+   */
+  void handleOTA();
+
+  /**
+   * @brief Checks if the device is connected to the WiFi
+   *
+   * @return true : if connected
+   * @return false : otherwise
+   */
+  bool isConnected();
 };
+
+#endif

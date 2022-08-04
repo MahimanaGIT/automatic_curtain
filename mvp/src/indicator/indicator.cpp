@@ -8,3 +8,6 @@
  * @copyright Copyright (c) 2022
  *
  */
+
+#include "indicator.h"
+#include "../config/config.h"

@@ -9,3 +9,6 @@
  * @copyright Copyright (c) 2022
  *
  */
+
+#include "connectivity.h"
+#include "../config/config.h"

@@ -9,24 +9,19 @@
  *
  */
 
-#include "src/alexa_interaction/alexa_interaction.h"
-#include "src/config/config.h"
-#include "src/connectivity/connectivity.h"
 #include "src/controller/controller.h"
-#include "src/indicator/indicator.h"
-#include "src/logging/logging.h"
-#include "src/manual_interaction/manual_interaction.h"
-#include "src/motor_driver/motor_driver.h"
-#include "src/storage/storage.h"
+
+Controller ctrl = Controller();
 
 /**
  * @brief Runs at the power on / device reset stage
  *
  */
-void setup() {}
+void setup() { ctrl.initialize(); }
 
 /**
- * @brief Runs recurrently until power on after setup
+ * @brief Runs recurrently until power on after setup, handles the device
+ * functioning
  *
  */
-void loop() {}
+void loop() { ctrl.handle(); }

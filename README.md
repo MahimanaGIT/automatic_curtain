@@ -1,10 +1,19 @@
 # Automatic Curtain
 
+### [Coding Style](https://google.github.io/styleguide/cppguide.html)
+
+### Steps to setup:
 1. Setup doxygen:
-   - Install doxygen:
+   - Install doxygen and graphviz (doxygen uses dot from graphviz to generate graphs):
       ```
       sudo apt-get install doxygen
+      sudo apt-get install graphviz 
       ```
+   - Currently, the **DOT_PATH** is hardcoded in **Doxyfile** as `/usr/bin/dot` on line no. 2398, one can check if the dot path in their system is same or not by running
+      ```
+      which dot
+      ```
+      If the path is different, update it in the doxyfile
    - Generate doxygen files by running the following command in the terminal:
       ```
       doxygen Doxyfile

@@ -1,7 +1,7 @@
 /**
  * @file storage.h
  * @author Mahimana Bhatt (mahimanabhatt@gmail.com)
- * @brief Defines structure for EEPROM storage for ESP32
+ * @brief Defines structure for Flash storage for ESP32
  * @version 0.1
  * @date 2022-07-19
  *
@@ -9,25 +9,72 @@
  *
  */
 
-#pragma once
+#ifndef _STORAGE_INCLUDE_GUARD
+#define _STORAGE_INCLUDE_GUARD
+
+#include "../config/config.h"
+#include <Preferences.h>
 
 class Storage {
 public:
   /**
-   * @brief Construct a new Storage object
+   * @brief Construct a new Storage object, initializes Flash
    *
    */
   Storage();
 
   /**
-   * @brief Destroy the Storage object
+   * @brief Destroy the Storage object, closes Flash
    *
    */
   ~Storage();
 
   /**
-   * @brief Hello
+   * @brief Saves the wifi creds and device id to Flash, fetching the data from
+   * the variable whose pointer is provided as an argument
    *
+   * @return true : if save successful
+   * @return false : otherwise
    */
-  void test_function();
+  bool saveDeviceCred(const CONFIG_SET::DEVICE_CRED *) const;
+
+  /**
+   * @brief Retrieves the wifi creds and device id from the flash and populates
+   * them in variable whose pointer is provided as an argument
+   *
+   * @return true : populate successful
+   * @return false : otherwise
+   */
+  bool populateDeviceCred(CONFIG_SET::DEVICE_CRED *) const;
+
+  /**
+   * @brief Saves the calib params to Flash, fetching the data from the
+   * variable whose pointer is provided as an argument
+   *
+   * @return true : if save successful
+   * @return false : otherwise
+   */
+  bool saveCalibParam(const CONFIG_SET::CALIB_PARAMS *) const;
+
+  /**
+   * @brief Retrieves the calib params from the flash and populates
+   * them in variable whose pointer is provided as an argument
+   *
+   * @return true : populate successful
+   * @return false : otherwise
+   */
+  bool populateCalibParam(CONFIG_SET::CALIB_PARAMS *) const;
+
+  /**
+   * @brief Clears the memory for CONFIG_SET::STORAGE_NAMESPACE workspace
+   *
+   * @return true : populate successful
+   * @return false : otherwise
+   */
+  bool clearStorage() const;
+
+private:
+  Preferences preferences_;
 };
+
+#endif

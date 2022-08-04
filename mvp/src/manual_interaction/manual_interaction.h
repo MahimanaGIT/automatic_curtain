@@ -9,12 +9,16 @@
  *
  */
 
-#pragma once
+#ifndef _MAN_INT_INCLUDE_GUARD
+#define _MAN_INT_INCLUDE_GUARD
+
+#include "../config/config.h"
 
 class ManualInteraction {
 public:
   /**
-   * @brief Construct a new ManualInteraction object
+   * @brief Construct a new ManualInteraction object, initializes the push
+   * button as inputs
    *
    */
   ManualInteraction();
@@ -26,8 +30,11 @@ public:
   ~ManualInteraction();
 
   /**
-   * @brief Hello
+   * @brief This function detects various types of pushes, and returns the type
+   * of push detected
    *
    */
-  void test_function();
+  CONFIG_SET::MANUAL_PUSH detectPushes();
 };
+
+#endif
