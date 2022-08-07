@@ -14,6 +14,7 @@
 #ifndef _CONFIG_INCLUDE_GUARD
 #define _CONFIG_INCLUDE_GUARD
 
+#include <Arduino.h>
 #include <iostream>
 
 /**
@@ -124,9 +125,9 @@ struct MOTION_REQUEST {
 };
 
 struct DEVICE_CRED {
-  char *DEVICE_ID = "blinds";
-  char *SSID = "NETGEAR37";
-  char *PASSWORD = "phobiclotus754";
+  String DEVICE_ID = "blinds";
+  String SSID = "NETGEAR37";
+  String PASSWORD = "phobiclotus754";
 };
 
 struct CALIB_PARAMS {

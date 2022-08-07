@@ -57,6 +57,9 @@ public:
 
 private:
   Logging logger_;
+  Storage store_;
+  CONFIG_SET::DEVICE_CRED device_cred_;
+  CONFIG_SET::CALIB_PARAMS calib_params_;
   /**
    * @brief Mounts all the parameters from the storage
    *

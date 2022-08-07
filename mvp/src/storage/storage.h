@@ -13,6 +13,7 @@
 #define _STORAGE_INCLUDE_GUARD
 
 #include "../config/config.h"
+#include "../logging/logging.h"
 #include <Preferences.h>
 
 class Storage {
@@ -22,6 +23,13 @@ public:
    *
    */
   Storage();
+
+  /**
+   * @brief Construct a new Storage object, initializes logger and calls
+   * Storage()
+   *
+   */
+  Storage(Logging *);
 
   /**
    * @brief Destroy the Storage object, closes Flash
@@ -36,7 +44,7 @@ public:
    * @return true : if save successful
    * @return false : otherwise
    */
-  bool saveDeviceCred(const CONFIG_SET::DEVICE_CRED *) const;
+  bool saveDeviceCred(const CONFIG_SET::DEVICE_CRED *);
 
   /**
    * @brief Retrieves the wifi creds and device id from the flash and populates
@@ -45,7 +53,7 @@ public:
    * @return true : populate successful
    * @return false : otherwise
    */
-  bool populateDeviceCred(CONFIG_SET::DEVICE_CRED *) const;
+  bool populateDeviceCred(CONFIG_SET::DEVICE_CRED *);
 
   /**
    * @brief Saves the calib params to Flash, fetching the data from the
@@ -54,7 +62,7 @@ public:
    * @return true : if save successful
    * @return false : otherwise
    */
-  bool saveCalibParam(const CONFIG_SET::CALIB_PARAMS *) const;
+  bool saveCalibParam(const CONFIG_SET::CALIB_PARAMS *);
 
   /**
    * @brief Retrieves the calib params from the flash and populates
@@ -63,18 +71,17 @@ public:
    * @return true : populate successful
    * @return false : otherwise
    */
-  bool populateCalibParam(CONFIG_SET::CALIB_PARAMS *) const;
+  bool populateCalibParam(CONFIG_SET::CALIB_PARAMS *);
 
   /**
    * @brief Clears the memory for CONFIG_SET::STORAGE_NAMESPACE workspace
    *
-   * @return true : populate successful
-   * @return false : otherwise
    */
-  bool clearStorage() const;
+  void clear();
 
 private:
   Preferences preferences_;
+  Logging *logger_;
 };
 
 #endif

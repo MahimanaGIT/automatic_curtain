@@ -19,18 +19,62 @@
 #include "../manual_interaction/manual_interaction.h"
 #include "../motor_driver/motor_driver.h"
 #include "../storage/storage.h"
+#include <Arduino.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 Controller::Controller() {
+  logger_.setLoggingStatus(true);
   logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
               "Initializing");
 }
 
 Controller::~Controller() {}
 
-void Controller::initialize() {}
+void Controller::initialize() {
+  store_ = Storage(&logger_);
 
-void Controller::handle() {
   logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
               "Handle");
-  logger_.setLoggingStatus(!logger_.getLoggingStatus());
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              "Now Initialized");
+  device_cred_ = CONFIG_SET::DEVICE_CRED();
+  calib_params_ = CONFIG_SET::CALIB_PARAMS();
+
+  // for testing purposes
+  store_.saveDeviceCred(&device_cred_);
+  store_.populateDeviceCred(&device_cred_);
+  char buffer[20];
+  bool success = store_.populateCalibParam(&calib_params_);
+  itoa(success, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(calib_params_.TOTAL_STEP_COUNT, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(calib_params_.STALL_VALUE, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  calib_params_.TOTAL_STEP_COUNT = 10;
+  calib_params_.STALL_VALUE = 200;
+  bool sec = store_.saveCalibParam(&calib_params_);
+  itoa(sec, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(calib_params_.TOTAL_STEP_COUNT, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(calib_params_.STALL_VALUE, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  CONFIG_SET::CALIB_PARAMS dd = CONFIG_SET::CALIB_PARAMS();
+  store_.populateCalibParam(&dd);
+  itoa(dd.TOTAL_STEP_COUNT, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(dd.STALL_VALUE, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
 }
+
+void Controller::handle() {}
