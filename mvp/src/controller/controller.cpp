@@ -20,10 +20,17 @@
 #include "../motor_driver/motor_driver.h"
 #include "../storage/storage.h"
 
-Controller::Controller() {}
+Controller::Controller() {
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              "Initializing");
+}
 
 Controller::~Controller() {}
 
 void Controller::initialize() {}
 
-void Controller::handle() {}
+void Controller::handle() {
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              "Handle");
+  logger_.setLoggingStatus(!logger_.getLoggingStatus());
+}

@@ -56,6 +56,7 @@ public:
   void handle();
 
 private:
+  Logging logger_;
   /**
    * @brief Mounts all the parameters from the storage
    *

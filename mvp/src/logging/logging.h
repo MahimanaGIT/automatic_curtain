@@ -12,9 +12,9 @@
 #ifndef _LOGGING_INCLUDE_GUARD
 #define _LOGGING_INCLUDE_GUARD
 
+#include "../config/config.h"
 #include <Arduino.h>
-#include <iostream>
-#include <string.h>
+#include <mutex>
 
 class Logging {
 public:
@@ -38,7 +38,24 @@ public:
    * @return true : if the print is successful
    * @return false : otherwise
    */
-  bool log(std::string);
+  bool log(CONFIG_SET::LOG_TYPE, CONFIG_SET::LOG_CLASS, const char *) const;
+
+  /**
+   * @brief This function enables or disables logging
+   * true: logging enabled
+   * false: logging disabled
+   */
+  void setLoggingStatus(bool);
+
+  /**
+   * @brief Get the Logging Status object
+   *
+   * @return bool: logging_status_
+   */
+  bool getLoggingStatus() const;
+
+private:
+  bool logging_status_;
 };
 
 #endif

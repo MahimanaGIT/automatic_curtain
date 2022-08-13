@@ -21,6 +21,7 @@
  *
  */
 namespace CONFIG_SET {
+const int LOGGING_BAUD_RATE = 115200;
 const std::string STORAGE_NAMESPACE = "madac";
 
 /*
@@ -71,6 +72,23 @@ enum class PINS {
   PIN_MD_DIR = 23,
   PIN_MD_INDEX = 21,
   PIN_MD_DIAG = 19,
+};
+
+enum class LOG_TYPE {
+  INFO,
+  ERROR,
+  WARN,
+};
+
+enum class LOG_CLASS {
+  CONTROLLER,
+  CONNECTIVITY,
+  INDICATOR,
+  LOGGING,
+  MANUAL_INTERACTION,
+  MOTOR_DRIVER,
+  STORAGE,
+  ALEXA_INTERACTION,
 };
 
 enum class MANUAL_PUSH {
