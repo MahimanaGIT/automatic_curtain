@@ -25,6 +25,10 @@ namespace CONFIG_SET {
 const int LOGGING_BAUD_RATE = 115200;
 const std::string STORAGE_NAMESPACE = "madac";
 
+// MACROS For Indicator Class
+#define NUMBER_OF_LEDS 1
+#define LED_BRIGHTNESS 25
+
 /*
 ****** STORAGE KEYS ******
 These keys are used by Storage class to retrieve the data from FLASHs

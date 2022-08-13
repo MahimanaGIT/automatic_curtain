@@ -23,23 +23,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Controller::Controller() {
-  logger_.setLoggingStatus(true);
-  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
-              "Initializing");
-}
+Controller::Controller() {}
 
 Controller::~Controller() {}
 
 void Controller::initialize() {
+  logger_.setLoggingStatus(true);
   store_ = Storage(&logger_);
-
-  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
-              "Handle");
-  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
-              "Now Initialized");
+  indicator_ = Indicator(&logger_);
   device_cred_ = CONFIG_SET::DEVICE_CRED();
   calib_params_ = CONFIG_SET::CALIB_PARAMS();
+
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              "Initializing");
 
   // for testing purposes
   store_.saveDeviceCred(&device_cred_);
@@ -75,6 +71,15 @@ void Controller::initialize() {
   itoa(dd.STALL_VALUE, buffer, 10);
   logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
               buffer);
+
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              "Initializing");
 }
 
-void Controller::handle() {}
+void Controller::handle() {
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              "Handle");
+
+  // for testing purposes
+  indicator_.updateStatus(CONFIG_SET::DEVICE_STATUS::NOT_CONNECTED);
+}

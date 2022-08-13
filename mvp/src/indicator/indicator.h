@@ -14,6 +14,8 @@
 #define _INDICATOR_INCLUDE_GUARD
 
 #include "../config/config.h"
+#include "../logging/logging.h"
+#include <FastLED.h>
 
 class Indicator {
 public:
@@ -23,6 +25,13 @@ public:
    *
    */
   Indicator();
+
+  /**
+   * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
+   * RGBLED, initializes logger
+   *
+   */
+  Indicator(Logging *);
 
   /**
    * @brief Destroy the Indicator object
@@ -39,6 +48,16 @@ public:
    * @return false: otherwise
    */
   bool updateStatus(CONFIG_SET::DEVICE_STATUS status);
+
+private:
+  Logging *logger_;
+  CRGB leds_[NUMBER_OF_LEDS];
+
+  /**
+   * @brief Initializes RGB LED
+   *
+   */
+  void initializeLED();
 };
 
 #endif
