@@ -20,7 +20,6 @@ std::mutex status_mutex;
 
 Logging::Logging() {
   Serial.begin(CONFIG_SET::LOGGING_BAUD_RATE);
-
   const std::lock_guard<std::mutex> lock(status_mutex);
   this->logging_status_ = false;
 }

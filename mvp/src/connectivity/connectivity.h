@@ -14,6 +14,13 @@
 #define _CONNECTIVITY_INCLUDE_GUARD
 
 #include "../config/config.h"
+#include "../logging/logging.h"
+#include "WiFi.h"
+#include "webpage.h"
+#include <ArduinoOTA.h>
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+#include <tuple>
 
 class Connectivity {
 public:
@@ -31,10 +38,18 @@ public:
   ~Connectivity();
 
   /**
+
+   * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
+   * RGBLED, initializes logger
+   *
+   */
+  Connectivity(Logging *, CONFIG_SET::DEVICE_CRED *);
+
+  /**
    * @brief Set the up Arduino OTA
    *
    */
-  void setupOTA();
+  void startOTA();
 
   /**
    * @brief Check if the device is connected, if not, try to connect it
@@ -43,7 +58,7 @@ public:
    * @return false : failed to connect, device is no longer connected, despite
    * of trying
    */
-  bool ensureConnectivity();
+  bool ensureConnectivity(const CONFIG_SET::DEVICE_CRED *);
 
   /**
    * @brief Displays webpage (for getting WiFi creds and device name), might be
@@ -54,7 +69,7 @@ public:
    * and CONFIG_SET::DEVICE_ID
    * @return false : otherwise
    */
-  bool displayWebpage();
+  void displayWebpage();
 
   /**
    * @brief Regular call function for syncing OTA requests
@@ -63,12 +78,68 @@ public:
   void handleOTA();
 
   /**
+   * @brief Disable OTA
+   *
+   */
+  void stopOTA();
+
+  /**
    * @brief Checks if the device is connected to the WiFi
    *
    * @return true : if connected
    * @return false : otherwise
    */
   bool isConnected();
+
+  /**
+   * @brief Creates a server and starts hosting webpage
+   *
+   */
+  void startWebpage();
+
+  /**
+   * @brief Stops webpage server
+   *
+   */
+  void stopWebpage();
+
+  /**
+   * @brief disconnects WiFi
+   *
+   */
+  void stopWiFi();
+
+  /**
+   * @brief Get the latest submission
+   *
+   * @return std::tuple<bool, CONFIG_SET::DEVICE_CRED>: bool returning if there
+   * is a new submission available, device_cred: new submission
+   */
+  std::tuple<bool, CONFIG_SET::DEVICE_CRED> getWebpageSubmission();
+
+private:
+  Logging *logger_;
+
+  // boolean vars to store the status of functionalities
+  bool ota_enabled_ = false;
+  bool webpage_enabled_ = false;
+  bool hotspot_enabled_ = false;
+  bool wifi_client_enabled_ = false;
+
+  bool is_new_submission_available_ = false;
+  CONFIG_SET::DEVICE_CRED webpage_submitted_device_cred_;
+
+  /**
+   * @brief Starts wifi hotspot, basically start wifi in soft access point mode
+   *
+   */
+  void startHotspot();
+
+  /**
+   * @brief Stops wifi hotspot
+   *
+   */
+  void stopHotspot();
 };
 
 #endif

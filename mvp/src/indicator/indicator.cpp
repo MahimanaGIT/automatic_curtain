@@ -29,8 +29,6 @@ void Indicator::initializeLED() {
 }
 
 bool Indicator::updateStatus(CONFIG_SET::DEVICE_STATUS status) {
-  this->logger_->log(CONFIG_SET::LOG_TYPE::INFO,
-                     CONFIG_SET::LOG_CLASS::INDICATOR, "Updating Status");
   switch (status) {
   case CONFIG_SET::DEVICE_STATUS::FAULT:
     this->leds_[0] = CRGB::Red;
