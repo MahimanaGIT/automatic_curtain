@@ -22,34 +22,34 @@ Indicator::Indicator(Logging *logging) : logger_(logging) { initializeLED(); }
 
 void Indicator::initializeLED() {
   FastLED.addLeds<WS2812, static_cast<int>(CONFIG_SET::PINS::PIN_RGB_LED), GRB>(
-      this->leds_, NUMBER_OF_LEDS);
-  FastLED.setBrightness(LED_BRIGHTNESS);
-  this->leds_[0] = CRGB::Green;
+      leds_, CONFIG_SET::NUMBER_OF_LEDS);
+  FastLED.setBrightness(CONFIG_SET::LED_BRIGHTNESS);
+  leds_[0] = CRGB::Green;
   FastLED.show();
 }
 
 bool Indicator::updateStatus(CONFIG_SET::DEVICE_STATUS status) {
   switch (status) {
   case CONFIG_SET::DEVICE_STATUS::FAULT:
-    this->leds_[0] = CRGB::Red;
+    leds_[0] = CRGB::Red;
     break;
   case CONFIG_SET::DEVICE_STATUS::NOT_CONNECTED:
-    this->leds_[0] = CRGB::Blue;
+    leds_[0] = CRGB::Blue;
     break;
   case CONFIG_SET::DEVICE_STATUS::MANUAL_OPERATION:
-    this->leds_[0] = CRGB::Purple;
+    leds_[0] = CRGB::Purple;
     break;
   case CONFIG_SET::DEVICE_STATUS::RESET_MODE:
-    this->leds_[0] = CRGB::White;
+    leds_[0] = CRGB::White;
     break;
   case CONFIG_SET::DEVICE_STATUS::WEBPAGE:
-    this->leds_[0] = CRGB::Yellow;
+    leds_[0] = CRGB::Yellow;
     break;
   case CONFIG_SET::DEVICE_STATUS::OTA_ENABLED:
-    this->leds_[0] = CRGB::Green;
+    leds_[0] = CRGB::Green;
     break;
   default:
-    this->leds_[0] = CRGB::Pink;
+    leds_[0] = CRGB::Pink;
   }
   FastLED.show();
 }

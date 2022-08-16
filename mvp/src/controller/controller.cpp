@@ -28,72 +28,85 @@ Controller::Controller() {}
 Controller::~Controller() {}
 
 void Controller::initialize() {
-  this->logger_.setLoggingStatus(true);
-  this->store_ = Storage(&this->logger_);
-  this->indicator_ = Indicator(&this->logger_);
-  this->device_cred_ = CONFIG_SET::DEVICE_CRED();
-  this->calib_params_ = CONFIG_SET::CALIB_PARAMS();
-  this->connectivity_ = Connectivity(&this->logger_, &this->device_cred_);
-  this->connectivity_.ensureConnectivity(&this->device_cred_);
-  this->connectivity_.startOTA();
-  this->connectivity_.startWebpage();
+  logger_.setLoggingStatus(true);
+  store_ = Storage(&logger_);
+  indicator_ = Indicator(&logger_);
+  device_cred_ = CONFIG_SET::DEVICE_CRED();
+  calib_params_ = CONFIG_SET::CALIB_PARAMS();
+  connectivity_ = Connectivity(&logger_, &device_cred_);
+  connectivity_.ensureConnectivity(&device_cred_);
+  connectivity_.startOTA();
+  // connectivity_.startWebpage();
+  alexa_interaction_ = AlexaInteraction(&logger_, device_cred_.DEVICE_ID);
 
   // for testing purposes
-  this->store_.saveDeviceCred(&this->device_cred_);
-  this->store_.populateDeviceCred(&this->device_cred_);
+  store_.saveDeviceCred(&device_cred_);
+  store_.populateDeviceCred(&device_cred_);
   char buffer[20];
-  bool success = this->store_.populateCalibParam(&this->calib_params_);
+  bool success = store_.populateCalibParam(&calib_params_);
   itoa(success, buffer, 10);
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, buffer);
-  itoa(this->calib_params_.TOTAL_STEP_COUNT, buffer, 10);
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, buffer);
-  itoa(this->calib_params_.STALL_VALUE, buffer, 10);
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, buffer);
-  this->calib_params_.TOTAL_STEP_COUNT = 10;
-  this->calib_params_.STALL_VALUE = 200;
-  bool sec = this->store_.saveCalibParam(&this->calib_params_);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(calib_params_.TOTAL_STEP_COUNT, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(calib_params_.STALL_VALUE, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  calib_params_.TOTAL_STEP_COUNT = 10;
+  calib_params_.STALL_VALUE = 200;
+  bool sec = store_.saveCalibParam(&calib_params_);
   itoa(sec, buffer, 10);
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, buffer);
-  itoa(this->calib_params_.TOTAL_STEP_COUNT, buffer, 10);
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, buffer);
-  itoa(this->calib_params_.STALL_VALUE, buffer, 10);
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, buffer);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(calib_params_.TOTAL_STEP_COUNT, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
+  itoa(calib_params_.STALL_VALUE, buffer, 10);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
   CONFIG_SET::CALIB_PARAMS dd = CONFIG_SET::CALIB_PARAMS();
-  this->store_.populateCalibParam(&dd);
+  store_.populateCalibParam(&dd);
   itoa(dd.TOTAL_STEP_COUNT, buffer, 10);
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, buffer);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
   itoa(dd.STALL_VALUE, buffer, 10);
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, buffer);
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              buffer);
 
-  this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                    CONFIG_SET::LOG_CLASS::CONTROLLER, "Initializing");
+  logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+              "Initializing");
 }
 
 void Controller::handle() {
-  this->indicator_.updateStatus(CONFIG_SET::DEVICE_STATUS::NOT_CONNECTED);
-  this->connectivity_.handleOTA();
-  this->connectivity_.ensureConnectivity(&this->device_cred_);
+  indicator_.updateStatus(CONFIG_SET::DEVICE_STATUS::NOT_CONNECTED);
+  connectivity_.handleOTA();
+  connectivity_.ensureConnectivity(&device_cred_);
+  alexa_interaction_.handleFauxmo();
 
   // for testing purposes only
-  auto submission_return = this->connectivity_.getWebpageSubmission();
-  if (std::get<0>(submission_return)) {
+  auto alexa_request_sub = alexa_interaction_.getAlexaRequest();
+  if (std::get<0>(alexa_request_sub)) {
+    CONFIG_SET::ALEXA_REQUEST submitted_alexa_request =
+        std::get<1>(alexa_request_sub);
+    logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+                "Got the Alexa Submission");
+    Serial.println(submitted_alexa_request.STATE);
+    Serial.println(submitted_alexa_request.PERCENTAGE);
+  }
+
+  // for testing purposes only
+  auto webpage_submission = connectivity_.getWebpageSubmission();
+  if (std::get<0>(webpage_submission)) {
     CONFIG_SET::DEVICE_CRED submitted_device_cred =
-        std::get<1>(submission_return);
-    this->logger_.log(CONFIG_SET::LOG_TYPE::INFO,
-                      CONFIG_SET::LOG_CLASS::CONTROLLER, "Got the Submission");
+        std::get<1>(webpage_submission);
+    logger_.log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER,
+                "Got the Submission");
     Serial.println(submitted_device_cred.DEVICE_ID.c_str());
     Serial.println(submitted_device_cred.SSID.c_str());
     Serial.println(submitted_device_cred.PASSWORD.c_str());
-    this->connectivity_.stopOTA();
-    this->connectivity_.stopWebpage();
-    this->connectivity_.stopWiFi();
+    connectivity_.stopOTA();
+    connectivity_.stopWebpage();
+    connectivity_.stopWiFi();
   }
 }

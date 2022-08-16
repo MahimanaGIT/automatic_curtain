@@ -25,9 +25,9 @@ namespace CONFIG_SET {
 const int LOGGING_BAUD_RATE = 115200;
 const std::string STORAGE_NAMESPACE = "madac";
 
-// MACROS For Indicator Class
-#define NUMBER_OF_LEDS 1
-#define LED_BRIGHTNESS 25
+// Vars For Indicator Class
+const int NUMBER_OF_LEDS = 1;
+const int LED_BRIGHTNESS = 25;
 
 /*
 ****** STORAGE KEYS ******
@@ -38,6 +38,7 @@ const std::string KEY_PASSWORD = "password";
 const std::string KEY_DEVICE_ID = "deviceID";
 const std::string KEY_TOTAL_STEP_COUNT = "totalStepCount";
 const std::string KEY_STALL_VALUE = "stallValue";
+const String DEFAULT_DEVICE_ID = "madac_blinds";
 
 enum class OPERATION_MODE {
   START,
@@ -129,7 +130,7 @@ struct MOTION_REQUEST {
 };
 
 struct DEVICE_CRED {
-  String DEVICE_ID = "blinds";
+  String DEVICE_ID = "madac_blinds";
   String SSID = "NETGEAR37";
   String PASSWORD = "phobiclotus754";
 };
@@ -137,6 +138,11 @@ struct DEVICE_CRED {
 struct CALIB_PARAMS {
   int TOTAL_STEP_COUNT = -1;
   int STALL_VALUE = -1;
+};
+
+struct ALEXA_REQUEST {
+  bool STATE = false;
+  int PERCENTAGE = -1;
 };
 } // namespace CONFIG_SET
 

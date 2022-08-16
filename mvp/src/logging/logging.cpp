@@ -21,7 +21,7 @@ std::mutex status_mutex;
 Logging::Logging() {
   Serial.begin(CONFIG_SET::LOGGING_BAUD_RATE);
   const std::lock_guard<std::mutex> lock(status_mutex);
-  this->logging_status_ = false;
+  logging_status_ = false;
 }
 
 Logging::~Logging() { Serial.end(); }
@@ -29,7 +29,7 @@ Logging::~Logging() { Serial.end(); }
 bool Logging::log(CONFIG_SET::LOG_TYPE log_type,
                   CONFIG_SET::LOG_CLASS log_class, const char *message) const {
   const std::lock_guard<std::mutex> lock(status_mutex);
-  if (this->logging_status_) {
+  if (logging_status_) {
     switch (log_type) {
     case CONFIG_SET::LOG_TYPE::INFO:
       Serial.print("[INFO] ");
@@ -77,7 +77,7 @@ bool Logging::log(CONFIG_SET::LOG_TYPE log_type,
 
 void Logging::setLoggingStatus(bool status) {
   const std::lock_guard<std::mutex> lock(status_mutex);
-  this->logging_status_ = status;
+  logging_status_ = status;
 }
 
-bool Logging::getLoggingStatus() const { return this->logging_status_; }
+bool Logging::getLoggingStatus() const { return logging_status_; }

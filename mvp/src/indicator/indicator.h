@@ -51,7 +51,7 @@ public:
 
 private:
   Logging *logger_;
-  CRGB leds_[NUMBER_OF_LEDS];
+  CRGB leds_[CONFIG_SET::NUMBER_OF_LEDS];
 
   /**
    * @brief Initializes RGB LED

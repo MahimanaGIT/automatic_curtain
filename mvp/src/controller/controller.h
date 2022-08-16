@@ -60,8 +60,10 @@ private:
   Storage store_;
   Indicator indicator_;
   Connectivity connectivity_;
+  AlexaInteraction alexa_interaction_;
   CONFIG_SET::DEVICE_CRED device_cred_;
   CONFIG_SET::CALIB_PARAMS calib_params_;
+  CONFIG_SET::DEVICE_CRED device_cred;
 
   /**
    * @brief Mounts all the parameters from the storage

@@ -22,8 +22,6 @@ Storage::~Storage() {}
 
 bool Storage::saveDeviceCred(const CONFIG_SET::DEVICE_CRED *device_cred) {
   preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
-  logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::STORAGE,
-               "Hello");
   size_t status_device_id = preferences_.putString(
       CONFIG_SET::KEY_DEVICE_ID.c_str(), device_cred->DEVICE_ID);
   size_t status_ssid =
