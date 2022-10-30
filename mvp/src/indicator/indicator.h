@@ -13,51 +13,47 @@
 #ifndef _INDICATOR_INCLUDE_GUARD
 #define _INDICATOR_INCLUDE_GUARD
 
-#include "../config/config.h"
-#include "../logging/logging.h"
 #include <FastLED.h>
 
+#include <memory>
+
+#include "../config/config.h"
+#include "../logging/logging.h"
+
 class Indicator {
-public:
-  /**
-   * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
-   * RGBLED
-   *
-   */
-  Indicator();
+   public:
+    /**
+     * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
+     * RGBLED, initializes logger
+     *
+     */
+    Indicator(std::shared_ptr<Logging> logging);
 
-  /**
-   * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
-   * RGBLED, initializes logger
-   *
-   */
-  Indicator(Logging *);
+    /**
+     * @brief Destroy the Indicator object
+     *
+     */
+    ~Indicator();
 
-  /**
-   * @brief Destroy the Indicator object
-   *
-   */
-  ~Indicator();
+    /**
+     * @brief Updates the color of LED by using mapping from status to color of
+     * LED
+     *
+     * @param status: Device Status to be used for updation
+     * @return true: if the updation was successful
+     * @return false: otherwise
+     */
+    bool updateStatus(CONFIG_SET::DEVICE_STATUS status);
 
-  /**
-   * @brief Updates the color of LED by using mapping from status to color of
-   * LED
-   *
-   * @param status: Device Status to be used for updation
-   * @return true: if the updation was successful
-   * @return false: otherwise
-   */
-  bool updateStatus(CONFIG_SET::DEVICE_STATUS status);
+   private:
+    std::shared_ptr<Logging> logger_;
+    CRGB leds_[CONFIG_SET::NUMBER_OF_LEDS];
 
-private:
-  Logging *logger_;
-  CRGB leds_[CONFIG_SET::NUMBER_OF_LEDS];
-
-  /**
-   * @brief Initializes RGB LED
-   *
-   */
-  void initializeLED();
+    /**
+     * @brief Initializes RGB LED
+     *
+     */
+    void initializeLED();
 };
 
 #endif

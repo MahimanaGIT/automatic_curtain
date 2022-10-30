@@ -22,66 +22,63 @@
 #include "../storage/storage.h"
 
 class Controller {
-public:
-  /**
-   * @brief Construct a new Controller object, initializes the device
-   *
-   */
-  Controller();
+   public:
+    /**
+     * @brief Construct a new Controller object, initializes the device
+     *
+     */
+    Controller();
 
-  /**
-   * @brief Destroy the Controller object
-   *
-   */
-  ~Controller();
+    /**
+     * @brief Destroy the Controller object
+     *
+     */
+    ~Controller();
 
-  /**
-   * @brief Initialize the device
-   *
-   */
-  void initialize();
+    /**
+     * @brief Continous loop after initialization, handles the controlling of the
+     * device
+     * Performs following functions:
+     * 1. Updates the device status on indicator
+     * 2. Fetches commands from alexa
+     * 3. Fetches commands from manual control
+     * 4. Gives instructions to motor driver
+     * 5. Ensure connectivity to internet
+     * 6. Controls OTA enable
+     * 7. Handles any fault conditions and acts accordingly
+     */
+    void handle();
 
-  /**
-   * @brief Continous loop after initialization, handles the controlling of the
-   * device
-   * Performs following functions:
-   * 1. Updates the device status on indicator
-   * 2. Fetches commands from alexa
-   * 3. Fetches commands from manual control
-   * 4. Gives instructions to motor driver
-   * 5. Ensure connectivity to internet
-   * 6. Controls OTA enable
-   * 7. Handles any fault conditions and acts accordingly
-   */
-  void handle();
+   private:
+    // Device parameter initialization
+    CONFIG_SET::DEVICE_CRED device_cred_;
+    CONFIG_SET::CALIB_PARAMS calib_params_;
 
-private:
-  Logging logger_;
-  Storage store_;
-  Indicator indicator_;
-  Connectivity connectivity_;
-  AlexaInteraction alexa_interaction_;
-  CONFIG_SET::DEVICE_CRED device_cred_;
-  CONFIG_SET::CALIB_PARAMS calib_params_;
-  CONFIG_SET::DEVICE_CRED device_cred;
+    // Device class objects initialization
+    std::shared_ptr<Logging> logger_{nullptr};
+    std::unique_ptr<Storage> store_{nullptr};
+    std::unique_ptr<Indicator> indicator_{nullptr};
+    std::unique_ptr<Connectivity> connectivity_{nullptr};
+    std::unique_ptr<AlexaInteraction> alexa_interaction_{nullptr};
+    std::unique_ptr<MotorDriver> motor_driver_{nullptr};
 
-  /**
-   * @brief Mounts all the parameters from the storage
-   *
-   */
-  void loadParameters();
+    /**
+     * @brief Mounts all the parameters from the storage
+     *
+     */
+    void loadParameters();
 
-  /**
-   * @brief Save all the parameters to storage
-   *
-   */
-  void saveParameters();
+    /**
+     * @brief Save all the parameters to storage
+     *
+     */
+    void saveParameters();
 
-  /**
-   * @brief Reset mode for device
-   *
-   */
-  void reset();
+    /**
+     * @brief Reset mode for device
+     *
+     */
+    void reset();
 };
 
 #endif

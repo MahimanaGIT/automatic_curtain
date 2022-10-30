@@ -15,6 +15,7 @@
 #define _CONFIG_INCLUDE_GUARD
 
 #include <Arduino.h>
+
 #include <iostream>
 
 /**
@@ -23,6 +24,7 @@
  */
 namespace CONFIG_SET {
 const int LOGGING_BAUD_RATE = 115200;
+const int MOTOR_DRIVER_BAUD_RATE = 115200;
 const std::string STORAGE_NAMESPACE = "madac";
 
 // Vars For Indicator Class
@@ -40,10 +42,28 @@ const std::string KEY_TOTAL_STEP_COUNT = "totalStepCount";
 const std::string KEY_STALL_VALUE = "stallValue";
 const String DEFAULT_DEVICE_ID = "madac_blinds";
 
+/*
+****** MOTOR DRIVER CALIBRATION PARAMETERS ******
+*/
+const float MOTOR_DRIVER_R_SENSE = 0.11f;
+const uint8_t MOTOR_DRIVER_ADDRESS = 0b00;
+const uint8_t MOTOR_DRIVER_TOFF = 4;
+const uint8_t MOTOR_DRIVER_BLANK_TIME = 24;
+const uint16_t MOTOR_DRIVER_RMS_CURRENT = 2000;
+const uint16_t MOTOR_DRIVER_MICROSTEP = 16;
+const uint32_t MOTOR_DRIVER_TCOOL_THRS = 0xFFFFF;
+const uint8_t MOTOR_DRIVER_SE_MIN = 0;
+const uint8_t MOTOR_DRIVER_SE_MAX = 2;
+const uint8_t MOTOR_DRIVER_SEDN = 0b01;
+const uint32_t MOTOR_DRIVER_SPEED = 3000;
+const uint32_t MOTOR_DRIVER_ACCEL = 25;
+const int MOTOR_STOP_TIME_SEC = 90;           // 1.5 mins
+const float STEP_FRACTION_ALLOWANCE = 0.05;   // 5% Allowance allowed for motor reaching destination
+
 enum class OPERATION_MODE {
-  START,
-  RESET,
-  MAINTENANCE,
+    START,
+    RESET,
+    MAINTENANCE,
 };
 
 /*
@@ -65,85 +85,77 @@ PIN_MD_DIR -> Dir
 PIN_MD_INDEX -> Index
 PIN_MD_DIAG -> Diag (Stall)
 */
-enum class PINS {
-  PIN_RGB_LED = 32,
-  PIN_BUTTON_UP = 33,
-  PIN_BUTTON_DOWN = 25,
-  PIN_MD_ENABLE = 4,
-  PIN_MD_RX = 16,
-  PIN_MD_TX = 17,
-  PIN_MD_MS1 = 5,
-  PIN_MD_MS2 = 18,
-  PIN_MD_STEP = 22,
-  PIN_MD_DIR = 23,
-  PIN_MD_INDEX = 21,
-  PIN_MD_DIAG = 19,
-};
+const int PIN_RGB_LED = 32;
+const int PIN_BUTTON_UP = 33;
+const int PIN_BUTTON_DOWN = 25;
+const int PIN_MD_ENABLE = 4;
+const int PIN_MD_RX = 16;
+const int PIN_MD_TX = 17;
+const int PIN_MD_MS1 = 5;
+const int PIN_MD_MS2 = 18;
+const int PIN_MD_STEP = 22;
+const int PIN_MD_DIR = 23;
+const int PIN_MD_INDEX = 21;
+const int PIN_MD_DIAG = 19;
 
 enum class LOG_TYPE {
-  INFO,
-  ERROR,
-  WARN,
+    INFO,
+    ERROR,
+    WARN,
 };
 
 enum class LOG_CLASS {
-  CONTROLLER,
-  CONNECTIVITY,
-  INDICATOR,
-  LOGGING,
-  MANUAL_INTERACTION,
-  MOTOR_DRIVER,
-  STORAGE,
-  ALEXA_INTERACTION,
+    CONTROLLER,
+    CONNECTIVITY,
+    INDICATOR,
+    LOGGING,
+    MANUAL_INTERACTION,
+    MOTOR_DRIVER,
+    STORAGE,
+    ALEXA_INTERACTION,
 };
 
 enum class MANUAL_PUSH {
-  NO_PUSH,
-  LONG_PRESS_UP,
-  LONG_PRESS_DOWN,
-  LONG_PRESS_BOTH,
-  DOUBLE_TAP_UP,
-  DOUBLE_TAP_DOWN,
-  DOUBLE_TAP_BOTH,
+    NO_PUSH,
+    LONG_PRESS_UP,
+    LONG_PRESS_DOWN,
+    LONG_PRESS_BOTH,
+    DOUBLE_TAP_UP,
+    DOUBLE_TAP_DOWN,
+    DOUBLE_TAP_BOTH,
 };
 
 enum class DEVICE_STATUS {
-  FAULT,
-  NOT_CONNECTED,
-  MANUAL_OPERATION,
-  RESET_MODE,
-  WEBPAGE,
-  OTA_ENABLED,
+    FAULT,
+    NOT_CONNECTED,
+    MANUAL_OPERATION,
+    RESET_MODE,
+    WEBPAGE,
+    OTA_ENABLED,
 };
 
 enum class DRIVER_STATUS {
-  AVAILABLE,
-  BUSY,
-  IN_ACTIVE,
+    AVAILABLE,
+    BUSY,
+    IN_ACTIVE,
 };
 
-enum class MOTION_DIRECTION { FORWARD, BACKWARD, STOP };
-
 struct MOTION_REQUEST {
-  MOTION_DIRECTION direction;
-  int percentage; // -1 for blind traversal
+    int PERCENTAGE;   // 0, 100 for blind traversal
 };
 
 struct DEVICE_CRED {
-  String DEVICE_ID = "madac_blinds";
-  String SSID = "NETGEAR37";
-  String PASSWORD = "phobiclotus754";
+    String DEVICE_ID = "blinds-t1";
+    String SSID = "madac_blinds";
+    String PASSWORD = "AutomaticCurtain";
 };
 
 struct CALIB_PARAMS {
-  int TOTAL_STEP_COUNT = -1;
-  int STALL_VALUE = -1;
+    int TOTAL_STEP_COUNT = -1;
+    int STALL_VALUE = -1;
+    bool DIRECTION = false;
 };
 
-struct ALEXA_REQUEST {
-  bool STATE = false;
-  int PERCENTAGE = -1;
-};
-} // namespace CONFIG_SET
+}   // namespace CONFIG_SET
 
 #endif

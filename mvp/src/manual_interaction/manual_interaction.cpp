@@ -11,4 +11,5 @@
  */
 
 #include "manual_interaction.h"
+
 #include "../config/config.h"

@@ -9,19 +9,21 @@
  *
  */
 
+#include <mutex>
+
 #include "src/controller/controller.h"
 
-Controller ctrl = Controller();
+std::unique_ptr<Controller> ctrl{nullptr};
 
 /**
  * @brief Runs at the power on / device reset stage
  *
  */
-void setup() { ctrl.initialize(); }
+void setup() { ctrl.reset(new Controller()); }
 
 /**
  * @brief Runs recurrently until power on after setup, handles the device
  * functioning
  *
  */
-void loop() { ctrl.handle(); }
+void loop() { ctrl->handle(); }

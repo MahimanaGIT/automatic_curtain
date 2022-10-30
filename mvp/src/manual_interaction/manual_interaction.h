@@ -15,26 +15,26 @@
 #include "../config/config.h"
 
 class ManualInteraction {
-public:
-  /**
-   * @brief Construct a new ManualInteraction object, initializes the push
-   * button as inputs
-   *
-   */
-  ManualInteraction();
+   public:
+    /**
+     * @brief Construct a new ManualInteraction object, initializes the push
+     * button as inputs
+     *
+     */
+    ManualInteraction();
 
-  /**
-   * @brief Destroy the ManualInteraction object
-   *
-   */
-  ~ManualInteraction();
+    /**
+     * @brief Destroy the ManualInteraction object
+     *
+     */
+    ~ManualInteraction();
 
-  /**
-   * @brief This function detects various types of pushes, and returns the type
-   * of push detected
-   *
-   */
-  CONFIG_SET::MANUAL_PUSH detectPushes();
+    /**
+     * @brief This function detects various types of pushes, and returns the type
+     * of push detected
+     *
+     */
+    CONFIG_SET::MANUAL_PUSH detectPushes();
 };
 
 #endif
