@@ -12,59 +12,63 @@
 #ifndef _ALEXA_INT_INCLUDE_GUARD
 #define _ALEXA_INT_INCLUDE_GUARD
 
-#include "../config/config.h"
-#include "../logging/logging.h"
-#include "fauxmoESP.h"
 #include <mutex>
 #include <sstream>
 #include <string>
 #include <tuple>
 
-class AlexaInteraction {
-public:
-  /**
-   * @brief Construct a new Alexa Interaction object, default constructor
-   *
-   */
-  AlexaInteraction();
+#include "../config/config.h"
+#include "../logging/logging.h"
+#include "fauxmoESP.h"
 
-  /**
-   * @brief Construct a new AlexaInteraction object, initializes fauxmoesp
-   *
-   */
-  AlexaInteraction(Logging *, String);
+class AlexaInteraction : private fauxmoESP {
+   public:
+    /**
+     * @brief Construct a new AlexaInteraction object, initializes fauxmoesp
+     *
+     */
+    AlexaInteraction(std::shared_ptr<Logging> logging, String device_id);
 
-  /**
-   * @brief Destroy the AlexaInteraction object
-   *
-   */
-  ~AlexaInteraction();
+    /**
+     * @brief Destroy the AlexaInteraction object
+     *
+     */
+    ~AlexaInteraction();
 
-  /**
-   * @brief Get the latest Alexa Request object
-   *
-   * @return std::tuple<bool, CONFIG_SET::ALEXA_REQUEST>
-   */
-  std::tuple<bool, CONFIG_SET::ALEXA_REQUEST> getAlexaRequest();
+    /**
+     * @brief Get the latest Alexa Request object
+     *
+     * @return std::tuple<bool, CONFIG_SET::MOTION_REQUEST>
+     */
+    std::tuple<bool, CONFIG_SET::MOTION_REQUEST> getAlexaRequest();
 
-  void handleFauxmo();
+    /**
+     * @brief Handler function for the class
+     *
+     */
+    void handleFauxmo();
 
-private:
-  Logging *logger_;
-  static String device_id_;
-  static bool is_new_request_available_;
-  static CONFIG_SET::ALEXA_REQUEST latest_alexa_request_;
+    /**
+     * @brief Set the object state to alexa
+     *
+     */
+    void setState(CONFIG_SET::MOTION_REQUEST request);
 
-  /**
-   * @brief Gets called by fauxmo esp when a alexa calls the device
-   *
-   * @param id: device id number
-   * @param device_name: device name
-   * @param state: on/off bool
-   * @param percentage: 0-100 percentage
-   */
-  static void callback(unsigned char id, const char *device_name, bool state,
-                       unsigned char percentage);
+   private:
+    std::shared_ptr<Logging> logger_;
+    static String device_id_;
+    static bool is_new_request_available_;
+    static CONFIG_SET::MOTION_REQUEST latest_alexa_request_;
+
+    /**
+     * @brief Gets called by fauxmo esp when a alexa calls the device
+     *
+     * @param id: device id number
+     * @param device_name: device name
+     * @param state: on/off bool
+     * @param percentage: 0-100 percentage
+     */
+    static void callback(unsigned char id, const char* device_name, bool state, unsigned char percentage);
 };
 
 #endif
