@@ -1,0 +1,59 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "liveshare.presence": true,
+    "clangd.path": "/home/mahi/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/11.0.0/clangd_11.0.0/bin/clangd",
+    "cmake.configureOnOpen": true,
+    "clangd.onConfigChanged": "restart",
+    "C_Cpp.updateChannel": "Insiders",
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "python.pythonPath": "/usr/bin/python3",
+    "python.jediEnabled": true,
+    "explorer.confirmDelete": false,
+    "editor.largeFileOptimizations": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook",
+        "*.html": "default"
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+    // Controls the font size.
+    "editor.fontSize": 13,
+    "editor.tabSize": 4,
+    "python.languageServer": "Jedi",
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "yaml.schemas": {
+        "file:///home/mahi/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "atlascode.bitbucket.enabled": true,
+    "redhat.telemetry.enabled": true,
+    "atlascode.jira.jqlList": [
+        {
+            "id": "52613d5d-cdc3-414a-83ea-cc545a72891c",
+            "enabled": true,
+            "name": "My hellomad Issues",
+            "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+            "siteId": "5df112f6-2bb9-49c1-8418-6f78d64c07ba",
+            "monitor": true
+        }
+    ],
+    "bracketPairColorizer.depreciation-notice": false,
+    "arduino.path": "/home/mahi/Downloads/arduino-1.8.16-linux64/arduino-1.8.16",
+    "arduino.enableUSBDetection": true,
+    "arduino.openPDEFiletype": true,
+    "arduino.commandPath": "arduino",
+    "atlascode.jira.lastCreateSiteAndProject": {
+        "siteId": "5df112f6-2bb9-49c1-8418-6f78d64c07ba",
+        "projectKey": "AC"
+    },
+    "clang-format.executable": "/usr/bin/clang-format-9",
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.semanticHighlighting.enabled": true
+    },
+    "workbench.colorTheme": "Visual Studio Dark - C++",
+    "ros.distro": "melodic",
+}

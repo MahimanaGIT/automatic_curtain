@@ -12,6 +12,8 @@
 #ifndef _CONTROLLER_INCLUDE_GUARD
 #define _CONTROLLER_INCLUDE_GUARD
 
+#include <memory>
+
 #include "../alexa_interaction/alexa_interaction.h"
 #include "../config/config.h"
 #include "../connectivity/connectivity.h"
@@ -61,7 +63,7 @@ class Controller {
     std::unique_ptr<Connectivity> connectivity_{nullptr};
     std::unique_ptr<AlexaInteraction> alexa_interaction_{nullptr};
     std::unique_ptr<MotorDriver> motor_driver_{nullptr};
-
+    std::unique_ptr<MI_Cls> manual_interaction_{nullptr};
     /**
      * @brief Mounts all the parameters from the storage
      *
