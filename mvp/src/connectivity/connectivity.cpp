@@ -29,40 +29,38 @@ AsyncWebServer webpage_server_(80);
 
 Connectivity::~Connectivity() {}
 
-Connectivity::Connectivity(std::shared_ptr<Logging> logging, CONFIG_SET::DEVICE_CRED* device_cred) : logger_(logging) {
-    ensureConnectivity(device_cred);
-}
+Connectivity::Connectivity(std::shared_ptr<Logging> logging, CONFIG_SET::DEVICE_CRED* device_cred) : logger_(logging) {}
 
-bool Connectivity::ensureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred) {
-    if (!isConnected()) {
+bool Connectivity::EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred) {
+    if (!IsConnected()) {
         WiFi.begin(device_cred->SSID.c_str(), device_cred->PASSWORD.c_str());
-        logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Trying to Connect WiFi");
+        logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Trying to Connect WiFi");
         WiFi.waitForConnectResult();
     } else {
         return true;
     }
-    bool is_connected = isConnected();
+    bool is_connected = IsConnected();
     if (is_connected) {
         wifi_client_enabled_ = true;
     }
     return is_connected;
 }
 
-void Connectivity::stopWiFi() {
+void Connectivity::StopWiFi() {
     if (wifi_client_enabled_) {
         WiFi.disconnect();
     }
     wifi_client_enabled_ = false;
-    logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping WiFi");
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping WiFi");
 }
 
-void Connectivity::startOTA() {
+void Connectivity::StartOTA() {
     if (ota_enabled_) {
         return;
     }
 
     // commenting this for lowering down power consumption
-    // startHotspot();
+    // StartHotspot();
 
     ArduinoOTA.onStart([&]() {
         String type;
@@ -71,59 +69,59 @@ void Connectivity::startOTA() {
         } else {
             type = "filesystem";
         }
-        logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY,
+        logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY,
                      String("Start updating " + type).c_str());
     });
 
-    ArduinoOTA.onEnd([&]() { logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "End"); });
+    ArduinoOTA.onEnd([&]() { logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "End"); });
 
     ArduinoOTA.onProgress([&](unsigned int progress, unsigned int total) {
-        logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY,
+        logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY,
                      String("Progress: " + (progress / (total / 100))).c_str());
     });
 
     ArduinoOTA.onError([&](ota_error_t error) {
-        logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY,
+        logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY,
                      String("Error: " + error).c_str());
         if (error == OTA_AUTH_ERROR) {
-            logger_->log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Auth Failed");
+            logger_->Log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Auth Failed");
         } else if (error == OTA_BEGIN_ERROR) {
-            logger_->log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Begin Failed");
+            logger_->Log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Begin Failed");
         } else if (error == OTA_CONNECT_ERROR) {
-            logger_->log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Connect Failed");
+            logger_->Log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Connect Failed");
         } else if (error == OTA_RECEIVE_ERROR) {
-            logger_->log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Receive Failed");
+            logger_->Log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Receive Failed");
         } else if (error == OTA_END_ERROR) {
-            logger_->log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "End Failed");
+            logger_->Log(CONFIG_SET::LOG_TYPE::ERROR, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "End Failed");
         }
     });
 
     ArduinoOTA.begin();
     ota_enabled_ = true;
-    logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting OTA");
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting OTA");
 }
 
-void Connectivity::handleOTA() {
+void Connectivity::HandleOTA() {
     if (ota_enabled_) {
         ArduinoOTA.handle();
     }
 }
 
-void Connectivity::stopOTA() {
+void Connectivity::StopOTA() {
     if (ota_enabled_) {
         ArduinoOTA.end();
     }
     // commenting this to lower down power consumption
-    // stopHotspot();
+    // StopHotspot();
     ota_enabled_ = false;
-    logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping OTA");
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping OTA");
 }
 
-bool Connectivity::isConnected() {
+bool Connectivity::IsConnected() {
     return WiFi.status() == WL_CONNECTED;
 }
 
-void Connectivity::startHotspot() {
+void Connectivity::StartHotspot() {
     CONFIG_SET::DEVICE_CRED device_cred;
     IPAddress local_IP(192, 168, 0, 1);
     IPAddress gateway(192, 168, 0, 1);
@@ -131,19 +129,19 @@ void Connectivity::startHotspot() {
     WiFi.softAPConfig(local_IP, gateway, subnet);
     WiFi.softAP(device_cred.SSID.c_str(), device_cred.PASSWORD.c_str());
     hotspot_enabled_ = true;
-    logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting Hotspot");
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting Hotspot");
 }
 
-void Connectivity::stopHotspot() {
+void Connectivity::StopHotspot() {
     if (hotspot_enabled_) {
         WiFi.softAPdisconnect(true);
     }
-    logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping Hotspot");
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping Hotspot");
     hotspot_enabled_ = false;
 }
 
-void Connectivity::startWebpage() {
-    startHotspot();
+void Connectivity::StartWebpage() {
+    StartHotspot();
 
     if (webpage_enabled_) {
         return;
@@ -169,7 +167,7 @@ void Connectivity::startWebpage() {
         }
         request->send_P(200, "text/html", dialog_html);
 
-        logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Got webpage submission");
+        logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Got webpage submission");
         const std::lock_guard<std::mutex> lock(webpage_submission_mutex);
         is_new_submission_available_ = true;
     });
@@ -177,21 +175,19 @@ void Connectivity::startWebpage() {
     // Start server
     webpage_server_.begin();
     webpage_enabled_ = true;
-    logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting Webpage");
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting Webpage");
 }
 
-void Connectivity::displayWebpage() {}
-
-void Connectivity::stopWebpage() {
-    stopHotspot();
+void Connectivity::StopWebpage() {
+    StopHotspot();
     if (webpage_enabled_) {
         webpage_server_.end();
     }
-    logger_->log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping Webpage");
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping Webpage");
     webpage_enabled_ = false;
 }
 
-std::tuple<bool, CONFIG_SET::DEVICE_CRED> Connectivity::getWebpageSubmission() {
+std::tuple<bool, CONFIG_SET::DEVICE_CRED> Connectivity::GetWebpageSubmission() {
     const std::lock_guard<std::mutex> lock(webpage_submission_mutex);
     std::tuple<bool, CONFIG_SET::DEVICE_CRED> return_value(is_new_submission_available_,
                                                            webpage_submitted_device_cred_);

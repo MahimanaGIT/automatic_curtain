@@ -24,6 +24,7 @@
 #include <utility>
 
 #include "../config/config.h"
+#include "../logging/logging.h"
 
 class ManualInteraction {
    public:
@@ -71,7 +72,7 @@ class ManualInteraction {
     @brief Return value for manual_action and time with option of clearing the
     variable
   */
-    std::tuple<C_S::MANUAL_PUSH, C_S::time_var> GetManualActionAndTime(bool clear_action);
+    std::tuple<C_S::MANUAL_PUSH, C_S::time_var> GetManualActionAndTime();
 
     //@{
     /**

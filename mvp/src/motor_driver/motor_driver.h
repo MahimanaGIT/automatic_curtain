@@ -54,7 +54,7 @@ class MotorDriver : private TMC2209Stepper {
      *
      * @return CONFIG_SET::DRIVER_STATUS
      */
-    CONFIG_SET::DRIVER_STATUS getStatus();
+    CONFIG_SET::DRIVER_STATUS GetStatus();
 
     /**
      * @brief This is the primary contact function for external requests, it will
@@ -64,7 +64,7 @@ class MotorDriver : private TMC2209Stepper {
      * @return true : request accepted
      * @return false : rejected
      */
-    bool fulfillRequest(CONFIG_SET::MOTION_REQUEST request);
+    bool FulfillRequest(CONFIG_SET::MOTION_REQUEST request);
 
     /**
      * @brief Cancels current request
@@ -72,7 +72,7 @@ class MotorDriver : private TMC2209Stepper {
      * @return true: Cancellation successful
      * @return false: otherwise
      */
-    bool cancelCurrentRequest();
+    bool CancelCurrentRequest();
 
     /**
      * @brief Calibrate the motor driver, determine the stall value and total step
@@ -80,19 +80,19 @@ class MotorDriver : private TMC2209Stepper {
      *
      * @return CONFIG_SET::CALIB_PARAMS: calibration parameters
      */
-    CONFIG_SET::CALIB_PARAMS calibrate();
+    CONFIG_SET::CALIB_PARAMS Calibrate();
 
     /**
      * @brief Updates calibration parameters to be used by motor driver
      *
      */
-    void updateCalibParams(CONFIG_SET::CALIB_PARAMS calib_param);
+    void UpdateCalibParams(CONFIG_SET::CALIB_PARAMS calib_param);
 
     /**
      * @brief Runs on a timer, supplies step and direction signal to motor driver
      *
      */
-    static void interruptForIndex();
+    static void InterruptForIndex();
 
     /**
      * @brief Motor Driver class handler, communicates with driver and is
@@ -102,7 +102,7 @@ class MotorDriver : private TMC2209Stepper {
      * is reached
      *
      */
-    void handle();
+    void Handle();
 
    private:
     CONFIG_SET::DRIVER_STATUS driver_status_;
@@ -126,13 +126,13 @@ class MotorDriver : private TMC2209Stepper {
      * @return true : if successful
      * @return false : otherwise
      */
-    bool enableDriver(bool enable);
+    bool EnableDriver(bool enable);
 
     /**
      * @brief Sets needed parameters for the driver
      * 
      */
-    void initializeDriver();
+    void InitializeDriver();
 
     /**
      * @brief Reset the motor driver by supplying appropriate pulse
@@ -140,7 +140,7 @@ class MotorDriver : private TMC2209Stepper {
      * @return true : if successful
      * @return false : otherwise
      */
-    void resetDriver();
+    void ResetDriver();
 
     /**
      * @brief Check if the nfault is enable from the motor driver
@@ -148,7 +148,7 @@ class MotorDriver : private TMC2209Stepper {
      * @return true : if enabled
      * @return false : otherwise
      */
-    bool checkFault();
+    bool CheckFault();
 
     /**
      * @brief Responsible for starting the motor, i.e. setups the driver and sets
@@ -157,7 +157,7 @@ class MotorDriver : private TMC2209Stepper {
      * @arg true: soft start on
      * @arg false: soft start off
      */
-    void startMotor(bool soft_traversal);
+    void StartMotor(bool soft_traversal);
 
     /**
      * @brief Responsible for stopping the motor, i.e. disables the driver and
@@ -166,7 +166,7 @@ class MotorDriver : private TMC2209Stepper {
      * @arg true: soft stop on
      * @arg false: soft stop off
      */
-    void stopMotor(bool soft_traversal);
+    void StopMotor(bool soft_traversal);
 };
 
 #endif

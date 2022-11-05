@@ -19,17 +19,17 @@
 Indicator::~Indicator() {}
 
 Indicator::Indicator(std::shared_ptr<Logging> logging) : logger_(logging) {
-    initializeLED();
+    InitializeLED();
 }
 
-void Indicator::initializeLED() {
+void Indicator::InitializeLED() {
     FastLED.addLeds<WS2812, CONFIG_SET::PIN_RGB_LED, GRB>(leds_, CONFIG_SET::NUMBER_OF_LEDS);
     FastLED.setBrightness(CONFIG_SET::LED_BRIGHTNESS);
     leds_[0] = CRGB::Green;
     FastLED.show();
 }
 
-bool Indicator::updateStatus(CONFIG_SET::DEVICE_STATUS status) {
+bool Indicator::UpdateStatus(CONFIG_SET::DEVICE_STATUS status) {
     switch (status) {
         case CONFIG_SET::DEVICE_STATUS::FAULT:
             leds_[0] = CRGB::Red;

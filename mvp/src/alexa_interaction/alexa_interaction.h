@@ -40,19 +40,19 @@ class AlexaInteraction : private fauxmoESP {
      *
      * @return std::tuple<bool, CONFIG_SET::MOTION_REQUEST>
      */
-    std::tuple<bool, CONFIG_SET::MOTION_REQUEST> getAlexaRequest();
+    std::tuple<bool, CONFIG_SET::MOTION_REQUEST> GetAlexaRequest();
 
     /**
      * @brief Handler function for the class
      *
      */
-    void handleFauxmo();
+    void HandleFauxmo();
 
     /**
      * @brief Set the object state to alexa
      *
      */
-    void setState(CONFIG_SET::MOTION_REQUEST request);
+    void SetState(CONFIG_SET::MOTION_REQUEST request);
 
    private:
     std::shared_ptr<Logging> logger_;
@@ -68,7 +68,7 @@ class AlexaInteraction : private fauxmoESP {
      * @param state: on/off bool
      * @param percentage: 0-100 percentage
      */
-    static void callback(unsigned char id, const char* device_name, bool state, unsigned char percentage);
+    static void Callback(unsigned char id, const char* device_name, bool state, unsigned char percentage);
 };
 
 #endif

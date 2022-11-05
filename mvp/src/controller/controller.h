@@ -49,12 +49,14 @@ class Controller {
      * 6. Controls OTA enable
      * 7. Handles any fault conditions and acts accordingly
      */
-    void handle();
+    void Handle();
 
    private:
     // Device parameter initialization
     CONFIG_SET::DEVICE_CRED device_cred_;
     CONFIG_SET::CALIB_PARAMS calib_params_;
+    CONFIG_SET::OPERATION_MODE operation_mode_;
+    bool long_press_enabled_;
 
     // Device class objects initialization
     std::shared_ptr<Logging> logger_{nullptr};
@@ -63,24 +65,69 @@ class Controller {
     std::unique_ptr<Connectivity> connectivity_{nullptr};
     std::unique_ptr<AlexaInteraction> alexa_interaction_{nullptr};
     std::unique_ptr<MotorDriver> motor_driver_{nullptr};
-    std::unique_ptr<MI_Cls> manual_interaction_{nullptr};
+    std::unique_ptr<ManualInteraction> manual_interaction_{nullptr};
+
     /**
      * @brief Mounts all the parameters from the storage
      *
      */
-    void loadParameters();
+    bool LoadParameters();
 
     /**
      * @brief Save all the parameters to storage
      *
      */
-    void saveParameters();
+    bool SaveParameters();
 
     /**
-     * @brief Reset mode for device
+      * @brief Initialize reset mode
+      *
+      */
+    void InitializeResetMode();
+
+    /**
+     * @brief Handle reset mode
      *
      */
-    void reset();
+    void HandleResetMode();
+
+    /**
+     * @brief Initialize maintenance mode
+     *
+     */
+    void InitializeMaintenanceMode();
+
+    /**
+     * @brief Handle reset mode
+     *
+     */
+    void HandleMaintenanceMode();
+
+    /**
+     * @brief Initialize operation mode
+     *
+     */
+    void InitializeOperationMode();
+
+    /**
+     * @brief Handle operation mode
+     *
+     */
+    void HandleOperationMode();
+
+    /**
+     * @brief Restarts device
+     *
+     */
+    void RestartDevice();
+
+    /**
+     * @brief Calibrate the motor driver, determine the stall value and total step
+     * count
+     *
+     * @return CONFIG_SET::CALIB_PARAMS: calibration parameters
+     */
+    CONFIG_SET::CALIB_PARAMS Calibrate();
 };
 
 #endif

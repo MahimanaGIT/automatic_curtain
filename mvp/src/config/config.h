@@ -64,9 +64,9 @@ const int MOTOR_STOP_TIME_SEC = 90;          // 1.5 mins
 const float STEP_FRACTION_ALLOWANCE = 0.05;  // 5% Allowance allowed for motor reaching destination
 
 enum class OPERATION_MODE {
-    START,
     RESET,
     MAINTENANCE,
+    USER,
 };
 
 /*

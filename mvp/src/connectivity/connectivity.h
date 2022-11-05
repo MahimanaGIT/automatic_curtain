@@ -44,7 +44,7 @@ class Connectivity {
      * @brief Set the up Arduino OTA
      *
      */
-    void startOTA();
+    void StartOTA();
 
     /**
      * @brief Check if the device is connected, if not, try to connect it
@@ -53,30 +53,19 @@ class Connectivity {
      * @return false : failed to connect, device is no longer connected, despite
      * of trying
      */
-    bool ensureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred);
-
-    /**
-     * @brief Displays webpage (for getting WiFi creds and device name), might be
-     * a blocking function, returns after a timeout or a submission request is
-     * made
-     *
-     * @return true : if submission was successful, updates CONFIG_SET::WiFi_CRED
-     * and CONFIG_SET::DEVICE_ID
-     * @return false : otherwise
-     */
-    void displayWebpage();
+    bool EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred);
 
     /**
      * @brief Regular call function for syncing OTA requests
      *
      */
-    void handleOTA();
+    void HandleOTA();
 
     /**
      * @brief Disable OTA
      *
      */
-    void stopOTA();
+    void StopOTA();
 
     /**
      * @brief Checks if the device is connected to the WiFi
@@ -84,25 +73,25 @@ class Connectivity {
      * @return true : if connected
      * @return false : otherwise
      */
-    bool isConnected();
+    bool IsConnected();
 
     /**
      * @brief Creates a server and starts hosting webpage
      *
      */
-    void startWebpage();
+    void StartWebpage();
 
     /**
      * @brief Stops webpage server
      *
      */
-    void stopWebpage();
+    void StopWebpage();
 
     /**
      * @brief disconnects WiFi
      *
      */
-    void stopWiFi();
+    void StopWiFi();
 
     /**
      * @brief Get the latest submission
@@ -110,7 +99,7 @@ class Connectivity {
      * @return std::tuple<bool, CONFIG_SET::DEVICE_CRED>: bool returning if there
      * is a new submission available, device_cred: new submission
      */
-    std::tuple<bool, CONFIG_SET::DEVICE_CRED> getWebpageSubmission();
+    std::tuple<bool, CONFIG_SET::DEVICE_CRED> GetWebpageSubmission();
 
    private:
     std::shared_ptr<Logging> logger_;
@@ -128,13 +117,13 @@ class Connectivity {
      * @brief Starts wifi hotspot, basically start wifi in soft access point mode
      *
      */
-    void startHotspot();
+    void StartHotspot();
 
     /**
      * @brief Stops wifi hotspot
      *
      */
-    void stopHotspot();
+    void StopHotspot();
 };
 
 #endif

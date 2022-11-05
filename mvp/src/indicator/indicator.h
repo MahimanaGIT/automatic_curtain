@@ -43,7 +43,7 @@ class Indicator {
      * @return true: if the updation was successful
      * @return false: otherwise
      */
-    bool updateStatus(CONFIG_SET::DEVICE_STATUS status);
+    bool UpdateStatus(CONFIG_SET::DEVICE_STATUS status);
 
    private:
     std::shared_ptr<Logging> logger_;
@@ -53,7 +53,7 @@ class Indicator {
      * @brief Initializes RGB LED
      *
      */
-    void initializeLED();
+    void InitializeLED();
 };
 
 #endif

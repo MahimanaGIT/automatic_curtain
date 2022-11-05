@@ -21,7 +21,7 @@ Storage::Storage(std::shared_ptr<Logging> logging) : logger_(logging) {}
 
 Storage::~Storage() {}
 
-bool Storage::saveDeviceCred(const CONFIG_SET::DEVICE_CRED* device_cred) {
+bool Storage::SaveDeviceCred(const CONFIG_SET::DEVICE_CRED* device_cred) {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
     size_t status_device_id = preferences_.putString(CONFIG_SET::KEY_DEVICE_ID.c_str(), device_cred->DEVICE_ID);
     size_t status_ssid = preferences_.putString(CONFIG_SET::KEY_SSID.c_str(), device_cred->SSID);
@@ -33,7 +33,7 @@ bool Storage::saveDeviceCred(const CONFIG_SET::DEVICE_CRED* device_cred) {
     return true;
 }
 
-bool Storage::populateDeviceCred(CONFIG_SET::DEVICE_CRED* device_cred) {
+bool Storage::PopulateDeviceCred(CONFIG_SET::DEVICE_CRED* device_cred) {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
     device_cred->DEVICE_ID = preferences_.getString(CONFIG_SET::KEY_DEVICE_ID.c_str(), "");
     device_cred->SSID = preferences_.getString(CONFIG_SET::KEY_SSID.c_str(), "");
@@ -45,7 +45,7 @@ bool Storage::populateDeviceCred(CONFIG_SET::DEVICE_CRED* device_cred) {
     return true;
 }
 
-bool Storage::saveCalibParam(const CONFIG_SET::CALIB_PARAMS* calib_param) {
+bool Storage::SaveCalibParam(const CONFIG_SET::CALIB_PARAMS* calib_param) {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
     size_t status_stall = preferences_.putInt(CONFIG_SET::KEY_STALL_VALUE.c_str(), calib_param->STALL_VALUE);
     size_t status_total_step =
@@ -57,7 +57,7 @@ bool Storage::saveCalibParam(const CONFIG_SET::CALIB_PARAMS* calib_param) {
     return true;
 }
 
-bool Storage::populateCalibParam(CONFIG_SET::CALIB_PARAMS* calib_param) {
+bool Storage::PopulateCalibParam(CONFIG_SET::CALIB_PARAMS* calib_param) {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
     calib_param->TOTAL_STEP_COUNT = preferences_.getInt(CONFIG_SET::KEY_TOTAL_STEP_COUNT.c_str(), -1);
     calib_param->STALL_VALUE = preferences_.getInt(CONFIG_SET::KEY_STALL_VALUE.c_str(), -1);
@@ -68,7 +68,7 @@ bool Storage::populateCalibParam(CONFIG_SET::CALIB_PARAMS* calib_param) {
     return true;
 }
 
-void Storage::clear() {
+void Storage::Clear() {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
     preferences_.clear();
     preferences_.end();

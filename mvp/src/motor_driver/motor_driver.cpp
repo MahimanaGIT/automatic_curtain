@@ -44,20 +44,20 @@ MotorDriver::MotorDriver(std::shared_ptr<Logging> logging, CONFIG_SET::CALIB_PAR
 
     Serial2.begin(MOTOR_DRIVER_BAUD_RATE, SERIAL_8N1, PIN_MD_RX, PIN_MD_TX);
 
-    updateCalibParams(calib_param);
-    attachInterrupt(PIN_MD_INDEX, MotorDriver::interruptForIndex, RISING);
-    logger_->log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Motor Driver Setup Completed");
+    UpdateCalibParams(calib_param);
+    attachInterrupt(PIN_MD_INDEX, MotorDriver::InterruptForIndex, RISING);
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Motor Driver Setup Completed");
 }
 
 MotorDriver::~MotorDriver() {
-    enableDriver(false);
+    EnableDriver(false);
 }
 
-CONFIG_SET::CALIB_PARAMS MotorDriver::calibrate() {
+CONFIG_SET::CALIB_PARAMS MotorDriver::Calibrate() {
     return CONFIG_SET::CALIB_PARAMS();
 }
 
-bool MotorDriver::fulfillRequest(CONFIG_SET::MOTION_REQUEST request) {
+bool MotorDriver::FulfillRequest(CONFIG_SET::MOTION_REQUEST request) {
     using namespace CONFIG_SET;
     if (is_motor_running_) {
         return false;
@@ -72,27 +72,27 @@ bool MotorDriver::fulfillRequest(CONFIG_SET::MOTION_REQUEST request) {
     return true;
 }
 
-CONFIG_SET::DRIVER_STATUS MotorDriver::getStatus() {
+CONFIG_SET::DRIVER_STATUS MotorDriver::GetStatus() {
     return (is_motor_running_) ? CONFIG_SET::DRIVER_STATUS::BUSY : CONFIG_SET::DRIVER_STATUS::AVAILABLE;
 }
 
-bool MotorDriver::enableDriver(bool enable) {
+bool MotorDriver::EnableDriver(bool enable) {
     digitalWrite(CONFIG_SET::PIN_MD_ENABLE, !enable);
 }
 
-void MotorDriver::resetDriver() {
+void MotorDriver::ResetDriver() {
     using namespace CONFIG_SET;
-    logger_->log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Resetting the driver");
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Resetting the driver");
 
-    enableDriver(false);
+    EnableDriver(false);
     delay(25);
-    enableDriver(true);
+    EnableDriver(true);
     delay(25);
 
-    initializeDriver();
+    InitializeDriver();
 }
 
-void MotorDriver::initializeDriver() {
+void MotorDriver::InitializeDriver() {
     using namespace CONFIG_SET;
     this->begin();
     this->toff(MOTOR_DRIVER_TOFF);
@@ -107,18 +107,18 @@ void MotorDriver::initializeDriver() {
     this->SGTHRS(calib_params_.STALL_VALUE);
 }
 
-bool MotorDriver::checkFault() {}
+bool MotorDriver::CheckFault() {}
 
-void MotorDriver::updateCalibParams(CONFIG_SET::CALIB_PARAMS calib_param) {
+void MotorDriver::UpdateCalibParams(CONFIG_SET::CALIB_PARAMS calib_param) {
     calib_params_ = calib_param;
-    enableDriver(true);
-    initializeDriver();
-    enableDriver(false);
+    EnableDriver(true);
+    InitializeDriver();
+    EnableDriver(false);
 }
 
-void MotorDriver::stopMotor(bool soft_traversal) {
+void MotorDriver::StopMotor(bool soft_traversal) {
     using namespace CONFIG_SET;
-    logger_->log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Stopping Motor");
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Stopping Motor");
     if (soft_traversal) {
         for (uint32_t i = MOTOR_DRIVER_SPEED; i > 0; i = i - MOTOR_DRIVER_ACCEL) {
             this->VACTUAL(i);
@@ -127,14 +127,14 @@ void MotorDriver::stopMotor(bool soft_traversal) {
     } else {
         this->VACTUAL(0);
     }
-    enableDriver(false);
+    EnableDriver(false);
     is_motor_running_ = false;
 }
 
-void MotorDriver::startMotor(bool soft_traversal) {
+void MotorDriver::StartMotor(bool soft_traversal) {
     using namespace CONFIG_SET;
-    logger_->log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Starting Motor");
-    enableDriver(true);
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Starting Motor");
+    EnableDriver(true);
     shaft(calib_params_.DIRECTION ^ direction_);
     if (soft_traversal) {
         for (uint32_t i = 0; i <= MOTOR_DRIVER_SPEED; i = i + MOTOR_DRIVER_ACCEL) {
@@ -148,7 +148,7 @@ void MotorDriver::startMotor(bool soft_traversal) {
     last_motor_start_time_sec_ = std::time(nullptr);
 }
 
-void MotorDriver::handle() {
+void MotorDriver::Handle() {
     using namespace CONFIG_SET;
     if (is_motor_running_) {
         bool current_step_out_of_bound = (current_step_ < 0) || (current_step_ > calib_params_.TOTAL_STEP_COUNT);
@@ -163,30 +163,31 @@ void MotorDriver::handle() {
                                     (!direction_ && current_step_ < (1 - STEP_FRACTION_ALLOWANCE) * expected_step_);
 
         if (!blind_traversal_requested_ && (step_in_limit || step_exceeded_bounds)) {
-            logger_->log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Reached Destination");
+            logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Reached Destination");
             reached_destination = true;
         }
 
         bool stall_detected = digitalRead(PIN_MD_DIAG);
         bool end_timer_reached = (std::time(nullptr) - last_motor_start_time_sec_) > MOTOR_STOP_TIME_SEC;
         if (stall_detected || reached_destination || end_timer_reached || stop_requested_) {
-            stopMotor(!stall_detected);
+            StopMotor(false);
+            // StopMotor(!stall_detected);
             expected_step_ = current_step_;
             stop_requested_ = false;
         }
     }
 
     if (!is_motor_running_ && expected_step_ != current_step_) {
-        startMotor(true);
+        StartMotor(true);
     }
 }
 
-void IRAM_ATTR MotorDriver::interruptForIndex() {
+void IRAM_ATTR MotorDriver::InterruptForIndex() {
     current_step_ += (direction_) ? full_rot_step_count_ : -full_rot_step_count_;
 }
 
-bool MotorDriver::cancelCurrentRequest() {
+bool MotorDriver::CancelCurrentRequest() {
     using namespace CONFIG_SET;
-    logger_->log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Cancelling Request");
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Cancelling Request");
     stop_requested_ = is_motor_running_;
 }

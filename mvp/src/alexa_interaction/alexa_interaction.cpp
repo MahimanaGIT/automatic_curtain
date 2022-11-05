@@ -31,10 +31,10 @@ AlexaInteraction::AlexaInteraction(std::shared_ptr<Logging> logging, String devi
     this->setPort(80);
     this->enable(true);
     this->addDevice(device_id_.c_str());
-    this->onSetState(callback);
+    this->onSetState(Callback);
 }
 
-void AlexaInteraction::callback(unsigned char id, const char* device_name, bool state, unsigned char percentage) {
+void AlexaInteraction::Callback(unsigned char id, const char* device_name, bool state, unsigned char percentage) {
     if (strcmp(device_name, AlexaInteraction::device_id_.c_str()) == 0) {
         std::unique_lock<std::mutex> lock(alexa_request_mutex_);
         AlexaInteraction::latest_alexa_request_.PERCENTAGE = (float(percentage) / 255) * 100;
@@ -50,17 +50,17 @@ void AlexaInteraction::callback(unsigned char id, const char* device_name, bool 
 
 AlexaInteraction::~AlexaInteraction() {}
 
-std::tuple<bool, CONFIG_SET::MOTION_REQUEST> AlexaInteraction::getAlexaRequest() {
+std::tuple<bool, CONFIG_SET::MOTION_REQUEST> AlexaInteraction::GetAlexaRequest() {
     std::unique_lock<std::mutex> lock(alexa_request_mutex_);
     std::tuple<bool, CONFIG_SET::MOTION_REQUEST> return_value(is_new_request_available_, latest_alexa_request_);
     is_new_request_available_ = false;
     return return_value;
 }
 
-void AlexaInteraction::handleFauxmo() {
+void AlexaInteraction::HandleFauxmo() {
     this->handle();
 }
 
-void AlexaInteraction::setState(CONFIG_SET::MOTION_REQUEST request) {
+void AlexaInteraction::SetState(CONFIG_SET::MOTION_REQUEST request) {
     fauxmoESP::setState(device_id_.c_str(), request.PERCENTAGE != 0, request.PERCENTAGE * 2.55);
 }
