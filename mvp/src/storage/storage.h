@@ -41,7 +41,7 @@ class Storage {
      * @return true : if save successful
      * @return false : otherwise
      */
-    bool saveDeviceCred(const CONFIG_SET::DEVICE_CRED* device_cred);
+    bool SaveDeviceCred(const CONFIG_SET::DEVICE_CRED* device_cred);
 
     /**
      * @brief Retrieves the wifi creds and device id from the flash and populates
@@ -50,7 +50,7 @@ class Storage {
      * @return true : populate successful
      * @return false : otherwise
      */
-    bool populateDeviceCred(CONFIG_SET::DEVICE_CRED* device_cred);
+    bool PopulateDeviceCred(CONFIG_SET::DEVICE_CRED* device_cred);
 
     /**
      * @brief Saves the calib params to Flash, fetching the data from the
@@ -59,7 +59,7 @@ class Storage {
      * @return true : if save successful
      * @return false : otherwise
      */
-    bool saveCalibParam(const CONFIG_SET::CALIB_PARAMS* calib_param);
+    bool SaveCalibParam(const CONFIG_SET::CALIB_PARAMS* calib_param);
 
     /**
      * @brief Retrieves the calib params from the flash and populates
@@ -68,13 +68,13 @@ class Storage {
      * @return true : populate successful
      * @return false : otherwise
      */
-    bool populateCalibParam(CONFIG_SET::CALIB_PARAMS* calib_param);
+    bool PopulateCalibParam(CONFIG_SET::CALIB_PARAMS* calib_param);
 
     /**
      * @brief Clears the memory for CONFIG_SET::STORAGE_NAMESPACE workspace
      *
      */
-    void clear();
+    void Clear();
 
    private:
     Preferences preferences_;

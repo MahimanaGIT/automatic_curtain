@@ -11,6 +11,9 @@
  */
 
 #include "manual_interaction.h"
+#include <memory>
+#include "../config/config.h"
+#include "../logging/logging.h"
 
 #include <Arduino.h>
 
@@ -130,7 +133,7 @@ void MI_Cls::StartButtonDequeAnalyserFn() {
     //@}
 }
 
-std::tuple<C_S::MANUAL_PUSH, C_S::time_var> MI_Cls::GetManualActionAndTime(bool clear_action) {
+std::tuple<C_S::MANUAL_PUSH, C_S::time_var> MI_Cls::GetManualActionAndTime() {
     //@{
     /**
    * @brief returns manual action and time the action was set
@@ -141,7 +144,9 @@ std::tuple<C_S::MANUAL_PUSH, C_S::time_var> MI_Cls::GetManualActionAndTime(bool 
         std::make_tuple(this->manual_action_, this->manual_action_time_);
 
     // clear the acrion based on flag
-    if (clear_action) {
+    if (this->manual_action_ == C_S::MANUAL_PUSH::DOUBLE_TAP_BOTH ||
+        this->manual_action_ == C_S::MANUAL_PUSH::DOUBLE_TAP_UP ||
+        this->manual_action_ == C_S::MANUAL_PUSH::DOUBLE_TAP_DOWN) {
         this->manual_action_ = C_S::MANUAL_PUSH::NO_PUSH;
         this->manual_action_time_ = C_S::current_time::now();
     }
@@ -193,8 +198,8 @@ void MI_Cls::ButtonstateDequeAnalyser() {
             std::chrono::duration_cast<std::chrono::milliseconds>(function_end_time - function_start_time).count();
 
         // non-blocking delay for running loop 1HZ
-        if (execution_time < 1000) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000 - execution_time));
+        if (execution_time < 500) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(500 - execution_time));
         }
     }
 
@@ -266,6 +271,14 @@ void MI_Cls::SetManualActionAndTime(int& button_1_state, int& button_2_state, C_
         button_2_state = 0;
     } else if (button_1_state == 2 && button_2_state == 2) {
         this->manual_action_ = C_S::MANUAL_PUSH::DOUBLE_TAP_BOTH;
+        this->manual_action_time_ = time_button_1 > time_button_2 ? time_button_1 : time_button_2;
+        button_1_state = 0;
+        button_2_state = 0;
+    } else if (button_1_state == 0 && button_2_state == 0 &&
+               this->manual_action_ != C_S::MANUAL_PUSH::DOUBLE_TAP_BOTH &&
+               this->manual_action_ != C_S::MANUAL_PUSH::DOUBLE_TAP_UP &&
+               this->manual_action_ != C_S::MANUAL_PUSH::DOUBLE_TAP_DOWN) {
+        this->manual_action_ = C_S::MANUAL_PUSH::NO_PUSH;
         this->manual_action_time_ = time_button_1 > time_button_2 ? time_button_1 : time_button_2;
         button_1_state = 0;
         button_2_state = 0;

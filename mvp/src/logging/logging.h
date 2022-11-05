@@ -40,7 +40,7 @@ class Logging {
      * @return true : if the print is successful
      * @return false : otherwise
      */
-    bool log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, const char* message) const;
+    bool Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, const char* message) const;
 
     /**
      * @brief For now, the function will just print a message on serial, it can be
@@ -50,21 +50,21 @@ class Logging {
      * @return true : if the print is successful
      * @return false : otherwise
      */
-    bool log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, String message) const;
+    bool Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, String message) const;
 
     /**
      * @brief This function enables or disables logging
      * true: logging enabled
      * false: logging disabled
      */
-    void setLoggingStatus(bool status);
+    void SetLoggingStatus(bool status);
 
     /**
      * @brief Get the Logging Status object
      *
      * @return bool: logging_status_
      */
-    bool getLoggingStatus() const;
+    bool GetLoggingStatus() const;
 
    private:
     bool logging_status_;

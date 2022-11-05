@@ -31,7 +31,7 @@ Logging::~Logging() {
     Serial.end();
 }
 
-bool Logging::log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, const char* message) const {
+bool Logging::Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, const char* message) const {
     const std::lock_guard<std::mutex> lock(status_mutex);
     if (logging_status_) {
         switch (log_type) {
@@ -79,15 +79,15 @@ bool Logging::log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class
     }
 }
 
-bool Logging::log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, String message) const {
-    log(log_type, log_class, message.c_str());
+bool Logging::Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, String message) const {
+    Log(log_type, log_class, message.c_str());
 }
 
-void Logging::setLoggingStatus(bool status) {
+void Logging::SetLoggingStatus(bool status) {
     const std::lock_guard<std::mutex> lock(status_mutex);
     logging_status_ = status;
 }
 
-bool Logging::getLoggingStatus() const {
+bool Logging::GetLoggingStatus() const {
     return logging_status_;
 }
