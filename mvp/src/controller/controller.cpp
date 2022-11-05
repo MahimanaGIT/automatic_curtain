@@ -9,12 +9,13 @@
  * @copyright Copyright (c) 2022
  *
  */
-
 #include "controller.h"
 
 #include <Arduino.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <memory>
 
 #include "../alexa_interaction/alexa_interaction.h"
 #include "../config/config.h"
@@ -29,6 +30,7 @@ Controller::Controller()
     : logger_(new Logging()),
       store_(new Storage(logger_)),
       indicator_(new Indicator(logger_)),
+      manual_interaction_(new MI_Cls),
       connectivity_{nullptr},
       motor_driver_{nullptr},
       alexa_interaction_{nullptr} {
@@ -50,7 +52,7 @@ Controller::Controller()
     alexa_interaction_.reset(new AlexaInteraction(logger_, device_cred_.DEVICE_ID));
 
     connectivity_->ensureConnectivity(&device_cred_);
-    connectivity_->startOTA();
+    // connectivity_->startOTA();
     // connectivity_->startWebpage();
 
     // for testing purposes
@@ -115,5 +117,31 @@ void Controller::handle() {
         // connectivity_->stopOTA();
         connectivity_->stopWebpage();
         connectivity_->stopWiFi();
+    }
+
+    // test code for manual_interaction
+    C_S::MANUAL_PUSH manual_action_test;
+    C_S::time_var manual_action_time_test;
+    tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime(true);
+
+    switch (manual_action_test) {
+        case C_S::MANUAL_PUSH::LONG_PRESS_UP:
+            std::cout << "LONG_PRESS_UP" << std::endl;
+            break;
+        case C_S::MANUAL_PUSH::LONG_PRESS_DOWN:
+            std::cout << "LONG_PRESS_DOWN" << std::endl;
+            break;
+        case C_S::MANUAL_PUSH::LONG_PRESS_BOTH:
+            std::cout << "LONG_PRESS_BOTH" << std::endl;
+            break;
+        case C_S::MANUAL_PUSH::DOUBLE_TAP_UP:
+            std::cout << "DOUBLE_TAP_UP" << std::endl;
+            break;
+        case C_S::MANUAL_PUSH::DOUBLE_TAP_DOWN:
+            std::cout << "DOUBLE_TAP_DOWN" << std::endl;
+            break;
+        case C_S::MANUAL_PUSH::DOUBLE_TAP_BOTH:
+            std::cout << "DOUBLE_TAP_BOTH" << std::endl;
+            break;
     }
 }

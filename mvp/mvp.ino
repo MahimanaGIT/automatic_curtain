@@ -19,11 +19,15 @@ std::unique_ptr<Controller> ctrl{nullptr};
  * @brief Runs at the power on / device reset stage
  *
  */
-void setup() { ctrl.reset(new Controller()); }
+void setup() {
+    ctrl.reset(new Controller());
+}
 
 /**
  * @brief Runs recurrently until power on after setup, handles the device
  * functioning
  *
  */
-void loop() { ctrl->handle(); }
+void loop() {
+    ctrl->handle();
+}

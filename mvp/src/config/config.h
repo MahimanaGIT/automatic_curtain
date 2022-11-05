@@ -16,6 +16,8 @@
 
 #include <Arduino.h>
 
+#include <chrono>
+#include <deque>
 #include <iostream>
 
 /**
@@ -23,6 +25,7 @@
  *
  */
 namespace CONFIG_SET {
+
 const int LOGGING_BAUD_RATE = 115200;
 const int MOTOR_DRIVER_BAUD_RATE = 115200;
 const std::string STORAGE_NAMESPACE = "madac";
@@ -57,8 +60,8 @@ const uint8_t MOTOR_DRIVER_SE_MAX = 2;
 const uint8_t MOTOR_DRIVER_SEDN = 0b01;
 const uint32_t MOTOR_DRIVER_SPEED = 3000;
 const uint32_t MOTOR_DRIVER_ACCEL = 25;
-const int MOTOR_STOP_TIME_SEC = 90;           // 1.5 mins
-const float STEP_FRACTION_ALLOWANCE = 0.05;   // 5% Allowance allowed for motor reaching destination
+const int MOTOR_STOP_TIME_SEC = 90;          // 1.5 mins
+const float STEP_FRACTION_ALLOWANCE = 0.05;  // 5% Allowance allowed for motor reaching destination
 
 enum class OPERATION_MODE {
     START,
@@ -141,7 +144,7 @@ enum class DRIVER_STATUS {
 };
 
 struct MOTION_REQUEST {
-    int PERCENTAGE;   // 0, 100 for blind traversal
+    int PERCENTAGE;  // 0, 100 for blind traversal
 };
 
 struct DEVICE_CRED {
@@ -156,6 +159,16 @@ struct CALIB_PARAMS {
     bool DIRECTION = false;
 };
 
-}   // namespace CONFIG_SET
+// short_name variable name for storing manual button clicks
+using button_press_deque = std::deque<std::pair<bool, std::chrono::time_point<std::chrono::system_clock>>>;
+
+// alias for time variables
+using time_var = std::chrono::time_point<std::chrono::system_clock>;
+using current_time = std::chrono::system_clock;
+
+}  // namespace CONFIG_SET
+
+// alias for CONFIG_SET namespace MyNamespace
+namespace C_S = CONFIG_SET;
 
 #endif

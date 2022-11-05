@@ -28,7 +28,6 @@
 class Connectivity {
    public:
     /**
-
      * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
      * RGBLED, initializes logger
      *
