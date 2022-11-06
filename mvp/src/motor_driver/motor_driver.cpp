@@ -62,13 +62,15 @@ bool MotorDriver::FulfillRequest(CONFIG_SET::MOTION_REQUEST request) {
     if (is_motor_running_) {
         return false;
     }
-
     expected_step_ = (float(request.PERCENTAGE) / 100) * calib_params_.TOTAL_STEP_COUNT;
-
     // Handle 100, 0 for blinds traversals
-    blind_traversal_requested_ = request.PERCENTAGE == 100 || request.PERCENTAGE == 0;
-
-    direction_ = expected_step_ > current_step_;
+    blind_traversal_requested_ = request.PERCENTAGE >= 100 || request.PERCENTAGE <= 0;
+    if (blind_traversal_requested_) {
+        direction_ = request.PERCENTAGE == 100;
+    } else {
+        direction_ = expected_step_ > current_step_;
+    }
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Movement request received");
     return true;
 }
 
@@ -174,10 +176,11 @@ void MotorDriver::Handle() {
             // StopMotor(!stall_detected);
             expected_step_ = current_step_;
             stop_requested_ = false;
+            blind_traversal_requested_ = false;
         }
     }
 
-    if (!is_motor_running_ && expected_step_ != current_step_) {
+    if (!is_motor_running_ && (expected_step_ != current_step_ || blind_traversal_requested_)) {
         StartMotor(true);
     }
 }

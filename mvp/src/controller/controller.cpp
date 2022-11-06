@@ -210,7 +210,7 @@ bool Controller::LoadParameters() {
     using namespace CONFIG_SET;
     bool success_calib_param = store_->PopulateCalibParam(&calib_params_);
     bool success_creds = store_->PopulateDeviceCred(&device_cred_);
-    calib_params_.STALL_VALUE = 32;
+    calib_params_.STALL_VALUE = 50;
     calib_params_.TOTAL_STEP_COUNT = 10000;
     return success_calib_param && success_creds;
 }
