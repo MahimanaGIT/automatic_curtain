@@ -56,6 +56,7 @@ class Controller {
     CONFIG_SET::DEVICE_CRED device_cred_;
     CONFIG_SET::CALIB_PARAMS calib_params_;
     CONFIG_SET::OPERATION_MODE operation_mode_;
+    CONFIG_SET::DEVICE_STATUS indicator_status_;
     bool long_press_enabled_;
 
     // Device class objects initialization

@@ -130,11 +130,9 @@ enum class MANUAL_PUSH {
 
 enum class DEVICE_STATUS {
     FAULT,
-    NOT_CONNECTED,
-    MANUAL_OPERATION,
+    OPERATION_MODE,
     RESET_MODE,
-    WEBPAGE,
-    OTA_ENABLED,
+    MAINTENANCE_MODE,
 };
 
 enum class DRIVER_STATUS {
@@ -148,7 +146,7 @@ struct MOTION_REQUEST {
 };
 
 struct DEVICE_CRED {
-    String DEVICE_ID = "blinds-t1";
+    String DEVICE_ID = "MaD Automatic Blinds";
     String SSID = "madac_blinds";
     String PASSWORD = "AutomaticCurtain";
 };

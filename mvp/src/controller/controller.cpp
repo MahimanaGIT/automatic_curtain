@@ -40,6 +40,7 @@ Controller::Controller()
     calib_params_ = CONFIG_SET::CALIB_PARAMS();
     device_cred_ = CONFIG_SET::DEVICE_CRED();
     operation_mode_ = OPERATION_MODE::USER;
+    indicator_status_ = DEVICE_STATUS::OPERATION_MODE;
     switch (operation_mode_) {
         case OPERATION_MODE::RESET:
             InitializeResetMode();
@@ -60,7 +61,7 @@ Controller::~Controller() {}
 
 void Controller::Handle() {
     using namespace CONFIG_SET;
-    indicator_->UpdateStatus(DEVICE_STATUS::NOT_CONNECTED);
+    indicator_->UpdateStatus(indicator_status_);
     switch (operation_mode_) {
         case OPERATION_MODE::RESET:
             HandleResetMode();
@@ -77,25 +78,27 @@ void Controller::Handle() {
 }
 
 void Controller::InitializeResetMode() {
-    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER, "Starting Reset Mode");
+    using namespace CONFIG_SET;
+    store_->Clear();
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Starting Reset Mode");
     connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartWebpage();
 }
 
 void Controller::HandleResetMode() {
     using namespace CONFIG_SET;
-    store_->Clear();
     constexpr LOG_CLASS CONTROLLER = LOG_CLASS::CONTROLLER;
     constexpr LOG_TYPE INFO = LOG_TYPE::INFO;
+    logger_->Log(INFO, CONTROLLER, "Handling reset mode");
     auto webpage_submission = connectivity_->GetWebpageSubmission();
     if (std::get<0>(webpage_submission)) {
         device_cred_ = std::get<1>(webpage_submission);
-        logger_->Log(INFO, CONTROLLER, "Got the Webpage Submission");
+        logger_->Log(INFO, CONTROLLER, "Got the webpage submission");
         logger_->Log(INFO, CONTROLLER, device_cred_.DEVICE_ID);
         logger_->Log(INFO, CONTROLLER, device_cred_.SSID);
         logger_->Log(INFO, CONTROLLER, device_cred_.PASSWORD);
         SaveParameters();
-        // connectivity_->stopOTA();
+        // connectivity_->StopOTA();
         connectivity_->StopWebpage();
         connectivity_->StopWiFi();
         RestartDevice();
@@ -111,9 +114,11 @@ void Controller::HandleMaintenanceMode() {
 }
 
 void Controller::InitializeOperationMode() {
+    using namespace CONFIG_SET;
     if (!LoadParameters()) {
-        logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER, "Storage Reading Failed.");
-        operation_mode_ = CONFIG_SET::OPERATION_MODE::RESET;
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Storage Reading Failed.");
+        indicator_status_ = DEVICE_STATUS::RESET_MODE;
+        operation_mode_ = OPERATION_MODE::RESET;
         InitializeResetMode();
         return;
     }
@@ -162,6 +167,7 @@ void Controller::HandleOperationMode() {
             break;
         case MANUAL_PUSH::LONG_PRESS_BOTH:
             operation_mode_ = OPERATION_MODE::RESET;
+            indicator_status_ = DEVICE_STATUS::RESET_MODE;
             InitializeResetMode();
             break;
             out = "LONG_PRESS_BOTH";
@@ -180,6 +186,7 @@ void Controller::HandleOperationMode() {
             break;
         case MANUAL_PUSH::DOUBLE_TAP_BOTH:
             operation_mode_ = OPERATION_MODE::MAINTENANCE;
+            indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
             InitializeMaintenanceMode();
             out = "DOUBLE_TAP_BOTH";
             break;
