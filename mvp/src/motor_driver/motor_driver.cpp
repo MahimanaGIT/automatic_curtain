@@ -157,7 +157,7 @@ void MotorDriver::Handler() {
                 reached_destination = !blind_traversal_requested_;
             }
             bool stall_detected = false;
-            if ((std::time(nullptr) - last_motor_start_time_sec_) > 1) {
+            if ((std::time(nullptr) - last_motor_start_time_sec_) > 0.05) {
                 stall_detected = digitalRead(PIN_MD_DIAG);
             }
             bool end_timer_reached = (std::time(nullptr) - last_motor_start_time_sec_) > MOTOR_STOP_TIME_SEC;
