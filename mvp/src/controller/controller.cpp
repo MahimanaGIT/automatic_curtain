@@ -89,7 +89,6 @@ void Controller::HandleResetMode() {
     using namespace CONFIG_SET;
     constexpr LOG_CLASS CONTROLLER = LOG_CLASS::CONTROLLER;
     constexpr LOG_TYPE INFO = LOG_TYPE::INFO;
-    logger_->Log(INFO, CONTROLLER, "Handling reset mode");
     auto webpage_submission = connectivity_->GetWebpageSubmission();
     if (std::get<0>(webpage_submission)) {
         device_cred_ = std::get<1>(webpage_submission);
@@ -98,14 +97,15 @@ void Controller::HandleResetMode() {
         logger_->Log(INFO, CONTROLLER, device_cred_.SSID);
         logger_->Log(INFO, CONTROLLER, device_cred_.PASSWORD);
         SaveParameters();
-        // connectivity_->StopOTA();
         connectivity_->StopWebpage();
         connectivity_->StopWiFi();
+        Calibrate();
         RestartDevice();
     }
 }
 
 void Controller::InitializeMaintenanceMode() {
+    connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartOTA();
 }
 
@@ -140,7 +140,6 @@ void Controller::HandleOperationMode() {
         motor_driver_->FulfillRequest(submitted_alexa_request);
     }
 
-    // test code for manual_interaction
     MANUAL_PUSH manual_action_test;
     time_var manual_action_time_test;
     tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime();
@@ -167,6 +166,7 @@ void Controller::HandleOperationMode() {
         case MANUAL_PUSH::LONG_PRESS_BOTH:
             operation_mode_ = OPERATION_MODE::RESET;
             indicator_status_ = DEVICE_STATUS::RESET_MODE;
+            StopOperationMode();
             InitializeResetMode();
             break;
             out = "LONG_PRESS_BOTH";
@@ -186,6 +186,7 @@ void Controller::HandleOperationMode() {
         case MANUAL_PUSH::DOUBLE_TAP_BOTH:
             operation_mode_ = OPERATION_MODE::MAINTENANCE;
             indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
+            StopOperationMode();
             InitializeMaintenanceMode();
             out = "DOUBLE_TAP_BOTH";
             break;
@@ -223,5 +224,14 @@ void Controller::RestartDevice() {
 }
 
 CONFIG_SET::CALIB_PARAMS Controller::Calibrate() {
+    using namespace CONFIG_SET;
+    motor_driver_.reset(new MotorDriver(logger_, calib_params_));
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Calibrating");
     return CONFIG_SET::CALIB_PARAMS();
+}
+
+void Controller::StopOperationMode() {
+    motor_driver_.reset();
+    alexa_interaction_.reset();
+    connectivity_.reset();
 }

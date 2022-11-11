@@ -46,12 +46,13 @@ MotorDriver::MotorDriver(std::shared_ptr<Logging> logging, CONFIG_SET::CALIB_PAR
 
     UpdateCalibParams(calib_param);
     attachInterrupt(PIN_MD_INDEX, MotorDriver::InterruptForIndex, RISING);
-    handler_thread_.reset(new std::thread(&MotorDriver::Handler, this));
+    StartHandler();
     logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Motor Driver Setup Completed");
 }
 
 MotorDriver::~MotorDriver() {
     EnableDriver(false);
+    StopHandler();
 }
 
 CONFIG_SET::CALIB_PARAMS MotorDriver::Calibrate() {
@@ -133,11 +134,21 @@ bool MotorDriver::CancelCurrentRequest() {
     stop_requested_ = is_motor_running_;
 }
 
+void MotorDriver::StopHandler() {
+    keep_handler_running_ = false;
+    handler_thread_->join();
+}
+
+void MotorDriver::StartHandler() {
+    handler_thread_.reset(new std::thread(&MotorDriver::Handler, this));
+}
+
 void MotorDriver::Handler() {
     using namespace CONFIG_SET;
-    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Starting runner");
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Starting handler");
+    keep_handler_running_ = true;
 
-    while (true) {
+    while (keep_handler_running_) {
         using namespace CONFIG_SET;
         if (is_motor_running_) {
             bool current_step_out_of_bound = (current_step_ < 0) || (current_step_ > calib_params_.TOTAL_STEP_COUNT);
@@ -173,4 +184,5 @@ void MotorDriver::Handler() {
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Exiting handler");
 }

@@ -123,6 +123,12 @@ class Controller {
     void RestartDevice();
 
     /**
+     * @brief Call when exiting operation mode
+     * 
+     */
+    void StopOperationMode();
+
+    /**
      * @brief Calibrate the motor driver, determine the stall value and total step
      * count
      *

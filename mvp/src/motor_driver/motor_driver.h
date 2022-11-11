@@ -95,6 +95,12 @@ class MotorDriver : private TMC2209Stepper {
      */
     static void InterruptForIndex();
 
+    /**
+     * @brief Stop handler thread
+     * 
+     */
+    void StopHandler();
+
    private:
     CONFIG_SET::DRIVER_STATUS driver_status_;
     CONFIG_SET::CALIB_PARAMS calib_params_;
@@ -106,6 +112,7 @@ class MotorDriver : private TMC2209Stepper {
     int expected_step_ = 0;
     bool blind_traversal_requested_ = false;
     bool stop_requested_ = false;
+    bool keep_handler_running_ = false;
     static int full_rot_step_count_;
     static int current_step_;
     static bool direction_;
@@ -149,6 +156,12 @@ class MotorDriver : private TMC2209Stepper {
      * 
      */
     void StopMotor();
+
+    /**
+     * @brief Starts handler thread
+     * 
+     */
+    void StartHandler();
 };
 
 #endif
