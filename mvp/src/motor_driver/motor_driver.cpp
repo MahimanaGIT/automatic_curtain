@@ -83,16 +83,6 @@ bool MotorDriver::EnableDriver(bool enable) {
     digitalWrite(CONFIG_SET::PIN_MD_ENABLE, !enable);
 }
 
-void MotorDriver::ResetDriver() {
-    using namespace CONFIG_SET;
-    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Resetting the driver");
-    EnableDriver(false);
-    delay(25);
-    EnableDriver(true);
-    delay(25);
-    InitializeDriver();
-}
-
 void MotorDriver::InitializeDriver() {
     using namespace CONFIG_SET;
     this->begin();
@@ -107,8 +97,6 @@ void MotorDriver::InitializeDriver() {
     this->sedn(MOTOR_DRIVER_SEDN);
     this->SGTHRS(MOTOR_DRIVER_SG_THRESH);
 }
-
-bool MotorDriver::CheckFault() {}
 
 void MotorDriver::UpdateCalibParams(CONFIG_SET::CALIB_PARAMS calib_param) {
     calib_params_ = calib_param;

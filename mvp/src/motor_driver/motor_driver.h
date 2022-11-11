@@ -137,22 +137,6 @@ class MotorDriver : private TMC2209Stepper {
     void InitializeDriver();
 
     /**
-     * @brief Reset the motor driver by supplying appropriate pulse
-     *
-     * @return true : if successful
-     * @return false : otherwise
-     */
-    void ResetDriver();
-
-    /**
-     * @brief Check if the nfault is enable from the motor driver
-     *
-     * @return true : if enabled
-     * @return false : otherwise
-     */
-    bool CheckFault();
-
-    /**
      * @brief Responsible for starting the motor, i.e. setups the driver and sets
      * required velocity of motor
      *
