@@ -58,8 +58,7 @@ const uint32_t MOTOR_DRIVER_TCOOL_THRS = 0xFFFFF;
 const uint8_t MOTOR_DRIVER_SE_MIN = 0;
 const uint8_t MOTOR_DRIVER_SE_MAX = 2;
 const uint8_t MOTOR_DRIVER_SEDN = 0b01;
-const uint32_t MOTOR_DRIVER_SPEED = 5000;
-const uint32_t MOTOR_DRIVER_ACCEL = 25;
+const uint32_t MOTOR_DRIVER_MAX_SPEED = 5000;
 const int MOTOR_STOP_TIME_SEC = 90;          // 1.5 mins
 const float STEP_FRACTION_ALLOWANCE = 0.05;  // 5% Allowance allowed for motor reaching destination
 
@@ -73,20 +72,20 @@ enum class OPERATION_MODE {
 ****** ESP32 PINS ******
 These are hardware ESP32 pin number where each external pin/component is
 connected
-PIN_RGB_LED -> RGB LED WS2812
-PIN_BUTTON_UP -> Up button
+PIN_RGB_LED     -> RGB LED WS2812
+PIN_BUTTON_UP   -> Up button
 PIN_BUTTON_DOWN -> Down button
 
 Motor Driver (TMC2209) Pins
-PIN_MD_ENABLE -> Enable
-PIN_MD_RX -> Serial Receiver
-PIN_MD_TX -> Serial Transmitter
-PIN_MD_MS1 -> MS1
-PIN_MD_MS2 -> MS2
-PIN_MD_STEP -> Step
-PIN_MD_DIR -> Dir
-PIN_MD_INDEX -> Index
-PIN_MD_DIAG -> Diag (Stall)
+PIN_MD_ENABLE   -> Enable
+PIN_MD_RX       -> Serial Receiver
+PIN_MD_TX       -> Serial Transmitter
+PIN_MD_MS1      -> MS1
+PIN_MD_MS2      -> MS2
+PIN_MD_STEP     -> Step
+PIN_MD_DIR      -> Dir
+PIN_MD_INDEX    -> Index
+PIN_MD_DIAG     -> Diag (Stall)
 */
 const int PIN_RGB_LED = 32;
 const int PIN_BUTTON_UP = 33;

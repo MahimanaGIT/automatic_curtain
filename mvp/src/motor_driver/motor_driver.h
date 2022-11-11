@@ -23,6 +23,7 @@
 
 #include <ctime>
 #include <memory>
+#include <thread>
 
 #include "../config/config.h"
 #include "../logging/logging.h"
@@ -94,16 +95,6 @@ class MotorDriver : private TMC2209Stepper {
      */
     static void InterruptForIndex();
 
-    /**
-     * @brief Motor Driver class handler, communicates with driver and is
-     * responsible for reading latest motion request, cancellationof request, and
-     * acting upon it i.e. moving the motor and stopping it when stall is
-     * detected, or motor reached destination or stop is requested or timer limit
-     * is reached
-     *
-     */
-    void Handle();
-
    private:
     CONFIG_SET::DRIVER_STATUS driver_status_;
     CONFIG_SET::CALIB_PARAMS calib_params_;
@@ -119,6 +110,17 @@ class MotorDriver : private TMC2209Stepper {
     static int current_step_;
     static bool direction_;
     std::time_t last_motor_start_time_sec_ = std::time(nullptr);
+    std::unique_ptr<std::thread> handler_thread_{nullptr};
+
+    /**
+     * @brief Motor Driver class handler, communicates with driver and is
+     * responsible for reading latest motion request, cancellationof request, and
+     * acting upon it i.e. moving the motor and stopping it when stall is
+     * detected, or motor reached destination or stop is requested or timer limit
+     * is reached
+     *
+     */
+    void Handler();
 
     /**
      * @brief Enable Motor Driver
@@ -154,19 +156,15 @@ class MotorDriver : private TMC2209Stepper {
      * @brief Responsible for starting the motor, i.e. setups the driver and sets
      * required velocity of motor
      *
-     * @arg true: soft start on
-     * @arg false: soft start off
      */
-    void StartMotor(bool soft_traversal);
+    void StartMotor();
 
     /**
      * @brief Responsible for stopping the motor, i.e. disables the driver and
      * sets velocity of motor to zero
-     *
-     * @arg true: soft stop on
-     * @arg false: soft stop off
+     * 
      */
-    void StopMotor(bool soft_traversal);
+    void StopMotor();
 };
 
 #endif

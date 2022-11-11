@@ -131,7 +131,6 @@ void Controller::InitializeOperationMode() {
 void Controller::HandleOperationMode() {
     using namespace CONFIG_SET;
     alexa_interaction_->HandleFauxmo();
-    motor_driver_->Handle();
     connectivity_->EnsureConnectivity(&device_cred_);
 
     auto alexa_request_sub = alexa_interaction_->GetAlexaRequest();
@@ -210,8 +209,8 @@ bool Controller::LoadParameters() {
     using namespace CONFIG_SET;
     bool success_calib_param = store_->PopulateCalibParam(&calib_params_);
     bool success_creds = store_->PopulateDeviceCred(&device_cred_);
-    calib_params_.STALL_VALUE = 50;
-    calib_params_.TOTAL_STEP_COUNT = 10000;
+    calib_params_.STALL_VALUE = 53;
+    calib_params_.TOTAL_STEP_COUNT = 100000;
     return success_calib_param && success_creds;
 }
 
