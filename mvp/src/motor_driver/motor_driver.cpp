@@ -105,7 +105,7 @@ void MotorDriver::InitializeDriver() {
     this->semax(MOTOR_DRIVER_SE_MAX);
     this->shaft(false);
     this->sedn(MOTOR_DRIVER_SEDN);
-    this->SGTHRS(calib_params_.STALL_VALUE);
+    this->SGTHRS(MOTOR_DRIVER_SG_THRESH);
 }
 
 bool MotorDriver::CheckFault() {}

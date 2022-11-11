@@ -47,11 +47,11 @@ bool Storage::PopulateDeviceCred(CONFIG_SET::DEVICE_CRED* device_cred) {
 
 bool Storage::SaveCalibParam(const CONFIG_SET::CALIB_PARAMS* calib_param) {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
-    size_t status_stall = preferences_.putInt(CONFIG_SET::KEY_STALL_VALUE.c_str(), calib_param->STALL_VALUE);
+    size_t status_direc = preferences_.putInt(CONFIG_SET::KEY_DIRECTION.c_str(), calib_param->DIRECTION);
     size_t status_total_step =
         preferences_.putInt(CONFIG_SET::KEY_TOTAL_STEP_COUNT.c_str(), calib_param->TOTAL_STEP_COUNT);
     preferences_.end();
-    if (status_stall == 0 || status_total_step == 0) {
+    if (status_direc == 0 || status_total_step == 0) {
         return false;
     }
     return true;
@@ -60,9 +60,9 @@ bool Storage::SaveCalibParam(const CONFIG_SET::CALIB_PARAMS* calib_param) {
 bool Storage::PopulateCalibParam(CONFIG_SET::CALIB_PARAMS* calib_param) {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
     calib_param->TOTAL_STEP_COUNT = preferences_.getInt(CONFIG_SET::KEY_TOTAL_STEP_COUNT.c_str(), -1);
-    calib_param->STALL_VALUE = preferences_.getInt(CONFIG_SET::KEY_STALL_VALUE.c_str(), -1);
+    calib_param->DIRECTION = preferences_.getBool(CONFIG_SET::KEY_DIRECTION.c_str(), false);
     preferences_.end();
-    if (calib_param->TOTAL_STEP_COUNT == -1 || calib_param->STALL_VALUE == -1) {
+    if (calib_param->TOTAL_STEP_COUNT == -1) {
         return false;
     }
     return true;

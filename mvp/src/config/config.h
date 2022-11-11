@@ -42,7 +42,7 @@ const std::string KEY_SSID = "ssid";
 const std::string KEY_PASSWORD = "password";
 const std::string KEY_DEVICE_ID = "deviceID";
 const std::string KEY_TOTAL_STEP_COUNT = "totalStepCount";
-const std::string KEY_STALL_VALUE = "stallValue";
+const std::string KEY_DIRECTION = "direction";
 const String DEFAULT_DEVICE_ID = "madac_blinds";
 
 /*
@@ -59,6 +59,7 @@ const uint8_t MOTOR_DRIVER_SE_MIN = 0;
 const uint8_t MOTOR_DRIVER_SE_MAX = 2;
 const uint8_t MOTOR_DRIVER_SEDN = 0b01;
 const uint32_t MOTOR_DRIVER_MAX_SPEED = 5000;
+const int MOTOR_DRIVER_SG_THRESH = 52;
 const int MOTOR_STOP_TIME_SEC = 90;          // 1.5 mins
 const float STEP_FRACTION_ALLOWANCE = 0.05;  // 5% Allowance allowed for motor reaching destination
 
@@ -152,7 +153,6 @@ struct DEVICE_CRED {
 
 struct CALIB_PARAMS {
     int TOTAL_STEP_COUNT = -1;
-    int STALL_VALUE = -1;
     bool DIRECTION = false;
 };
 
