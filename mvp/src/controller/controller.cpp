@@ -230,7 +230,6 @@ bool Controller::Calibrate() {
 
     delay(3000);
     CALIB_PARAMS calib_params;
-    calib_params.TOTAL_STEP_COUNT = 2000000000;
 
     auto find_end = [&]() -> std::tuple<int, int> {
         MOTION_REQUEST motion_request_down;
@@ -280,14 +279,6 @@ bool Controller::Calibrate() {
 
     calib_params.DIRECTION = (first_dir_exec_time < (sec_dir_exec_time * 0.3));
     calib_params.TOTAL_STEP_COUNT = std::max(first_dir_stps, sec_dir_stps);
-
-    String out(calib_params.TOTAL_STEP_COUNT);
-    if (calib_params.DIRECTION) {
-        out += ": True";
-    } else {
-        out += ": False";
-    }
-    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, out);
     calib_params_ = calib_params;
     logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Calibration Successful");
     return true;

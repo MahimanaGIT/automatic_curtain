@@ -9,11 +9,6 @@
  *
  */
 
-/*
-TODO: Tune parameters to reduce stepper motor noise
-TODO: Implement calibration mode
-*/
-
 #include "motor_driver.h"
 
 #include <Arduino.h>

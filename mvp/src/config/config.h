@@ -152,7 +152,7 @@ struct DEVICE_CRED {
 };
 
 struct CALIB_PARAMS {
-    int TOTAL_STEP_COUNT = -1;
+    int TOTAL_STEP_COUNT = 2000000000;
     bool DIRECTION = false;
 };
 
