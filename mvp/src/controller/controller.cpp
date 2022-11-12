@@ -230,12 +230,13 @@ bool Controller::Calibrate() {
 
     delay(3000);
     CALIB_PARAMS calib_params;
-    calib_params.TOTAL_STEP_COUNT = 2000000;
+    calib_params.TOTAL_STEP_COUNT = 2000000000;
 
     auto find_end = [&]() -> std::tuple<int, int> {
         MOTION_REQUEST motion_request_down;
         motor_driver_.reset(new MotorDriver(logger_, calib_params));
         motor_driver_->UpdateCalibParams(calib_params);
+        motor_driver_->ResetSteps();
         motion_request_down.PERCENTAGE = 100;
         motor_driver_->FulfillRequest(motion_request_down);
 

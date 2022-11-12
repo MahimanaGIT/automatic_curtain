@@ -190,3 +190,7 @@ void MotorDriver::Handler() {
 int MotorDriver::GetSteps() {
     return current_step_;
 }
+
+void MotorDriver::ResetSteps() {
+    current_step_ = 0;
+}
