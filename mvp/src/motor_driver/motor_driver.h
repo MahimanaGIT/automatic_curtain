@@ -58,6 +58,13 @@ class MotorDriver : private TMC2209Stepper {
     CONFIG_SET::DRIVER_STATUS GetStatus();
 
     /**
+     * @brief Returns the current steps of motor
+     *
+     * @return current_steps
+     */
+    int GetSteps();
+
+    /**
      * @brief This is the primary contact function for external requests, it will
      * handle all requests from the controller or anywhere else, run the thread
      * for supplying steps

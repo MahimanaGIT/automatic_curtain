@@ -47,7 +47,7 @@ bool Storage::PopulateDeviceCred(CONFIG_SET::DEVICE_CRED* device_cred) {
 
 bool Storage::SaveCalibParam(const CONFIG_SET::CALIB_PARAMS* calib_param) {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
-    size_t status_direc = preferences_.putInt(CONFIG_SET::KEY_DIRECTION.c_str(), calib_param->DIRECTION);
+    size_t status_direc = preferences_.putBool(CONFIG_SET::KEY_DIRECTION.c_str(), calib_param->DIRECTION);
     size_t status_total_step =
         preferences_.putInt(CONFIG_SET::KEY_TOTAL_STEP_COUNT.c_str(), calib_param->TOTAL_STEP_COUNT);
     preferences_.end();

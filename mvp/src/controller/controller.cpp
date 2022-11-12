@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <chrono>
 #include <memory>
 
 #include "../alexa_interaction/alexa_interaction.h"
@@ -96,10 +97,11 @@ void Controller::HandleResetMode() {
         logger_->Log(INFO, CONTROLLER, device_cred_.DEVICE_ID);
         logger_->Log(INFO, CONTROLLER, device_cred_.SSID);
         logger_->Log(INFO, CONTROLLER, device_cred_.PASSWORD);
-        SaveParameters();
         connectivity_->StopWebpage();
         connectivity_->StopWiFi();
         Calibrate();
+        store_->Clear();
+        SaveParameters();
         RestartDevice();
     }
 }
@@ -142,7 +144,7 @@ void Controller::HandleOperationMode() {
 
     MANUAL_PUSH manual_action_test;
     time_var manual_action_time_test;
-    tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime();
+    std::tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime();
     String out = "";
     switch (manual_action_test) {
         case MANUAL_PUSH::LONG_PRESS_UP:
@@ -167,7 +169,8 @@ void Controller::HandleOperationMode() {
             operation_mode_ = OPERATION_MODE::RESET;
             indicator_status_ = DEVICE_STATUS::RESET_MODE;
             StopOperationMode();
-            InitializeResetMode();
+            store_->Clear();
+            RestartDevice();
             break;
             out = "LONG_PRESS_BOTH";
             break;
@@ -210,8 +213,6 @@ bool Controller::LoadParameters() {
     using namespace CONFIG_SET;
     bool success_calib_param = store_->PopulateCalibParam(&calib_params_);
     bool success_creds = store_->PopulateDeviceCred(&device_cred_);
-    calib_params_.TOTAL_STEP_COUNT = 100000;
-    calib_params_.DIRECTION = true;
     return success_calib_param && success_creds;
 }
 
@@ -223,11 +224,72 @@ void Controller::RestartDevice() {
     ESP.restart();
 }
 
-CONFIG_SET::CALIB_PARAMS Controller::Calibrate() {
+bool Controller::Calibrate() {
     using namespace CONFIG_SET;
-    motor_driver_.reset(new MotorDriver(logger_, calib_params_));
     logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Calibrating");
-    return CONFIG_SET::CALIB_PARAMS();
+
+    delay(3000);
+    CALIB_PARAMS calib_params;
+    calib_params.TOTAL_STEP_COUNT = 2000000;
+
+    auto find_end = [&]() -> std::tuple<int, int> {
+        MOTION_REQUEST motion_request_down;
+        motor_driver_.reset(new MotorDriver(logger_, calib_params));
+        motor_driver_->UpdateCalibParams(calib_params);
+        motion_request_down.PERCENTAGE = 100;
+        motor_driver_->FulfillRequest(motion_request_down);
+
+        while (motor_driver_->GetStatus() != DRIVER_STATUS::BUSY) {
+        }
+
+        time_var start_time = current_time::now();
+        int execution_time = 0;
+        while (motor_driver_->GetStatus() != DRIVER_STATUS::AVAILABLE) {
+            execution_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - start_time).count();
+            if (execution_time > MOTOR_STOP_TIME_SEC) {
+                logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER,
+                             "Stopping Motor, reached time limit for calibration");
+                break;
+            }
+        }
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Loop Ended");
+
+        if (motor_driver_->GetStatus() != DRIVER_STATUS::AVAILABLE) {
+            motor_driver_->CancelCurrentRequest();
+        }
+        return std::make_tuple(execution_time, motor_driver_->GetSteps());
+    };
+
+    calib_params.DIRECTION = true;
+    int first_dir_exec_time, first_dir_stps;
+    std::tie(first_dir_exec_time, first_dir_stps) = find_end();
+    if (first_dir_exec_time >= MOTOR_STOP_TIME_SEC) {
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Not found an end, returning from first dir");
+        return false;
+    }
+    delay(3000);
+
+    calib_params.DIRECTION = false;
+    int sec_dir_exec_time, sec_dir_stps;
+    std::tie(sec_dir_exec_time, sec_dir_stps) = find_end();
+    if (sec_dir_exec_time >= MOTOR_STOP_TIME_SEC) {
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Not found an end, returning from second dir");
+        return false;
+    }
+
+    calib_params.DIRECTION = (first_dir_exec_time < (sec_dir_exec_time * 0.3));
+    calib_params.TOTAL_STEP_COUNT = std::max(first_dir_stps, sec_dir_stps);
+
+    String out(calib_params.TOTAL_STEP_COUNT);
+    if (calib_params.DIRECTION) {
+        out += ": True";
+    } else {
+        out += ": False";
+    }
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, out);
+    calib_params_ = calib_params;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Calibration Successful");
+    return true;
 }
 
 void Controller::StopOperationMode() {

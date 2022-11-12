@@ -186,3 +186,7 @@ void MotorDriver::Handler() {
     }
     logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Exiting handler");
 }
+
+int MotorDriver::GetSteps() {
+    return current_step_;
+}

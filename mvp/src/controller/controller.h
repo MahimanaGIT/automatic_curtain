@@ -130,11 +130,11 @@ class Controller {
 
     /**
      * @brief Calibrate the motor driver, determine the stall value and total step
-     * count
+     * count, updates internal calib_params_ with new params if successful
      *
-     * @return CONFIG_SET::CALIB_PARAMS: calibration parameters
+     * @return successful (true) or not (false)
      */
-    CONFIG_SET::CALIB_PARAMS Calibrate();
+    bool Calibrate();
 };
 
 #endif
