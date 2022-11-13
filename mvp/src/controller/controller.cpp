@@ -80,10 +80,10 @@ void Controller::Handle() {
 
 void Controller::InitializeResetMode() {
     using namespace CONFIG_SET;
-    store_->Clear();
     logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Starting Reset Mode");
     connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartWebpage();
+    mode_start_time_ = current_time::now();
 }
 
 void Controller::HandleResetMode() {
@@ -104,15 +104,41 @@ void Controller::HandleResetMode() {
         SaveParameters();
         RestartDevice();
     }
+    MANUAL_PUSH manual_action_test;
+    time_var manual_action_time_test;
+    std::tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime();
+    switch (manual_action_test) {
+        case MANUAL_PUSH::DOUBLE_TAP_BOTH:
+            operation_mode_ = OPERATION_MODE::MAINTENANCE;
+            indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
+            StopResetMode();
+            InitializeMaintenanceMode();
+            break;
+    }
+    int exec_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - mode_start_time_).count();
+    if (exec_time > MODE_EXPIRE_TIME_LIMIT) {
+        // restarting
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Reset Mode Expired");
+        RestartDevice();
+    }
 }
 
 void Controller::InitializeMaintenanceMode() {
+    using namespace CONFIG_SET;
     connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartOTA();
+    mode_start_time_ = current_time::now();
 }
 
 void Controller::HandleMaintenanceMode() {
+    using namespace CONFIG_SET;
     connectivity_->HandleOTA();
+    int exec_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - mode_start_time_).count();
+    if (exec_time > MODE_EXPIRE_TIME_LIMIT) {
+        // restarting
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Maintenance Mode Expired");
+        RestartDevice();
+    }
 }
 
 void Controller::InitializeOperationMode() {
@@ -169,8 +195,7 @@ void Controller::HandleOperationMode() {
             operation_mode_ = OPERATION_MODE::RESET;
             indicator_status_ = DEVICE_STATUS::RESET_MODE;
             StopOperationMode();
-            store_->Clear();
-            RestartDevice();
+            InitializeResetMode();
             break;
             out = "LONG_PRESS_BOTH";
             break;
@@ -218,10 +243,6 @@ bool Controller::LoadParameters() {
 
 bool Controller::SaveParameters() {
     return store_->SaveDeviceCred(&device_cred_) && store_->SaveCalibParam(&calib_params_);
-}
-
-void Controller::RestartDevice() {
-    ESP.restart();
 }
 
 bool Controller::Calibrate() {
@@ -288,4 +309,14 @@ void Controller::StopOperationMode() {
     motor_driver_.reset();
     alexa_interaction_.reset();
     connectivity_.reset();
+}
+
+void Controller::StopResetMode() {
+    connectivity_.reset();
+}
+
+void Controller::RestartDevice() {
+    using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Restarting Device");
+    ESP.restart();
 }

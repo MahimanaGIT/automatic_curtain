@@ -62,6 +62,7 @@ const uint32_t MOTOR_DRIVER_MAX_SPEED = 5000;
 const int MOTOR_DRIVER_SG_THRESH = 52;
 const int MOTOR_STOP_TIME_SEC = 120;         // 2 mins
 const float STEP_FRACTION_ALLOWANCE = 0.05;  // 5% Allowance allowed for motor reaching destination
+const int MODE_EXPIRE_TIME_LIMIT = 300;      // 5 mins
 
 enum class OPERATION_MODE {
     RESET,

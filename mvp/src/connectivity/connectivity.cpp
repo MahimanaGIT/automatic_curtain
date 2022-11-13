@@ -27,9 +27,14 @@
 std::mutex webpage_submission_mutex;
 AsyncWebServer webpage_server_(80);
 
-Connectivity::~Connectivity() {}
-
 Connectivity::Connectivity(std::shared_ptr<Logging> logging, CONFIG_SET::DEVICE_CRED* device_cred) : logger_(logging) {}
+
+Connectivity::~Connectivity() {
+    StopOTA();
+    StopWiFi();
+    StopWebpage();
+    StopHotspot();
+}
 
 bool Connectivity::EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred) {
     if (!IsConnected()) {
@@ -47,7 +52,7 @@ bool Connectivity::EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred
 }
 
 void Connectivity::StopWiFi() {
-    if (wifi_client_enabled_) {
+    if (IsConnected()) {
         WiFi.disconnect();
     }
     wifi_client_enabled_ = false;
@@ -59,8 +64,7 @@ void Connectivity::StartOTA() {
         return;
     }
 
-    // commenting this for lowering down power consumption
-    // StartHotspot();
+    StartHotspot();
 
     ArduinoOTA.onStart([&]() {
         String type;
@@ -111,8 +115,7 @@ void Connectivity::StopOTA() {
     if (ota_enabled_) {
         ArduinoOTA.end();
     }
-    // commenting this to lower down power consumption
-    // StopHotspot();
+    StopHotspot();
     ota_enabled_ = false;
     logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping OTA");
 }
