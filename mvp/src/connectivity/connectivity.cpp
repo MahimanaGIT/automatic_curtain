@@ -34,10 +34,12 @@ Connectivity::~Connectivity() {
     StopWiFi();
     StopWebpage();
     StopHotspot();
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Done Destroying");
 }
 
 bool Connectivity::EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred) {
     if (!IsConnected()) {
+        WiFi.mode(WIFI_STA);
         WiFi.begin(device_cred->SSID.c_str(), device_cred->PASSWORD.c_str());
         logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Trying to Connect WiFi");
         WiFi.waitForConnectResult();
@@ -129,8 +131,9 @@ void Connectivity::StartHotspot() {
     IPAddress local_IP(192, 168, 0, 1);
     IPAddress gateway(192, 168, 0, 1);
     IPAddress subnet(255, 255, 255, 0);
-    WiFi.softAPConfig(local_IP, gateway, subnet);
+    WiFi.mode(WIFI_AP);
     WiFi.softAP(device_cred.SSID.c_str(), device_cred.PASSWORD.c_str());
+    WiFi.softAPConfig(local_IP, gateway, subnet);
     hotspot_enabled_ = true;
     logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting Hotspot");
 }

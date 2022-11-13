@@ -68,6 +68,28 @@ bool Storage::PopulateCalibParam(CONFIG_SET::CALIB_PARAMS* calib_param) {
     return true;
 }
 
+bool Storage::SaveOperationMode(const CONFIG_SET::OPERATION_MODE* mode) {
+    preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
+    size_t status_mode = preferences_.putInt(CONFIG_SET::KEY_MODE.c_str(), static_cast<int>(*mode));
+    preferences_.end();
+    if (status_mode == 0) {
+        return false;
+    }
+    return true;
+}
+
+bool Storage::PopulateOperationMode(CONFIG_SET::OPERATION_MODE* mode) {
+    preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
+    *mode = static_cast<CONFIG_SET::OPERATION_MODE>(
+        preferences_.getInt(CONFIG_SET::KEY_MODE.c_str(), static_cast<int>(CONFIG_SET::OPERATION_MODE::NA)));
+    preferences_.end();
+    if (*mode == CONFIG_SET::OPERATION_MODE::NA) {
+        *mode = CONFIG_SET::OPERATION_MODE::RESET;
+        return false;
+    }
+    return true;
+}
+
 void Storage::Clear() {
     preferences_.begin(CONFIG_SET::STORAGE_NAMESPACE.c_str(), false);
     preferences_.clear();

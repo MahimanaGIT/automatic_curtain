@@ -43,6 +43,7 @@ const std::string KEY_PASSWORD = "password";
 const std::string KEY_DEVICE_ID = "deviceID";
 const std::string KEY_TOTAL_STEP_COUNT = "totalStepCount";
 const std::string KEY_DIRECTION = "direction";
+const std::string KEY_MODE = "mode";
 const String DEFAULT_DEVICE_ID = "madac_blinds";
 
 /*
@@ -68,6 +69,7 @@ enum class OPERATION_MODE {
     RESET,
     MAINTENANCE,
     USER,
+    NA,
 };
 
 /*

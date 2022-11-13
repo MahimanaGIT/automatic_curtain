@@ -40,16 +40,18 @@ Controller::Controller()
     logger_->SetLoggingStatus(true);
     calib_params_ = CONFIG_SET::CALIB_PARAMS();
     device_cred_ = CONFIG_SET::DEVICE_CRED();
-    operation_mode_ = OPERATION_MODE::USER;
-    indicator_status_ = DEVICE_STATUS::OPERATION_MODE;
+    store_->PopulateOperationMode(&operation_mode_);
     switch (operation_mode_) {
         case OPERATION_MODE::RESET:
+            indicator_status_ = DEVICE_STATUS::RESET_MODE;
             InitializeResetMode();
             break;
         case OPERATION_MODE::MAINTENANCE:
+            indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
             InitializeMaintenanceMode();
             break;
         case OPERATION_MODE::USER:
+            indicator_status_ = DEVICE_STATUS::OPERATION_MODE;
             InitializeOperationMode();
             break;
         default:
@@ -80,6 +82,8 @@ void Controller::Handle() {
 
 void Controller::InitializeResetMode() {
     using namespace CONFIG_SET;
+    OPERATION_MODE op = OPERATION_MODE::USER;
+    store_->SaveOperationMode(&op);
     logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Starting Reset Mode");
     connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartWebpage();
@@ -100,6 +104,7 @@ void Controller::HandleResetMode() {
         connectivity_->StopWebpage();
         connectivity_->StopWiFi();
         Calibrate();
+        operation_mode_ = OPERATION_MODE::USER;
         store_->Clear();
         SaveParameters();
         RestartDevice();
@@ -195,7 +200,8 @@ void Controller::HandleOperationMode() {
             operation_mode_ = OPERATION_MODE::RESET;
             indicator_status_ = DEVICE_STATUS::RESET_MODE;
             StopOperationMode();
-            InitializeResetMode();
+            store_->SaveOperationMode(&operation_mode_);
+            RestartDevice();
             break;
             out = "LONG_PRESS_BOTH";
             break;
@@ -242,7 +248,8 @@ bool Controller::LoadParameters() {
 }
 
 bool Controller::SaveParameters() {
-    return store_->SaveDeviceCred(&device_cred_) && store_->SaveCalibParam(&calib_params_);
+    return store_->SaveDeviceCred(&device_cred_) && store_->SaveCalibParam(&calib_params_) &&
+           store_->SaveOperationMode(&operation_mode_);
 }
 
 bool Controller::Calibrate() {
