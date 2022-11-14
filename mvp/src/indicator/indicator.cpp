@@ -30,27 +30,19 @@ void Indicator::InitializeLED() {
 }
 
 bool Indicator::UpdateStatus(CONFIG_SET::DEVICE_STATUS status) {
+    using namespace CONFIG_SET;
     switch (status) {
-        case CONFIG_SET::DEVICE_STATUS::FAULT:
-            leds_[0] = CRGB::Red;
-            break;
-        case CONFIG_SET::DEVICE_STATUS::NOT_CONNECTED:
-            leds_[0] = CRGB::Blue;
-            break;
-        case CONFIG_SET::DEVICE_STATUS::MANUAL_OPERATION:
-            leds_[0] = CRGB::Purple;
-            break;
-        case CONFIG_SET::DEVICE_STATUS::RESET_MODE:
-            leds_[0] = CRGB::White;
-            break;
-        case CONFIG_SET::DEVICE_STATUS::WEBPAGE:
-            leds_[0] = CRGB::Yellow;
-            break;
-        case CONFIG_SET::DEVICE_STATUS::OTA_ENABLED:
+        case DEVICE_STATUS::OPERATION_MODE:
             leds_[0] = CRGB::Green;
             break;
+        case DEVICE_STATUS::RESET_MODE:
+            leds_[0] = CRGB::White;
+            break;
+        case DEVICE_STATUS::MAINTENANCE_MODE:
+            leds_[0] = CRGB::Purple;
+            break;
         default:
-            leds_[0] = CRGB::Pink;
+            leds_[0] = CRGB::Red;
     }
     FastLED.show();
 }

@@ -42,7 +42,8 @@ const std::string KEY_SSID = "ssid";
 const std::string KEY_PASSWORD = "password";
 const std::string KEY_DEVICE_ID = "deviceID";
 const std::string KEY_TOTAL_STEP_COUNT = "totalStepCount";
-const std::string KEY_STALL_VALUE = "stallValue";
+const std::string KEY_DIRECTION = "direction";
+const std::string KEY_MODE = "mode";
 const String DEFAULT_DEVICE_ID = "madac_blinds";
 
 /*
@@ -58,35 +59,38 @@ const uint32_t MOTOR_DRIVER_TCOOL_THRS = 0xFFFFF;
 const uint8_t MOTOR_DRIVER_SE_MIN = 0;
 const uint8_t MOTOR_DRIVER_SE_MAX = 2;
 const uint8_t MOTOR_DRIVER_SEDN = 0b01;
-const uint32_t MOTOR_DRIVER_SPEED = 3000;
-const uint32_t MOTOR_DRIVER_ACCEL = 25;
-const int MOTOR_STOP_TIME_SEC = 90;          // 1.5 mins
-const float STEP_FRACTION_ALLOWANCE = 0.05;  // 5% Allowance allowed for motor reaching destination
+const uint32_t MOTOR_DRIVER_MAX_SPEED = 5000;
+const int MOTOR_DRIVER_SG_THRESH = 52;
+const int MOTOR_STOP_TIME_SEC = 120;                // 2 mins
+const float STEP_FRACTION_ALLOWANCE = 0.05;         // 5% Allowance allowed for motor reaching destination
+const int MODE_EXPIRE_TIME_LIMIT = 300;             // 5 mins
+const int WIFI_DISCONNECT_RESTART_TIME_LIMIT = 60;  // 1 mins
 
 enum class OPERATION_MODE {
     RESET,
     MAINTENANCE,
     USER,
+    NA,
 };
 
 /*
 ****** ESP32 PINS ******
 These are hardware ESP32 pin number where each external pin/component is
 connected
-PIN_RGB_LED -> RGB LED WS2812
-PIN_BUTTON_UP -> Up button
+PIN_RGB_LED     -> RGB LED WS2812
+PIN_BUTTON_UP   -> Up button
 PIN_BUTTON_DOWN -> Down button
 
 Motor Driver (TMC2209) Pins
-PIN_MD_ENABLE -> Enable
-PIN_MD_RX -> Serial Receiver
-PIN_MD_TX -> Serial Transmitter
-PIN_MD_MS1 -> MS1
-PIN_MD_MS2 -> MS2
-PIN_MD_STEP -> Step
-PIN_MD_DIR -> Dir
-PIN_MD_INDEX -> Index
-PIN_MD_DIAG -> Diag (Stall)
+PIN_MD_ENABLE   -> Enable
+PIN_MD_RX       -> Serial Receiver
+PIN_MD_TX       -> Serial Transmitter
+PIN_MD_MS1      -> MS1
+PIN_MD_MS2      -> MS2
+PIN_MD_STEP     -> Step
+PIN_MD_DIR      -> Dir
+PIN_MD_INDEX    -> Index
+PIN_MD_DIAG     -> Diag (Stall)
 */
 const int PIN_RGB_LED = 32;
 const int PIN_BUTTON_UP = 33;
@@ -130,11 +134,9 @@ enum class MANUAL_PUSH {
 
 enum class DEVICE_STATUS {
     FAULT,
-    NOT_CONNECTED,
-    MANUAL_OPERATION,
+    OPERATION_MODE,
     RESET_MODE,
-    WEBPAGE,
-    OTA_ENABLED,
+    MAINTENANCE_MODE,
 };
 
 enum class DRIVER_STATUS {
@@ -148,14 +150,13 @@ struct MOTION_REQUEST {
 };
 
 struct DEVICE_CRED {
-    String DEVICE_ID = "blinds-t1";
+    String DEVICE_ID = "MaD Automatic Blinds";
     String SSID = "madac_blinds";
     String PASSWORD = "AutomaticCurtain";
 };
 
 struct CALIB_PARAMS {
-    int TOTAL_STEP_COUNT = -1;
-    int STALL_VALUE = -1;
+    int TOTAL_STEP_COUNT = 2000000000;
     bool DIRECTION = false;
 };
 

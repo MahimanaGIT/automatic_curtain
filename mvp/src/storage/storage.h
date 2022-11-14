@@ -71,6 +71,24 @@ class Storage {
     bool PopulateCalibParam(CONFIG_SET::CALIB_PARAMS* calib_param);
 
     /**
+     * @brief Saves the operation mode to Flash, fetching the data from the
+     * variable whose pointer is provided as an argument
+     *
+     * @return true : if save successful
+     * @return false : otherwise
+     */
+    bool SaveOperationMode(const CONFIG_SET::OPERATION_MODE* mode);
+
+    /**
+     * @brief Retrieves the operation mode from the flash and populates
+     * them in variable whose pointer is provided as an argument
+     *
+     * @return true : populate successful
+     * @return false : otherwise
+     */
+    bool PopulateOperationMode(CONFIG_SET::OPERATION_MODE* mode);
+
+    /**
      * @brief Clears the memory for CONFIG_SET::STORAGE_NAMESPACE workspace
      *
      */

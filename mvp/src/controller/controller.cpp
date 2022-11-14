@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <chrono>
 #include <memory>
 
 #include "../alexa_interaction/alexa_interaction.h"
@@ -39,15 +40,18 @@ Controller::Controller()
     logger_->SetLoggingStatus(true);
     calib_params_ = CONFIG_SET::CALIB_PARAMS();
     device_cred_ = CONFIG_SET::DEVICE_CRED();
-    operation_mode_ = OPERATION_MODE::USER;
+    store_->PopulateOperationMode(&operation_mode_);
     switch (operation_mode_) {
         case OPERATION_MODE::RESET:
+            indicator_status_ = DEVICE_STATUS::RESET_MODE;
             InitializeResetMode();
             break;
         case OPERATION_MODE::MAINTENANCE:
+            indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
             InitializeMaintenanceMode();
             break;
         case OPERATION_MODE::USER:
+            indicator_status_ = DEVICE_STATUS::OPERATION_MODE;
             InitializeOperationMode();
             break;
         default:
@@ -60,7 +64,7 @@ Controller::~Controller() {}
 
 void Controller::Handle() {
     using namespace CONFIG_SET;
-    indicator_->UpdateStatus(DEVICE_STATUS::NOT_CONNECTED);
+    indicator_->UpdateStatus(indicator_status_);
     switch (operation_mode_) {
         case OPERATION_MODE::RESET:
             HandleResetMode();
@@ -77,43 +81,74 @@ void Controller::Handle() {
 }
 
 void Controller::InitializeResetMode() {
-    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER, "Starting Reset Mode");
+    using namespace CONFIG_SET;
+    OPERATION_MODE op = OPERATION_MODE::USER;
+    store_->SaveOperationMode(&op);
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Starting Reset Mode");
     connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartWebpage();
+    mode_start_time_ = current_time::now();
 }
 
 void Controller::HandleResetMode() {
     using namespace CONFIG_SET;
-    store_->Clear();
     constexpr LOG_CLASS CONTROLLER = LOG_CLASS::CONTROLLER;
     constexpr LOG_TYPE INFO = LOG_TYPE::INFO;
     auto webpage_submission = connectivity_->GetWebpageSubmission();
     if (std::get<0>(webpage_submission)) {
         device_cred_ = std::get<1>(webpage_submission);
-        logger_->Log(INFO, CONTROLLER, "Got the Webpage Submission");
-        logger_->Log(INFO, CONTROLLER, device_cred_.DEVICE_ID);
-        logger_->Log(INFO, CONTROLLER, device_cred_.SSID);
-        logger_->Log(INFO, CONTROLLER, device_cred_.PASSWORD);
-        SaveParameters();
-        // connectivity_->stopOTA();
+        logger_->Log(INFO, CONTROLLER, "Got the webpage submission");
         connectivity_->StopWebpage();
         connectivity_->StopWiFi();
+        Calibrate();
+        operation_mode_ = OPERATION_MODE::USER;
+        store_->Clear();
+        SaveParameters();
+        RestartDevice();
+    }
+    MANUAL_PUSH manual_action_test;
+    time_var manual_action_time_test;
+    std::tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime();
+    switch (manual_action_test) {
+        case MANUAL_PUSH::DOUBLE_TAP_BOTH:
+            operation_mode_ = OPERATION_MODE::MAINTENANCE;
+            indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
+            StopResetMode();
+            InitializeMaintenanceMode();
+            break;
+    }
+    int exec_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - mode_start_time_).count();
+    if (exec_time > MODE_EXPIRE_TIME_LIMIT) {
+        // restarting
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Reset Mode Expired");
         RestartDevice();
     }
 }
 
 void Controller::InitializeMaintenanceMode() {
+    using namespace CONFIG_SET;
+    connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartOTA();
+    mode_start_time_ = current_time::now();
 }
 
 void Controller::HandleMaintenanceMode() {
+    using namespace CONFIG_SET;
     connectivity_->HandleOTA();
+    int exec_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - mode_start_time_).count();
+    if (exec_time > MODE_EXPIRE_TIME_LIMIT) {
+        // restarting
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Maintenance Mode Expired");
+        RestartDevice();
+    }
 }
 
 void Controller::InitializeOperationMode() {
+    using namespace CONFIG_SET;
     if (!LoadParameters()) {
-        logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONTROLLER, "Storage Reading Failed.");
-        operation_mode_ = CONFIG_SET::OPERATION_MODE::RESET;
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Storage Reading Failed.");
+        indicator_status_ = DEVICE_STATUS::RESET_MODE;
+        operation_mode_ = OPERATION_MODE::RESET;
         InitializeResetMode();
         return;
     }
@@ -126,7 +161,6 @@ void Controller::InitializeOperationMode() {
 void Controller::HandleOperationMode() {
     using namespace CONFIG_SET;
     alexa_interaction_->HandleFauxmo();
-    motor_driver_->Handle();
     connectivity_->EnsureConnectivity(&device_cred_);
 
     auto alexa_request_sub = alexa_interaction_->GetAlexaRequest();
@@ -136,10 +170,9 @@ void Controller::HandleOperationMode() {
         motor_driver_->FulfillRequest(submitted_alexa_request);
     }
 
-    // test code for manual_interaction
     MANUAL_PUSH manual_action_test;
     time_var manual_action_time_test;
-    tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime();
+    std::tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime();
     String out = "";
     switch (manual_action_test) {
         case MANUAL_PUSH::LONG_PRESS_UP:
@@ -162,7 +195,10 @@ void Controller::HandleOperationMode() {
             break;
         case MANUAL_PUSH::LONG_PRESS_BOTH:
             operation_mode_ = OPERATION_MODE::RESET;
-            InitializeResetMode();
+            indicator_status_ = DEVICE_STATUS::RESET_MODE;
+            StopOperationMode();
+            store_->SaveOperationMode(&operation_mode_);
+            RestartDevice();
             break;
             out = "LONG_PRESS_BOTH";
             break;
@@ -180,6 +216,8 @@ void Controller::HandleOperationMode() {
             break;
         case MANUAL_PUSH::DOUBLE_TAP_BOTH:
             operation_mode_ = OPERATION_MODE::MAINTENANCE;
+            indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
+            StopOperationMode();
             InitializeMaintenanceMode();
             out = "DOUBLE_TAP_BOTH";
             break;
@@ -203,19 +241,86 @@ bool Controller::LoadParameters() {
     using namespace CONFIG_SET;
     bool success_calib_param = store_->PopulateCalibParam(&calib_params_);
     bool success_creds = store_->PopulateDeviceCred(&device_cred_);
-    calib_params_.STALL_VALUE = 32;
-    calib_params_.TOTAL_STEP_COUNT = 10000;
     return success_calib_param && success_creds;
 }
 
 bool Controller::SaveParameters() {
-    return store_->SaveDeviceCred(&device_cred_) && store_->SaveCalibParam(&calib_params_);
+    return store_->SaveDeviceCred(&device_cred_) && store_->SaveCalibParam(&calib_params_) &&
+           store_->SaveOperationMode(&operation_mode_);
+}
+
+bool Controller::Calibrate() {
+    using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Calibrating");
+
+    delay(3000);
+    CALIB_PARAMS calib_params;
+
+    auto find_end = [&]() -> std::tuple<int, int> {
+        MOTION_REQUEST motion_request_down;
+        motor_driver_.reset(new MotorDriver(logger_, calib_params));
+        motor_driver_->UpdateCalibParams(calib_params);
+        motor_driver_->ResetSteps();
+        motion_request_down.PERCENTAGE = 100;
+        motor_driver_->FulfillRequest(motion_request_down);
+
+        while (motor_driver_->GetStatus() != DRIVER_STATUS::BUSY) {
+        }
+
+        time_var start_time = current_time::now();
+        int execution_time = 0;
+        while (motor_driver_->GetStatus() != DRIVER_STATUS::AVAILABLE) {
+            execution_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - start_time).count();
+            if (execution_time > MOTOR_STOP_TIME_SEC) {
+                logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER,
+                             "Stopping Motor, reached time limit for calibration");
+                break;
+            }
+        }
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Loop Ended");
+
+        if (motor_driver_->GetStatus() != DRIVER_STATUS::AVAILABLE) {
+            motor_driver_->CancelCurrentRequest();
+        }
+        return std::make_tuple(execution_time, motor_driver_->GetSteps());
+    };
+
+    calib_params.DIRECTION = true;
+    int first_dir_exec_time, first_dir_stps;
+    std::tie(first_dir_exec_time, first_dir_stps) = find_end();
+    if (first_dir_exec_time >= MOTOR_STOP_TIME_SEC) {
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Not found an end, returning from first dir");
+        return false;
+    }
+    delay(3000);
+
+    calib_params.DIRECTION = false;
+    int sec_dir_exec_time, sec_dir_stps;
+    std::tie(sec_dir_exec_time, sec_dir_stps) = find_end();
+    if (sec_dir_exec_time >= MOTOR_STOP_TIME_SEC) {
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Not found an end, returning from second dir");
+        return false;
+    }
+
+    calib_params.DIRECTION = (first_dir_exec_time < (sec_dir_exec_time * 0.3));
+    calib_params.TOTAL_STEP_COUNT = std::max(first_dir_stps, sec_dir_stps);
+    calib_params_ = calib_params;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Calibration Successful");
+    return true;
+}
+
+void Controller::StopOperationMode() {
+    motor_driver_.reset();
+    alexa_interaction_.reset();
+    connectivity_.reset();
+}
+
+void Controller::StopResetMode() {
+    connectivity_.reset();
 }
 
 void Controller::RestartDevice() {
+    using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Restarting Device");
     ESP.restart();
-}
-
-CONFIG_SET::CALIB_PARAMS Controller::Calibrate() {
-    return CONFIG_SET::CALIB_PARAMS();
 }

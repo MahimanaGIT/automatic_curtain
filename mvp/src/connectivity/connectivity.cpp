@@ -25,14 +25,20 @@
 #include "webpage.h"
 
 std::mutex webpage_submission_mutex;
-AsyncWebServer webpage_server_(80);
-
-Connectivity::~Connectivity() {}
 
 Connectivity::Connectivity(std::shared_ptr<Logging> logging, CONFIG_SET::DEVICE_CRED* device_cred) : logger_(logging) {}
 
+Connectivity::~Connectivity() {
+    StopOTA();
+    StopWiFi();
+    StopWebpage();
+    StopHotspot();
+    logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Done Destroying");
+}
+
 bool Connectivity::EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred) {
     if (!IsConnected()) {
+        WiFi.mode(WIFI_STA);
         WiFi.begin(device_cred->SSID.c_str(), device_cred->PASSWORD.c_str());
         logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Trying to Connect WiFi");
         WiFi.waitForConnectResult();
@@ -47,7 +53,7 @@ bool Connectivity::EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred
 }
 
 void Connectivity::StopWiFi() {
-    if (wifi_client_enabled_) {
+    if (IsConnected()) {
         WiFi.disconnect();
     }
     wifi_client_enabled_ = false;
@@ -59,8 +65,7 @@ void Connectivity::StartOTA() {
         return;
     }
 
-    // commenting this for lowering down power consumption
-    // StartHotspot();
+    StartHotspot();
 
     ArduinoOTA.onStart([&]() {
         String type;
@@ -111,8 +116,7 @@ void Connectivity::StopOTA() {
     if (ota_enabled_) {
         ArduinoOTA.end();
     }
-    // commenting this to lower down power consumption
-    // StopHotspot();
+    StopHotspot();
     ota_enabled_ = false;
     logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping OTA");
 }
@@ -123,9 +127,11 @@ bool Connectivity::IsConnected() {
 
 void Connectivity::StartHotspot() {
     CONFIG_SET::DEVICE_CRED device_cred;
-    IPAddress local_IP(192, 168, 0, 1);
+    IPAddress local_IP(192, 168, 0, 10);
     IPAddress gateway(192, 168, 0, 1);
-    IPAddress subnet(255, 255, 255, 0);
+    IPAddress subnet(255, 255, 0, 0);
+    WiFi.disconnect();
+    WiFi.mode(WIFI_AP);
     WiFi.softAPConfig(local_IP, gateway, subnet);
     WiFi.softAP(device_cred.SSID.c_str(), device_cred.PASSWORD.c_str());
     hotspot_enabled_ = true;
@@ -147,12 +153,13 @@ void Connectivity::StartWebpage() {
         return;
     }
 
-    webpage_server_.on("/", HTTP_GET,
-                       [](AsyncWebServerRequest* request) { request->send_P(200, "text/html", index_html); });
+    webpage_server_.reset(new AsyncWebServer(80));
+    webpage_server_->on("/", HTTP_GET,
+                        [](AsyncWebServerRequest* request) { request->send_P(200, "text/html", index_html); });
 
     // Send a GET request to
     // <ESP_IP>/update?output=<inputMessage1>&state=<inputMessage2>
-    webpage_server_.on("/submit", HTTP_GET, [&](AsyncWebServerRequest* request) {
+    webpage_server_->on("/submit", HTTP_GET, [&](AsyncWebServerRequest* request) {
         if (request->hasArg("device_name")) {
             String arg = request->arg("device_name");
             webpage_submitted_device_cred_.DEVICE_ID = String(arg.c_str());
@@ -173,15 +180,17 @@ void Connectivity::StartWebpage() {
     });
 
     // Start server
-    webpage_server_.begin();
+    webpage_server_->begin();
     webpage_enabled_ = true;
+    Serial.println(WiFi.softAPIP());
     logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting Webpage");
 }
 
 void Connectivity::StopWebpage() {
     StopHotspot();
     if (webpage_enabled_) {
-        webpage_server_.end();
+        webpage_server_->end();
+        webpage_server_.reset();
     }
     logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping Webpage");
     webpage_enabled_ = false;

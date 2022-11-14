@@ -56,6 +56,8 @@ class Controller {
     CONFIG_SET::DEVICE_CRED device_cred_;
     CONFIG_SET::CALIB_PARAMS calib_params_;
     CONFIG_SET::OPERATION_MODE operation_mode_;
+    CONFIG_SET::DEVICE_STATUS indicator_status_;
+    CONFIG_SET::time_var mode_start_time_;
     bool long_press_enabled_;
 
     // Device class objects initialization
@@ -122,12 +124,24 @@ class Controller {
     void RestartDevice();
 
     /**
-     * @brief Calibrate the motor driver, determine the stall value and total step
-     * count
-     *
-     * @return CONFIG_SET::CALIB_PARAMS: calibration parameters
+     * @brief Call when exiting operation mode
+     * 
      */
-    CONFIG_SET::CALIB_PARAMS Calibrate();
+    void StopOperationMode();
+
+    /**
+     * @brief Call when exiting reset mode
+     * 
+     */
+    void StopResetMode();
+
+    /**
+     * @brief Calibrate the motor driver, determine the stall value and total step
+     * count, updates internal calib_params_ with new params if successful
+     *
+     * @return successful (true) or not (false)
+     */
+    bool Calibrate();
 };
 
 #endif
