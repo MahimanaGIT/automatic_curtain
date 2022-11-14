@@ -98,9 +98,6 @@ void Controller::HandleResetMode() {
     if (std::get<0>(webpage_submission)) {
         device_cred_ = std::get<1>(webpage_submission);
         logger_->Log(INFO, CONTROLLER, "Got the webpage submission");
-        logger_->Log(INFO, CONTROLLER, device_cred_.DEVICE_ID);
-        logger_->Log(INFO, CONTROLLER, device_cred_.SSID);
-        logger_->Log(INFO, CONTROLLER, device_cred_.PASSWORD);
         connectivity_->StopWebpage();
         connectivity_->StopWiFi();
         Calibrate();

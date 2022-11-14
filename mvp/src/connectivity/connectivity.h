@@ -103,6 +103,7 @@ class Connectivity {
 
    private:
     std::shared_ptr<Logging> logger_;
+    std::unique_ptr<AsyncWebServer> webpage_server_{nullptr};
 
     // boolean vars to store the status of functionalities
     bool ota_enabled_ = false;
