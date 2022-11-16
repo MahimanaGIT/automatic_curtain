@@ -65,10 +65,11 @@ class MotorDriver : private TMC2209Stepper {
     int GetSteps();
 
     /**
-     * @brief Reset the current steps of motor
+     * @brief Returns the current percentage of motor
      *
+     * @return current percentage
      */
-    void ResetSteps();
+    int GetPercentage();
 
     /**
      * @brief This is the primary contact function for external requests, it will
@@ -87,14 +88,6 @@ class MotorDriver : private TMC2209Stepper {
      * @return false: otherwise
      */
     bool CancelCurrentRequest();
-
-    /**
-     * @brief Calibrate the motor driver, determine the stall value and total step
-     * count
-     *
-     * @return CONFIG_SET::CALIB_PARAMS: calibration parameters
-     */
-    CONFIG_SET::CALIB_PARAMS Calibrate();
 
     /**
      * @brief Updates calibration parameters to be used by motor driver
@@ -175,6 +168,12 @@ class MotorDriver : private TMC2209Stepper {
      * 
      */
     void StartHandler();
+
+    /**
+     * @brief Reset the current steps of motor
+     *
+     */
+    void ResetSteps();
 };
 
 #endif

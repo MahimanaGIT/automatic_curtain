@@ -58,6 +58,8 @@ class Controller {
     CONFIG_SET::OPERATION_MODE operation_mode_;
     CONFIG_SET::DEVICE_STATUS indicator_status_;
     CONFIG_SET::time_var mode_start_time_;
+    CONFIG_SET::DRIVER_STATUS last_motor_status_;
+    int last_blind_percentage_;
     bool long_press_enabled_;
 
     // Device class objects initialization

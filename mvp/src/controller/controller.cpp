@@ -35,7 +35,9 @@ Controller::Controller()
       connectivity_{nullptr},
       motor_driver_{nullptr},
       alexa_interaction_{nullptr},
-      long_press_enabled_(false) {
+      long_press_enabled_(false),
+      last_blind_percentage_(0),
+      last_motor_status_(CONFIG_SET::DRIVER_STATUS::AVAILABLE) {
     using namespace CONFIG_SET;
     logger_->SetLoggingStatus(true);
     calib_params_ = CONFIG_SET::CALIB_PARAMS();
@@ -82,9 +84,9 @@ void Controller::Handle() {
 
 void Controller::InitializeResetMode() {
     using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Starting Reset Mode");
     OPERATION_MODE op = OPERATION_MODE::USER;
     store_->SaveOperationMode(&op);
-    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Starting Reset Mode");
     connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartWebpage();
     mode_start_time_ = current_time::now();
@@ -109,13 +111,11 @@ void Controller::HandleResetMode() {
     MANUAL_PUSH manual_action_test;
     time_var manual_action_time_test;
     std::tie(manual_action_test, manual_action_time_test) = manual_interaction_->GetManualActionAndTime();
-    switch (manual_action_test) {
-        case MANUAL_PUSH::DOUBLE_TAP_BOTH:
-            operation_mode_ = OPERATION_MODE::MAINTENANCE;
-            indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
-            StopResetMode();
-            InitializeMaintenanceMode();
-            break;
+    if (manual_action_test == MANUAL_PUSH::DOUBLE_TAP_BOTH) {
+        operation_mode_ = OPERATION_MODE::MAINTENANCE;
+        indicator_status_ = DEVICE_STATUS::MAINTENANCE_MODE;
+        StopResetMode();
+        InitializeMaintenanceMode();
     }
     int exec_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - mode_start_time_).count();
     if (exec_time > MODE_EXPIRE_TIME_LIMIT) {
@@ -127,6 +127,7 @@ void Controller::HandleResetMode() {
 
 void Controller::InitializeMaintenanceMode() {
     using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Starting Maintenance Mode");
     connectivity_.reset(new Connectivity(logger_, &device_cred_));
     connectivity_->StartOTA();
     mode_start_time_ = current_time::now();
@@ -145,6 +146,7 @@ void Controller::HandleMaintenanceMode() {
 
 void Controller::InitializeOperationMode() {
     using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Starting Operation Mode");
     if (!LoadParameters()) {
         logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Storage Reading Failed.");
         indicator_status_ = DEVICE_STATUS::RESET_MODE;
@@ -153,21 +155,42 @@ void Controller::InitializeOperationMode() {
         return;
     }
     connectivity_.reset(new Connectivity(logger_, &device_cred_));
-    connectivity_->EnsureConnectivity(&device_cred_);
+    connectivity_->StartEnsureConnectivity(device_cred_);
+    delay(100);
     motor_driver_.reset(new MotorDriver(logger_, calib_params_));
-    alexa_interaction_.reset(new AlexaInteraction(logger_, device_cred_.DEVICE_ID));
 }
 
 void Controller::HandleOperationMode() {
     using namespace CONFIG_SET;
-    alexa_interaction_->HandleFauxmo();
-    connectivity_->EnsureConnectivity(&device_cred_);
+    if (!alexa_interaction_ && connectivity_->IsConnected()) {
+        alexa_interaction_.reset(new AlexaInteraction(logger_, device_cred_.DEVICE_ID));
+    } else if (alexa_interaction_) {
+        alexa_interaction_->HandleFauxmo();
 
-    auto alexa_request_sub = alexa_interaction_->GetAlexaRequest();
-    if (std::get<0>(alexa_request_sub)) {
-        MOTION_REQUEST submitted_alexa_request = std::get<1>(alexa_request_sub);
-        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Got the Alexa Submission");
-        motor_driver_->FulfillRequest(submitted_alexa_request);
+        auto alexa_request_sub = alexa_interaction_->GetAlexaRequest();
+        if (std::get<0>(alexa_request_sub)) {
+            MOTION_REQUEST submitted_alexa_request = std::get<1>(alexa_request_sub);
+            logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Got the Alexa Submission");
+            motor_driver_->FulfillRequest(submitted_alexa_request);
+        }
+
+        DRIVER_STATUS current_status = motor_driver_->GetStatus();
+        if (last_motor_status_ != current_status && current_status == DRIVER_STATUS::AVAILABLE) {
+            int current_percentage = motor_driver_->GetPercentage();
+            if (current_percentage != last_blind_percentage_) {
+                MOTION_REQUEST motion_request;
+                motion_request.PERCENTAGE = current_percentage;
+                logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Updating Alexa Percentage");
+                alexa_interaction_->SetState(motion_request);
+                last_blind_percentage_ = current_percentage;
+            }
+        }
+        last_motor_status_ = current_status;
+    }
+
+    if (connectivity_->GetSecLostConnection() > MAX_SECONDS_LOST_WIFI) {
+        logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "WiFi Lost");
+        RestartDevice();
     }
 
     MANUAL_PUSH manual_action_test;
@@ -257,18 +280,22 @@ bool Controller::Calibrate() {
     CALIB_PARAMS calib_params;
 
     auto find_end = [&]() -> std::tuple<int, int> {
-        MOTION_REQUEST motion_request_down;
+        MOTION_REQUEST motion_request_up;
         motor_driver_.reset(new MotorDriver(logger_, calib_params));
-        motor_driver_->UpdateCalibParams(calib_params);
-        motor_driver_->ResetSteps();
-        motion_request_down.PERCENTAGE = 100;
-        motor_driver_->FulfillRequest(motion_request_down);
-
-        while (motor_driver_->GetStatus() != DRIVER_STATUS::BUSY) {
-        }
+        motion_request_up.PERCENTAGE = 100;
+        motor_driver_->FulfillRequest(motion_request_up);
 
         time_var start_time = current_time::now();
         int execution_time = 0;
+        while (motor_driver_->GetStatus() != DRIVER_STATUS::BUSY) {
+            execution_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - start_time).count();
+            if (execution_time > MOTOR_STOP_TIME_SEC) {
+                logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER,
+                             "Stopping Motor, reached time limit for calibration");
+                break;
+            }
+        }
+
         while (motor_driver_->GetStatus() != DRIVER_STATUS::AVAILABLE) {
             execution_time = std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - start_time).count();
             if (execution_time > MOTOR_STOP_TIME_SEC) {
@@ -310,12 +337,16 @@ bool Controller::Calibrate() {
 }
 
 void Controller::StopOperationMode() {
+    using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Stopping Operation Mode");
     motor_driver_.reset();
     alexa_interaction_.reset();
     connectivity_.reset();
 }
 
 void Controller::StopResetMode() {
+    using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONTROLLER, "Stopping Reset Mode");
     connectivity_.reset();
 }
 

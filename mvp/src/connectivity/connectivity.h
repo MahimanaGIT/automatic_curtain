@@ -20,6 +20,7 @@
 #include <memory>
 #include <tuple>
 
+#include <thread>
 #include "../config/config.h"
 #include "../logging/logging.h"
 #include "WiFi.h"
@@ -47,13 +48,16 @@ class Connectivity {
     void StartOTA();
 
     /**
-     * @brief Check if the device is connected, if not, try to connect it
+     * @brief Start ensuring connectivity
      *
-     * @return true : wifi is connected
-     * @return false : failed to connect, device is no longer connected, despite
-     * of trying
      */
-    bool EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred);
+    void StartEnsureConnectivity(const CONFIG_SET::DEVICE_CRED device_cred);
+
+    /**
+     * @brief Return number of seconds of lost connection
+     *
+     */
+    int GetSecLostConnection();
 
     /**
      * @brief Regular call function for syncing OTA requests
@@ -109,10 +113,11 @@ class Connectivity {
     bool ota_enabled_ = false;
     bool webpage_enabled_ = false;
     bool hotspot_enabled_ = false;
-    bool wifi_client_enabled_ = false;
-
+    bool keep_handler_running_ = false;
     bool is_new_submission_available_ = false;
-    CONFIG_SET::DEVICE_CRED webpage_submitted_device_cred_;
+    CONFIG_SET::time_var time_last_connected_;
+    CONFIG_SET::DEVICE_CRED webpage_submitted_device_cred_, device_cred_;
+    std::unique_ptr<std::thread> ensure_conn_thread_{nullptr};
 
     /**
      * @brief Starts wifi hotspot, basically start wifi in soft access point mode
@@ -125,6 +130,24 @@ class Connectivity {
      *
      */
     void StopHotspot();
+
+    /**
+     * @brief Check if the device is connected, if not, try to connect it
+     *
+     * @return true : wifi is connected
+     * @return false : failed to connect, device is no longer connected, despite
+     * of trying
+     */
+    void EnsureConnectivity();
+
+    /**
+     * @brief Check if the device is connected, if not, try to connect it
+     *
+     * @return true : wifi is connected
+     * @return false : failed to connect, device is no longer connected, despite
+     * of trying
+     */
+    void StopEnsuringConnectivity();
 };
 
 #endif

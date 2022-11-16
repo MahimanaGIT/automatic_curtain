@@ -62,5 +62,5 @@ void AlexaInteraction::HandleFauxmo() {
 }
 
 void AlexaInteraction::SetState(CONFIG_SET::MOTION_REQUEST request) {
-    fauxmoESP::setState(device_id_.c_str(), request.PERCENTAGE != 0, request.PERCENTAGE * 2.55);
+    this->setState(device_id_.c_str(), request.PERCENTAGE != 0, request.PERCENTAGE * 2.55);
 }

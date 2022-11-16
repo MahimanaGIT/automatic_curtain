@@ -26,9 +26,13 @@
 
 std::mutex webpage_submission_mutex;
 
-Connectivity::Connectivity(std::shared_ptr<Logging> logging, CONFIG_SET::DEVICE_CRED* device_cred) : logger_(logging) {}
+Connectivity::Connectivity(std::shared_ptr<Logging> logging, CONFIG_SET::DEVICE_CRED* device_cred) : logger_(logging) {
+    using namespace CONFIG_SET;
+    time_last_connected_ = current_time::now();
+}
 
 Connectivity::~Connectivity() {
+    StopEnsuringConnectivity();
     StopOTA();
     StopWiFi();
     StopWebpage();
@@ -36,27 +40,49 @@ Connectivity::~Connectivity() {
     logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Done Destroying");
 }
 
-bool Connectivity::EnsureConnectivity(const CONFIG_SET::DEVICE_CRED* device_cred) {
-    if (!IsConnected()) {
-        WiFi.mode(WIFI_STA);
-        WiFi.begin(device_cred->SSID.c_str(), device_cred->PASSWORD.c_str());
-        logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Trying to Connect WiFi");
-        WiFi.waitForConnectResult();
-    } else {
-        return true;
+void Connectivity::StartEnsureConnectivity(const CONFIG_SET::DEVICE_CRED device_cred) {
+    if (ensure_conn_thread_ != nullptr) {
+        return;
     }
-    bool is_connected = IsConnected();
-    if (is_connected) {
-        wifi_client_enabled_ = true;
+    device_cred_ = device_cred;
+    ensure_conn_thread_.reset(new std::thread(&Connectivity::EnsureConnectivity, this));
+}
+
+void Connectivity::StopEnsuringConnectivity() {
+    if (keep_handler_running_) {
+        keep_handler_running_ = false;
+        ensure_conn_thread_->detach();
     }
-    return is_connected;
+}
+
+void Connectivity::EnsureConnectivity() {
+    using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONNECTIVITY, "Starting handler");
+    keep_handler_running_ = true;
+
+    while (keep_handler_running_) {
+        if (!IsConnected()) {
+            logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONNECTIVITY, "Lost Connectivity, Trying to Connect WiFi");
+            WiFi.disconnect(true);
+            WiFi.mode(WIFI_STA);
+            WiFi.begin(device_cred_.SSID.c_str(), device_cred_.PASSWORD.c_str());
+            WiFi.waitForConnectResult();
+        }
+        if (IsConnected()) {
+            time_last_connected_ = current_time::now();
+        }
+        std::this_thread::sleep_for(std::chrono::seconds(TRY_RECONNECT));
+    }
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::CONNECTIVITY, "Exiting handler");
+}
+
+int Connectivity::GetSecLostConnection() {
+    using namespace CONFIG_SET;
+    return std::chrono::duration_cast<std::chrono::seconds>(current_time::now() - time_last_connected_).count();
 }
 
 void Connectivity::StopWiFi() {
-    if (IsConnected()) {
-        WiFi.disconnect();
-    }
-    wifi_client_enabled_ = false;
+    WiFi.disconnect(true);
     logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Stopping WiFi");
 }
 
@@ -130,7 +156,6 @@ void Connectivity::StartHotspot() {
     IPAddress local_IP(192, 168, 0, 10);
     IPAddress gateway(192, 168, 0, 1);
     IPAddress subnet(255, 255, 0, 0);
-    WiFi.disconnect();
     WiFi.mode(WIFI_AP);
     WiFi.softAPConfig(local_IP, gateway, subnet);
     WiFi.softAP(device_cred.SSID.c_str(), device_cred.PASSWORD.c_str());
@@ -181,8 +206,8 @@ void Connectivity::StartWebpage() {
 
     // Start server
     webpage_server_->begin();
-    webpage_enabled_ = true;
     Serial.println(WiFi.softAPIP());
+    webpage_enabled_ = true;
     logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Starting Webpage");
 }
 

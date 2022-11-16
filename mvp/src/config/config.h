@@ -17,6 +17,7 @@
 #include <Arduino.h>
 
 #include <chrono>
+#include <cstdint>
 #include <deque>
 #include <iostream>
 
@@ -28,6 +29,8 @@ namespace CONFIG_SET {
 
 const int LOGGING_BAUD_RATE = 115200;
 const int MOTOR_DRIVER_BAUD_RATE = 115200;
+const int TRY_RECONNECT = 3;            // 3 seconds
+const int MAX_SECONDS_LOST_WIFI = 600;  // 10 mins
 const std::string STORAGE_NAMESPACE = "madac";
 
 // Vars For Indicator Class
@@ -156,7 +159,7 @@ struct DEVICE_CRED {
 };
 
 struct CALIB_PARAMS {
-    int TOTAL_STEP_COUNT = 2000000000;
+    int TOTAL_STEP_COUNT = INT_MAX;
     bool DIRECTION = false;
 };
 
