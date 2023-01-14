@@ -1,0 +1,34 @@
+<map id="mvp/src" name="mvp/src">
+<area shape="rect" id="node2" href="dir_5367f51a44270b849210ec03c27c9d7e.html" title="alexa_interaction" alt="" coords="64,159,184,207"/>
+<area shape="rect" id="node3" href="dir_a169d3a2061699dc6f7671c0e2504ef7.html" title="config" alt="" coords="356,351,428,399"/>
+<area shape="rect" id="edge11-headlabel" href="dir_000002_000003.html" title="2" alt="" coords="345,326,353,340"/>
+<area shape="rect" id="node7" href="dir_68ab534310816d2c85c9b0933ced4ba8.html" title="logging" alt="" coords="387,255,459,303"/>
+<area shape="rect" id="edge10-headlabel" href="dir_000002_000007.html" title="2" alt="" coords="368,246,376,261"/>
+<area shape="rect" id="node4" href="dir_e252b15d078bfb495d7d23079f603ec8.html" title="connectivity" alt="" coords="209,159,301,207"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000004_000003.html" title="2" alt="" coords="367,324,375,338"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000004_000007.html" title="2" alt="" coords="371,234,379,249"/>
+<area shape="rect" id="node5" href="dir_1fcd52993bfdb54c2f03095b42eaa54f.html" title="controller" alt="" coords="355,63,429,111"/>
+<area shape="rect" id="edge20-headlabel" href="dir_000005_000002.html" title="2" alt="" coords="200,156,208,170"/>
+<area shape="rect" id="edge17-headlabel" href="dir_000005_000003.html" title="2" alt="" coords="336,348,344,363"/>
+<area shape="rect" id="edge15-headlabel" href="dir_000005_000004.html" title="2" alt="" coords="305,148,313,162"/>
+<area shape="rect" id="node6" href="dir_57399f48e23ae7599baa28025749db70.html" title="indicator" alt="" coords="325,159,397,207"/>
+<area shape="rect" id="edge19-headlabel" href="dir_000005_000006.html" title="2" alt="" coords="379,136,387,151"/>
+<area shape="rect" id="edge14-headlabel" href="dir_000005_000007.html" title="2" alt="" coords="424,229,432,243"/>
+<area shape="rect" id="node8" href="dir_42554edaae5a8a80938acd2a943862bd.html" title="manual_interaction" alt="" coords="448,159,579,207"/>
+<area shape="rect" id="edge18-headlabel" href="dir_000005_000008.html" title="2" alt="" coords="470,133,478,148"/>
+<area shape="rect" id="node9" href="dir_36038656d9a800729273bcb331212d4a.html" title="motor_driver" alt="" coords="603,159,698,207"/>
+<area shape="rect" id="edge21-headlabel" href="dir_000005_000009.html" title="2" alt="" coords="585,142,593,156"/>
+<area shape="rect" id="node10" href="dir_e580aca62002ca344918ab991ea66d54.html" title="storage" alt="" coords="723,159,795,207"/>
+<area shape="rect" id="edge16-headlabel" href="dir_000005_000010.html" title="2" alt="" coords="704,142,712,157"/>
+<area shape="rect" id="edge9-headlabel" href="dir_000006_000003.html" title="2" alt="" coords="385,323,393,338"/>
+<area shape="rect" id="edge8-headlabel" href="dir_000006_000007.html" title="2" alt="" coords="400,227,408,242"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000007_000003.html" title="2" alt="" coords="409,328,417,343"/>
+<area shape="rect" id="edge7-headlabel" href="dir_000008_000003.html" title="2" alt="" coords="440,338,448,353"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000008_000007.html" title="2" alt="" coords="460,239,468,254"/>
+<area shape="rect" id="edge13-headlabel" href="dir_000009_000003.html" title="2" alt="" coords="440,339,448,354"/>
+<area shape="rect" id="edge12-headlabel" href="dir_000009_000007.html" title="2" alt="" coords="475,257,483,272"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000010_000003.html" title="2" alt="" coords="444,347,452,362"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000010_000007.html" title="2" alt="" coords="474,270,482,284"/>
+<area shape="rect" id="clust2" href="dir_a486437a11779643a8456ad4066f1106.html" alt="" coords="27,52,805,409"/>
+<area shape="rect" id="clust1" href="dir_736d6d064af47b42f577641cbe54a517.html" title="mvp" alt="" coords="16,16,816,420"/>
+</map>

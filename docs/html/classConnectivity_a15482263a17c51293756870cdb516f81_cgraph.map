@@ -1,0 +1,4 @@
+<map id="Connectivity::StartEnsureConnectivity" name="Connectivity::StartEnsureConnectivity">
+<area shape="rect" id="node2" href="$classConnectivity.html#ac97b309654c5c550f430c5cb45850d29" title="Check if the device is connected, if not, try to connect it. " alt="" coords="225,13,443,39"/>
+<area shape="rect" id="node3" href="$classConnectivity.html#a806034c9ce5234a7fcc5370d5b6e8362" title="Checks if the device is connected to the WiFi. " alt="" coords="491,13,668,39"/>
+</map>

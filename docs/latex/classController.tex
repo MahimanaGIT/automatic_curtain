@@ -1,0 +1,496 @@
+\hypertarget{classController}{}\section{Controller Class Reference}
+\label{classController}\index{Controller@{Controller}}
+
+
+{\ttfamily \#include $<$controller.\+h$>$}
+
+
+
+Collaboration diagram for Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classController_a95c56822d667e94b031451729ce069a9}{Controller} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{classController}{Controller} object, initializes the device. \end{DoxyCompactList}\item 
+\hyperlink{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}{$\sim$\+Controller} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{classController}{Controller} object. \end{DoxyCompactList}\item 
+void \hyperlink{classController_a4705ffb61d722e4916ba0d279dc27395}{Handle} ()
+\begin{DoxyCompactList}\small\item\em Continous loop after initialization, handles the controlling of the device Performs following functions\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classController_abcd6a66cbded25a29989e1af162d3a69}{Load\+Parameters} ()
+\begin{DoxyCompactList}\small\item\em Mounts all the parameters from the storage. \end{DoxyCompactList}\item 
+bool \hyperlink{classController_a718a2ae64edc1376a69d9dc08fa0ed44}{Save\+Parameters} ()
+\begin{DoxyCompactList}\small\item\em Save all the parameters to storage. \end{DoxyCompactList}\item 
+void \hyperlink{classController_a97450864deedc5aaba0380b52a716292}{Initialize\+Reset\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Initialize reset mode. \end{DoxyCompactList}\item 
+void \hyperlink{classController_ae512c48c1ebafb35c90948835361cf0c}{Handle\+Reset\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Handle reset mode. \end{DoxyCompactList}\item 
+void \hyperlink{classController_ae727ee9be8a2b2d0a966d1c14f85f360}{Initialize\+Maintenance\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Initialize maintenance mode. \end{DoxyCompactList}\item 
+void \hyperlink{classController_a78080d5bfa37c5e783a630255846b721}{Handle\+Maintenance\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Handle reset mode. \end{DoxyCompactList}\item 
+void \hyperlink{classController_a4f8fff93f7443154b80cd2d18316e32d}{Initialize\+Operation\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Initialize operation mode. \end{DoxyCompactList}\item 
+void \hyperlink{classController_a431dc67f69757e96cfc9b42454c71097}{Handle\+Operation\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Handle operation mode. \end{DoxyCompactList}\item 
+void \hyperlink{classController_a99d30681a2e92b92098745e6a3608d10}{Restart\+Device} ()
+\begin{DoxyCompactList}\small\item\em Restarts device. \end{DoxyCompactList}\item 
+void \hyperlink{classController_ac462515d6845e176608cecf75c696eac}{Stop\+Operation\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Call when exiting operation mode. \end{DoxyCompactList}\item 
+void \hyperlink{classController_a8088cca43391048e9285d395fbcebc06}{Stop\+Reset\+Mode} ()
+\begin{DoxyCompactList}\small\item\em Call when exiting reset mode. \end{DoxyCompactList}\item 
+bool \hyperlink{classController_ad486f7baff22f9371933d84f327638a2}{Calibrate} ()
+\begin{DoxyCompactList}\small\item\em Calibrate the motor driver, determine the stall value and total step count, updates internal calib\+\_\+params\+\_\+ with new params if successful. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} \hyperlink{classController_a9ed021fc747dcc7fe46612cf40792835}{device\+\_\+cred\+\_\+}
+\item 
+\hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} \hyperlink{classController_a155543a3a5477481b42d4742a2738d2e}{calib\+\_\+params\+\_\+}
+\item 
+\hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+DE} \hyperlink{classController_aac6fbfee448aed573ac0c351061474ee}{operation\+\_\+mode\+\_\+}
+\item 
+\hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081a}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+US} \hyperlink{classController_ac86e092267490730d908b88a44d1ebfd}{indicator\+\_\+status\+\_\+}
+\item 
+\hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \hyperlink{classController_aa144ead03579e6426e3f81ac0326c29d}{mode\+\_\+start\+\_\+time\+\_\+}
+\item 
+\hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+US} \hyperlink{classController_a93d14e8edbc5cf7b3ee28ec5c9054576}{last\+\_\+motor\+\_\+status\+\_\+}
+\item 
+int \hyperlink{classController_a4ede51f4305e6048d3b41e8543d11628}{last\+\_\+blind\+\_\+percentage\+\_\+}
+\item 
+bool \hyperlink{classController_ae880908cc2bea7c5e06c1c00e14407e2}{long\+\_\+press\+\_\+enabled\+\_\+}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \hyperlink{classController_aecfe98e4757879d331d44e07954c5c56}{logger\+\_\+} \{nullptr\}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classStorage}{Storage} $>$ \hyperlink{classController_a0b119887316779a66a171650000304d4}{store\+\_\+} \{nullptr\}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classIndicator}{Indicator} $>$ \hyperlink{classController_a2791727e2f12697523c0f118f1a75829}{indicator\+\_\+} \{nullptr\}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classConnectivity}{Connectivity} $>$ \hyperlink{classController_a921bbc5298098d7633725017a31a78ce}{connectivity\+\_\+} \{nullptr\}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classAlexaInteraction}{Alexa\+Interaction} $>$ \hyperlink{classController_ad3ff592d3aa9d0af95356dbfbc01c52f}{alexa\+\_\+interaction\+\_\+} \{nullptr\}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classMotorDriver}{Motor\+Driver} $>$ \hyperlink{classController_adae82fee20509b294c89c56606ce0d72}{motor\+\_\+driver\+\_\+} \{nullptr\}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classManualInteraction}{Manual\+Interaction} $>$ \hyperlink{classController_af57e2a2524af7626fd9d4bcabc1aa826}{manual\+\_\+interaction\+\_\+} \{nullptr\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classController_a95c56822d667e94b031451729ce069a9}\label{classController_a95c56822d667e94b031451729ce069a9}} 
+\index{Controller@{Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Controller()}{Controller()}}
+{\footnotesize\ttfamily Controller\+::\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \hyperlink{classController}{Controller} object, initializes the device. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a95c56822d667e94b031451729ce069a9_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}\label{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}} 
+\index{Controller@{Controller}!````~Controller@{$\sim$\+Controller}}
+\index{````~Controller@{$\sim$\+Controller}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{$\sim$\+Controller()}{~Controller()}}
+{\footnotesize\ttfamily Controller\+::$\sim$\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{classController}{Controller} object. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classController_ad486f7baff22f9371933d84f327638a2}\label{classController_ad486f7baff22f9371933d84f327638a2}} 
+\index{Controller@{Controller}!Calibrate@{Calibrate}}
+\index{Calibrate@{Calibrate}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Calibrate()}{Calibrate()}}
+{\footnotesize\ttfamily bool Controller\+::\+Calibrate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calibrate the motor driver, determine the stall value and total step count, updates internal calib\+\_\+params\+\_\+ with new params if successful. 
+
+\begin{DoxyReturn}{Returns}
+successful (true) or not (false) 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_ad486f7baff22f9371933d84f327638a2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a4705ffb61d722e4916ba0d279dc27395}\label{classController_a4705ffb61d722e4916ba0d279dc27395}} 
+\index{Controller@{Controller}!Handle@{Handle}}
+\index{Handle@{Handle}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Handle()}{Handle()}}
+{\footnotesize\ttfamily void Controller\+::\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Continous loop after initialization, handles the controlling of the device Performs following functions\+: 
+
+
+\begin{DoxyEnumerate}
+\item Updates the device status on indicator
+\item Fetches commands from alexa
+\item Fetches commands from manual control
+\item Gives instructions to motor driver
+\item Ensure connectivity to internet
+\item Controls O\+TA enable
+\item Handles any fault conditions and acts accordingly 
+\end{DoxyEnumerate}Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a4705ffb61d722e4916ba0d279dc27395_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a78080d5bfa37c5e783a630255846b721}\label{classController_a78080d5bfa37c5e783a630255846b721}} 
+\index{Controller@{Controller}!Handle\+Maintenance\+Mode@{Handle\+Maintenance\+Mode}}
+\index{Handle\+Maintenance\+Mode@{Handle\+Maintenance\+Mode}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Handle\+Maintenance\+Mode()}{HandleMaintenanceMode()}}
+{\footnotesize\ttfamily void Controller\+::\+Handle\+Maintenance\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handle reset mode. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a78080d5bfa37c5e783a630255846b721_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a78080d5bfa37c5e783a630255846b721_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a431dc67f69757e96cfc9b42454c71097}\label{classController_a431dc67f69757e96cfc9b42454c71097}} 
+\index{Controller@{Controller}!Handle\+Operation\+Mode@{Handle\+Operation\+Mode}}
+\index{Handle\+Operation\+Mode@{Handle\+Operation\+Mode}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Handle\+Operation\+Mode()}{HandleOperationMode()}}
+{\footnotesize\ttfamily void Controller\+::\+Handle\+Operation\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handle operation mode. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a431dc67f69757e96cfc9b42454c71097_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a431dc67f69757e96cfc9b42454c71097_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_ae512c48c1ebafb35c90948835361cf0c}\label{classController_ae512c48c1ebafb35c90948835361cf0c}} 
+\index{Controller@{Controller}!Handle\+Reset\+Mode@{Handle\+Reset\+Mode}}
+\index{Handle\+Reset\+Mode@{Handle\+Reset\+Mode}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Handle\+Reset\+Mode()}{HandleResetMode()}}
+{\footnotesize\ttfamily void Controller\+::\+Handle\+Reset\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handle reset mode. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_ae512c48c1ebafb35c90948835361cf0c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_ae512c48c1ebafb35c90948835361cf0c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_ae727ee9be8a2b2d0a966d1c14f85f360}\label{classController_ae727ee9be8a2b2d0a966d1c14f85f360}} 
+\index{Controller@{Controller}!Initialize\+Maintenance\+Mode@{Initialize\+Maintenance\+Mode}}
+\index{Initialize\+Maintenance\+Mode@{Initialize\+Maintenance\+Mode}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Initialize\+Maintenance\+Mode()}{InitializeMaintenanceMode()}}
+{\footnotesize\ttfamily void Controller\+::\+Initialize\+Maintenance\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialize maintenance mode. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_ae727ee9be8a2b2d0a966d1c14f85f360_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a4f8fff93f7443154b80cd2d18316e32d}\label{classController_a4f8fff93f7443154b80cd2d18316e32d}} 
+\index{Controller@{Controller}!Initialize\+Operation\+Mode@{Initialize\+Operation\+Mode}}
+\index{Initialize\+Operation\+Mode@{Initialize\+Operation\+Mode}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Initialize\+Operation\+Mode()}{InitializeOperationMode()}}
+{\footnotesize\ttfamily void Controller\+::\+Initialize\+Operation\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialize operation mode. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a4f8fff93f7443154b80cd2d18316e32d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a4f8fff93f7443154b80cd2d18316e32d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a97450864deedc5aaba0380b52a716292}\label{classController_a97450864deedc5aaba0380b52a716292}} 
+\index{Controller@{Controller}!Initialize\+Reset\+Mode@{Initialize\+Reset\+Mode}}
+\index{Initialize\+Reset\+Mode@{Initialize\+Reset\+Mode}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Initialize\+Reset\+Mode()}{InitializeResetMode()}}
+{\footnotesize\ttfamily void Controller\+::\+Initialize\+Reset\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialize reset mode. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a97450864deedc5aaba0380b52a716292_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_abcd6a66cbded25a29989e1af162d3a69}\label{classController_abcd6a66cbded25a29989e1af162d3a69}} 
+\index{Controller@{Controller}!Load\+Parameters@{Load\+Parameters}}
+\index{Load\+Parameters@{Load\+Parameters}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Load\+Parameters()}{LoadParameters()}}
+{\footnotesize\ttfamily bool Controller\+::\+Load\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mounts all the parameters from the storage. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_abcd6a66cbded25a29989e1af162d3a69_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a99d30681a2e92b92098745e6a3608d10}\label{classController_a99d30681a2e92b92098745e6a3608d10}} 
+\index{Controller@{Controller}!Restart\+Device@{Restart\+Device}}
+\index{Restart\+Device@{Restart\+Device}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Restart\+Device()}{RestartDevice()}}
+{\footnotesize\ttfamily void Controller\+::\+Restart\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Restarts device. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a99d30681a2e92b92098745e6a3608d10_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a718a2ae64edc1376a69d9dc08fa0ed44}\label{classController_a718a2ae64edc1376a69d9dc08fa0ed44}} 
+\index{Controller@{Controller}!Save\+Parameters@{Save\+Parameters}}
+\index{Save\+Parameters@{Save\+Parameters}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Save\+Parameters()}{SaveParameters()}}
+{\footnotesize\ttfamily bool Controller\+::\+Save\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Save all the parameters to storage. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a718a2ae64edc1376a69d9dc08fa0ed44_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_ac462515d6845e176608cecf75c696eac}\label{classController_ac462515d6845e176608cecf75c696eac}} 
+\index{Controller@{Controller}!Stop\+Operation\+Mode@{Stop\+Operation\+Mode}}
+\index{Stop\+Operation\+Mode@{Stop\+Operation\+Mode}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Stop\+Operation\+Mode()}{StopOperationMode()}}
+{\footnotesize\ttfamily void Controller\+::\+Stop\+Operation\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Call when exiting operation mode. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_ac462515d6845e176608cecf75c696eac_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classController_a8088cca43391048e9285d395fbcebc06}\label{classController_a8088cca43391048e9285d395fbcebc06}} 
+\index{Controller@{Controller}!Stop\+Reset\+Mode@{Stop\+Reset\+Mode}}
+\index{Stop\+Reset\+Mode@{Stop\+Reset\+Mode}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Stop\+Reset\+Mode()}{StopResetMode()}}
+{\footnotesize\ttfamily void Controller\+::\+Stop\+Reset\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Call when exiting reset mode. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classController_a8088cca43391048e9285d395fbcebc06_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classController_ad3ff592d3aa9d0af95356dbfbc01c52f}\label{classController_ad3ff592d3aa9d0af95356dbfbc01c52f}} 
+\index{Controller@{Controller}!alexa\+\_\+interaction\+\_\+@{alexa\+\_\+interaction\+\_\+}}
+\index{alexa\+\_\+interaction\+\_\+@{alexa\+\_\+interaction\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{alexa\+\_\+interaction\+\_\+}{alexa\_interaction\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\hyperlink{classAlexaInteraction}{Alexa\+Interaction}$>$ Controller\+::alexa\+\_\+interaction\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_a155543a3a5477481b42d4742a2738d2e}\label{classController_a155543a3a5477481b42d4742a2738d2e}} 
+\index{Controller@{Controller}!calib\+\_\+params\+\_\+@{calib\+\_\+params\+\_\+}}
+\index{calib\+\_\+params\+\_\+@{calib\+\_\+params\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{calib\+\_\+params\+\_\+}{calib\_params\_}}
+{\footnotesize\ttfamily \hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} Controller\+::calib\+\_\+params\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_a921bbc5298098d7633725017a31a78ce}\label{classController_a921bbc5298098d7633725017a31a78ce}} 
+\index{Controller@{Controller}!connectivity\+\_\+@{connectivity\+\_\+}}
+\index{connectivity\+\_\+@{connectivity\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{connectivity\+\_\+}{connectivity\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\hyperlink{classConnectivity}{Connectivity}$>$ Controller\+::connectivity\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_a9ed021fc747dcc7fe46612cf40792835}\label{classController_a9ed021fc747dcc7fe46612cf40792835}} 
+\index{Controller@{Controller}!device\+\_\+cred\+\_\+@{device\+\_\+cred\+\_\+}}
+\index{device\+\_\+cred\+\_\+@{device\+\_\+cred\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{device\+\_\+cred\+\_\+}{device\_cred\_}}
+{\footnotesize\ttfamily \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} Controller\+::device\+\_\+cred\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_a2791727e2f12697523c0f118f1a75829}\label{classController_a2791727e2f12697523c0f118f1a75829}} 
+\index{Controller@{Controller}!indicator\+\_\+@{indicator\+\_\+}}
+\index{indicator\+\_\+@{indicator\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{indicator\+\_\+}{indicator\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\hyperlink{classIndicator}{Indicator}$>$ Controller\+::indicator\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_ac86e092267490730d908b88a44d1ebfd}\label{classController_ac86e092267490730d908b88a44d1ebfd}} 
+\index{Controller@{Controller}!indicator\+\_\+status\+\_\+@{indicator\+\_\+status\+\_\+}}
+\index{indicator\+\_\+status\+\_\+@{indicator\+\_\+status\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{indicator\+\_\+status\+\_\+}{indicator\_status\_}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081a}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+US} Controller\+::indicator\+\_\+status\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_a4ede51f4305e6048d3b41e8543d11628}\label{classController_a4ede51f4305e6048d3b41e8543d11628}} 
+\index{Controller@{Controller}!last\+\_\+blind\+\_\+percentage\+\_\+@{last\+\_\+blind\+\_\+percentage\+\_\+}}
+\index{last\+\_\+blind\+\_\+percentage\+\_\+@{last\+\_\+blind\+\_\+percentage\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{last\+\_\+blind\+\_\+percentage\+\_\+}{last\_blind\_percentage\_}}
+{\footnotesize\ttfamily int Controller\+::last\+\_\+blind\+\_\+percentage\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_a93d14e8edbc5cf7b3ee28ec5c9054576}\label{classController_a93d14e8edbc5cf7b3ee28ec5c9054576}} 
+\index{Controller@{Controller}!last\+\_\+motor\+\_\+status\+\_\+@{last\+\_\+motor\+\_\+status\+\_\+}}
+\index{last\+\_\+motor\+\_\+status\+\_\+@{last\+\_\+motor\+\_\+status\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{last\+\_\+motor\+\_\+status\+\_\+}{last\_motor\_status\_}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+US} Controller\+::last\+\_\+motor\+\_\+status\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_aecfe98e4757879d331d44e07954c5c56}\label{classController_aecfe98e4757879d331d44e07954c5c56}} 
+\index{Controller@{Controller}!logger\+\_\+@{logger\+\_\+}}
+\index{logger\+\_\+@{logger\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{logger\+\_\+}{logger\_}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classLogging}{Logging}$>$ Controller\+::logger\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_ae880908cc2bea7c5e06c1c00e14407e2}\label{classController_ae880908cc2bea7c5e06c1c00e14407e2}} 
+\index{Controller@{Controller}!long\+\_\+press\+\_\+enabled\+\_\+@{long\+\_\+press\+\_\+enabled\+\_\+}}
+\index{long\+\_\+press\+\_\+enabled\+\_\+@{long\+\_\+press\+\_\+enabled\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{long\+\_\+press\+\_\+enabled\+\_\+}{long\_press\_enabled\_}}
+{\footnotesize\ttfamily bool Controller\+::long\+\_\+press\+\_\+enabled\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_af57e2a2524af7626fd9d4bcabc1aa826}\label{classController_af57e2a2524af7626fd9d4bcabc1aa826}} 
+\index{Controller@{Controller}!manual\+\_\+interaction\+\_\+@{manual\+\_\+interaction\+\_\+}}
+\index{manual\+\_\+interaction\+\_\+@{manual\+\_\+interaction\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{manual\+\_\+interaction\+\_\+}{manual\_interaction\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\hyperlink{classManualInteraction}{Manual\+Interaction}$>$ Controller\+::manual\+\_\+interaction\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_aa144ead03579e6426e3f81ac0326c29d}\label{classController_aa144ead03579e6426e3f81ac0326c29d}} 
+\index{Controller@{Controller}!mode\+\_\+start\+\_\+time\+\_\+@{mode\+\_\+start\+\_\+time\+\_\+}}
+\index{mode\+\_\+start\+\_\+time\+\_\+@{mode\+\_\+start\+\_\+time\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{mode\+\_\+start\+\_\+time\+\_\+}{mode\_start\_time\_}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} Controller\+::mode\+\_\+start\+\_\+time\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_adae82fee20509b294c89c56606ce0d72}\label{classController_adae82fee20509b294c89c56606ce0d72}} 
+\index{Controller@{Controller}!motor\+\_\+driver\+\_\+@{motor\+\_\+driver\+\_\+}}
+\index{motor\+\_\+driver\+\_\+@{motor\+\_\+driver\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{motor\+\_\+driver\+\_\+}{motor\_driver\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\hyperlink{classMotorDriver}{Motor\+Driver}$>$ Controller\+::motor\+\_\+driver\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_aac6fbfee448aed573ac0c351061474ee}\label{classController_aac6fbfee448aed573ac0c351061474ee}} 
+\index{Controller@{Controller}!operation\+\_\+mode\+\_\+@{operation\+\_\+mode\+\_\+}}
+\index{operation\+\_\+mode\+\_\+@{operation\+\_\+mode\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{operation\+\_\+mode\+\_\+}{operation\_mode\_}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+DE} Controller\+::operation\+\_\+mode\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classController_a0b119887316779a66a171650000304d4}\label{classController_a0b119887316779a66a171650000304d4}} 
+\index{Controller@{Controller}!store\+\_\+@{store\+\_\+}}
+\index{store\+\_\+@{store\+\_\+}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{store\+\_\+}{store\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\hyperlink{classStorage}{Storage}$>$ Controller\+::store\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mvp/src/controller/\hyperlink{controller_8h}{controller.\+h}\item 
+mvp/src/controller/\hyperlink{controller_8cpp}{controller.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="Connectivity::~Connectivity" name="Connectivity::~Connectivity">
+<area shape="rect" id="node2" href="$classConnectivity.html#a8d01492828472cc2edf8af89682b40e9" title="Check if the device is connected, if not, try to connect it. " alt="" coords="239,5,421,47"/>
+<area shape="rect" id="node3" href="$classConnectivity.html#aa99aeadd725a7cd8edc7255775955807" title="Disable OTA. " alt="" coords="251,71,409,98"/>
+<area shape="rect" id="node4" href="$classConnectivity.html#aaa9ca6a4b59d47cd1135101af1056a22" title="Stops wifi hotspot. " alt="" coords="471,122,647,149"/>
+<area shape="rect" id="node5" href="$classConnectivity.html#a5c562f136d52c4a91eedba957e68b71e" title="disconnects WiFi " alt="" coords="251,173,409,199"/>
+<area shape="rect" id="node6" href="$classConnectivity.html#a5a123ddd0c4ab4061d1fa564fe3e7490" title="Stops webpage server. " alt="" coords="237,223,423,250"/>
+</map>

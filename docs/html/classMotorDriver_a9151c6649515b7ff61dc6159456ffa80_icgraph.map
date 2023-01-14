@@ -1,0 +1,4 @@
+<map id="MotorDriver::InitializeDriver" name="MotorDriver::InitializeDriver">
+<area shape="rect" id="node2" href="$classMotorDriver.html#a04e97c6adc4df4d186d6799dfd8165b2" title="Updates calibration parameters to be used by motor driver. " alt="" coords="235,5,405,47"/>
+<area shape="rect" id="node3" href="$classMotorDriver.html#a534f4ca22b5dcffc9e40aafef09c76e5" title="Initializes motor drive TMC2209, and required pins. " alt="" coords="453,13,620,39"/>
+</map>

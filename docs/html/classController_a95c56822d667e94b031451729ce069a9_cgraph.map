@@ -1,0 +1,6 @@
+<map id="Controller::Controller" name="Controller::Controller">
+<area shape="rect" id="node2" href="$classController.html#a97450864deedc5aaba0380b52a716292" title="Initialize reset mode. " alt="" coords="484,5,685,32"/>
+<area shape="rect" id="node3" href="$classController.html#ae727ee9be8a2b2d0a966d1c14f85f360" title="Initialize maintenance mode. " alt="" coords="196,31,436,57"/>
+<area shape="rect" id="node4" href="$classController.html#a4f8fff93f7443154b80cd2d18316e32d" title="Initialize operation mode. " alt="" coords="205,81,427,108"/>
+<area shape="rect" id="node5" href="$classController.html#abcd6a66cbded25a29989e1af162d3a69" title="Mounts all the parameters from the storage. " alt="" coords="494,81,675,108"/>
+</map>

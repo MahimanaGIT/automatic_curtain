@@ -1,0 +1,9 @@
+<map id="MotorDriver::EnableDriver" name="MotorDriver::EnableDriver">
+<area shape="rect" id="node2" href="$classMotorDriver.html#a6ead9d8f796501adf9889a8e5aa7afc5" title="Cleans and disables motor driver. " alt="" coords="227,5,401,32"/>
+<area shape="rect" id="node3" href="$classMotorDriver.html#a04e97c6adc4df4d186d6799dfd8165b2" title="Updates calibration parameters to be used by motor driver. " alt="" coords="449,49,620,90"/>
+<area shape="rect" id="node5" href="$classMotorDriver.html#aff8659e64841fb4b97c23b3494cd0575" title="Responsible for stopping the motor, i.e. disables the driver and sets velocity of motor to zero..." alt="" coords="235,107,393,133"/>
+<area shape="rect" id="node8" href="$classMotorDriver.html#a5ebab90ca98fa04463de1cbae76af994" title="Responsible for starting the motor, i.e. setups the driver and sets required velocity of motor..." alt="" coords="235,157,393,184"/>
+<area shape="rect" id="node4" href="$classMotorDriver.html#a534f4ca22b5dcffc9e40aafef09c76e5" title="Initializes motor drive TMC2209, and required pins. " alt="" coords="887,85,1053,112"/>
+<area shape="rect" id="node6" href="$classMotorDriver.html#a1eee734aa12c1565d6ae629924962115" title="Motor Driver class handler, communicates with driver and is responsible for reading latest motion req..." alt="" coords="463,115,606,141"/>
+<area shape="rect" id="node7" href="$classMotorDriver.html#a64827491330490668bb8f8e57d0f3942" title="Starts handler thread. " alt="" coords="668,111,839,137"/>
+</map>

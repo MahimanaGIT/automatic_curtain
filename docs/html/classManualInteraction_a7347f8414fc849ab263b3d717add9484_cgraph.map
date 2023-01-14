@@ -1,0 +1,4 @@
+<map id="ManualInteraction::ButtonstateDequeAnalyser" name="ManualInteraction::ButtonstateDequeAnalyser">
+<area shape="rect" id="node2" href="$classManualInteraction.html#afce55b16a04782daf03a62477d3120ba" title="Set the CurrentButtonState object Function to sets the current buttonstate [0 &#45;&gt;NO_PUSH, 1&#45;&gt;LONGPRESS, 2&#45;&gt;DOUBLETAP]. " alt="" coords="241,5,396,47"/>
+<area shape="rect" id="node3" href="$classManualInteraction.html#afb8fd56c9e56af41d3dfad489fac7a4b" title="Set the Manual Action And Time object sets manual_action_ and manual_action_time_. " alt="" coords="232,71,405,112"/>
+</map>

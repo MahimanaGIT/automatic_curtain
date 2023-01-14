@@ -1,0 +1,154 @@
+\hypertarget{classLogging}{}\section{Logging Class Reference}
+\label{classLogging}\index{Logging@{Logging}}
+
+
+{\ttfamily \#include $<$logging.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLogging_a3180cbe3cd3f25a926092066a157b884}{Logging} (bool logging\+\_\+status)
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{classLogging}{Logging} object, initializes the serial connection. \end{DoxyCompactList}\item 
+\hyperlink{classLogging_af6a0971121f5b0d9d6ebfb4e69b20a4d}{$\sim$\+Logging} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{classLogging}{Logging} object. \end{DoxyCompactList}\item 
+bool \hyperlink{classLogging_abefeba86ea7c9ec93b7de22fc03a558e}{Log} (\hyperlink{namespaceCONFIG__SET_aaf9764960ee214f0eaabd2461e30e932}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+T\+Y\+PE} log\+\_\+type, \hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+SS} log\+\_\+class, const char $\ast$message)
+\begin{DoxyCompactList}\small\item\em For now, the function will just print a message on serial, it can be over wifi or just hardware serial. \end{DoxyCompactList}\item 
+bool \hyperlink{classLogging_a7ad9e952d45e4b456006755beb62e9d3}{Log} (\hyperlink{namespaceCONFIG__SET_aaf9764960ee214f0eaabd2461e30e932}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+T\+Y\+PE} log\+\_\+type, \hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+SS} log\+\_\+class, String message)
+\begin{DoxyCompactList}\small\item\em For now, the function will just print a message on serial, it can be over wifi or just hardware serial. \end{DoxyCompactList}\item 
+void \hyperlink{classLogging_a7eab89a46435adb76ea30a899e9658cc}{Set\+Logging\+Status} (bool status)
+\begin{DoxyCompactList}\small\item\em This function enables or disables logging true\+: logging enabled false\+: logging disabled. \end{DoxyCompactList}\item 
+bool \hyperlink{classLogging_a739f193cbcadcec708a6af983039759f}{Get\+Logging\+Status} ()
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{classLogging}{Logging} Status object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classLogging_adc395a9b0a516df8528b6ef764877a58}{logging\+\_\+status\+\_\+}
+\item 
+std\+::mutex \hyperlink{classLogging_a9bc75091ce35d1448abf90ee07fc7ffa}{status\+\_\+mutex}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLogging_a3180cbe3cd3f25a926092066a157b884}\label{classLogging_a3180cbe3cd3f25a926092066a157b884}} 
+\index{Logging@{Logging}!Logging@{Logging}}
+\index{Logging@{Logging}!Logging@{Logging}}
+\subsubsection{\texorpdfstring{Logging()}{Logging()}}
+{\footnotesize\ttfamily Logging\+::\+Logging (\begin{DoxyParamCaption}\item[{bool}]{logging\+\_\+status }\end{DoxyParamCaption})}
+
+
+
+Construct a new \hyperlink{classLogging}{Logging} object, initializes the serial connection. 
+
+\mbox{\Hypertarget{classLogging_af6a0971121f5b0d9d6ebfb4e69b20a4d}\label{classLogging_af6a0971121f5b0d9d6ebfb4e69b20a4d}} 
+\index{Logging@{Logging}!````~Logging@{$\sim$\+Logging}}
+\index{````~Logging@{$\sim$\+Logging}!Logging@{Logging}}
+\subsubsection{\texorpdfstring{$\sim$\+Logging()}{~Logging()}}
+{\footnotesize\ttfamily Logging\+::$\sim$\+Logging (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{classLogging}{Logging} object. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLogging_a739f193cbcadcec708a6af983039759f}\label{classLogging_a739f193cbcadcec708a6af983039759f}} 
+\index{Logging@{Logging}!Get\+Logging\+Status@{Get\+Logging\+Status}}
+\index{Get\+Logging\+Status@{Get\+Logging\+Status}!Logging@{Logging}}
+\subsubsection{\texorpdfstring{Get\+Logging\+Status()}{GetLoggingStatus()}}
+{\footnotesize\ttfamily bool Logging\+::\+Get\+Logging\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the \hyperlink{classLogging}{Logging} Status object. 
+
+\begin{DoxyReturn}{Returns}
+bool\+: logging\+\_\+status\+\_\+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLogging_abefeba86ea7c9ec93b7de22fc03a558e}\label{classLogging_abefeba86ea7c9ec93b7de22fc03a558e}} 
+\index{Logging@{Logging}!Log@{Log}}
+\index{Log@{Log}!Logging@{Logging}}
+\subsubsection{\texorpdfstring{Log()}{Log()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Logging\+::\+Log (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceCONFIG__SET_aaf9764960ee214f0eaabd2461e30e932}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+T\+Y\+PE}}]{log\+\_\+type,  }\item[{\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+SS}}]{log\+\_\+class,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+For now, the function will just print a message on serial, it can be over wifi or just hardware serial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true \+: if the print is successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{classLogging_abefeba86ea7c9ec93b7de22fc03a558e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classLogging_a7ad9e952d45e4b456006755beb62e9d3}\label{classLogging_a7ad9e952d45e4b456006755beb62e9d3}} 
+\index{Logging@{Logging}!Log@{Log}}
+\index{Log@{Log}!Logging@{Logging}}
+\subsubsection{\texorpdfstring{Log()}{Log()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Logging\+::\+Log (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceCONFIG__SET_aaf9764960ee214f0eaabd2461e30e932}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+T\+Y\+PE}}]{log\+\_\+type,  }\item[{\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+SS}}]{log\+\_\+class,  }\item[{String}]{message }\end{DoxyParamCaption})}
+
+
+
+For now, the function will just print a message on serial, it can be over wifi or just hardware serial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true \+: if the print is successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{classLogging_a7ad9e952d45e4b456006755beb62e9d3_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classLogging_a7eab89a46435adb76ea30a899e9658cc}\label{classLogging_a7eab89a46435adb76ea30a899e9658cc}} 
+\index{Logging@{Logging}!Set\+Logging\+Status@{Set\+Logging\+Status}}
+\index{Set\+Logging\+Status@{Set\+Logging\+Status}!Logging@{Logging}}
+\subsubsection{\texorpdfstring{Set\+Logging\+Status()}{SetLoggingStatus()}}
+{\footnotesize\ttfamily void Logging\+::\+Set\+Logging\+Status (\begin{DoxyParamCaption}\item[{bool}]{status }\end{DoxyParamCaption})}
+
+
+
+This function enables or disables logging true\+: logging enabled false\+: logging disabled. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classLogging_adc395a9b0a516df8528b6ef764877a58}\label{classLogging_adc395a9b0a516df8528b6ef764877a58}} 
+\index{Logging@{Logging}!logging\+\_\+status\+\_\+@{logging\+\_\+status\+\_\+}}
+\index{logging\+\_\+status\+\_\+@{logging\+\_\+status\+\_\+}!Logging@{Logging}}
+\subsubsection{\texorpdfstring{logging\+\_\+status\+\_\+}{logging\_status\_}}
+{\footnotesize\ttfamily bool Logging\+::logging\+\_\+status\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classLogging_a9bc75091ce35d1448abf90ee07fc7ffa}\label{classLogging_a9bc75091ce35d1448abf90ee07fc7ffa}} 
+\index{Logging@{Logging}!status\+\_\+mutex@{status\+\_\+mutex}}
+\index{status\+\_\+mutex@{status\+\_\+mutex}!Logging@{Logging}}
+\subsubsection{\texorpdfstring{status\+\_\+mutex}{status\_mutex}}
+{\footnotesize\ttfamily std\+::mutex Logging\+::status\+\_\+mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mvp/src/logging/\hyperlink{logging_8h}{logging.\+h}\item 
+mvp/src/logging/\hyperlink{logging_8cpp}{logging.\+cpp}\end{DoxyCompactItemize}

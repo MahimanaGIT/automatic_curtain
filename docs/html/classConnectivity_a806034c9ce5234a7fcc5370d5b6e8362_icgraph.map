@@ -1,0 +1,4 @@
+<map id="Connectivity::IsConnected" name="Connectivity::IsConnected">
+<area shape="rect" id="node2" href="$classConnectivity.html#ac97b309654c5c550f430c5cb45850d29" title="Check if the device is connected, if not, try to connect it. " alt="" coords="231,13,448,39"/>
+<area shape="rect" id="node3" href="$classConnectivity.html#a15482263a17c51293756870cdb516f81" title="Start ensuring connectivity. " alt="" coords="496,5,668,47"/>
+</map>

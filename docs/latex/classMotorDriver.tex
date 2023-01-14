@@ -1,0 +1,544 @@
+\hypertarget{classMotorDriver}{}\section{Motor\+Driver Class Reference}
+\label{classMotorDriver}\index{Motor\+Driver@{Motor\+Driver}}
+
+
+{\ttfamily \#include $<$motor\+\_\+driver.\+h$>$}
+
+
+
+Inheritance diagram for Motor\+Driver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classMotorDriver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Motor\+Driver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMotorDriver_ac03c1c5c2ac455e46fe196881641b366}{Motor\+Driver} (std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&logging)
+\begin{DoxyCompactList}\small\item\em Initializes motor drive T\+M\+C2209, and required pins. \end{DoxyCompactList}\item 
+\hyperlink{classMotorDriver_a534f4ca22b5dcffc9e40aafef09c76e5}{Motor\+Driver} (std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&logging, \hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} calib\+\_\+param)
+\begin{DoxyCompactList}\small\item\em Initializes motor drive T\+M\+C2209, and required pins. \end{DoxyCompactList}\item 
+\hyperlink{classMotorDriver_a6ead9d8f796501adf9889a8e5aa7afc5}{$\sim$\+Motor\+Driver} ()
+\begin{DoxyCompactList}\small\item\em Cleans and disables motor driver. \end{DoxyCompactList}\item 
+\hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+US} \hyperlink{classMotorDriver_a1a33492e58ce3c13cd3c090c704b1734}{Get\+Status} ()
+\begin{DoxyCompactList}\small\item\em Returns the status of the motor driver, by checking if the motor is running or the driver is in fault, or the motor is available for next request. \end{DoxyCompactList}\item 
+int \hyperlink{classMotorDriver_aaf134c97d67e0ce422853cc1cb7684a9}{Get\+Steps} ()
+\begin{DoxyCompactList}\small\item\em Returns the current steps of motor. \end{DoxyCompactList}\item 
+int \hyperlink{classMotorDriver_a409447a5b649f11549d4c6764a304d11}{Get\+Percentage} ()
+\begin{DoxyCompactList}\small\item\em Returns the current percentage of motor. \end{DoxyCompactList}\item 
+bool \hyperlink{classMotorDriver_a47d4e4a6cd3eec255eee3864a45e7e76}{Fulfill\+Request} (\hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST} request)
+\begin{DoxyCompactList}\small\item\em This is the primary contact function for external requests, it will handle all requests from the controller or anywhere else, run the thread for supplying steps. \end{DoxyCompactList}\item 
+bool \hyperlink{classMotorDriver_af1a7f20e03d76a0c1dac5e2080edd832}{Cancel\+Current\+Request} ()
+\begin{DoxyCompactList}\small\item\em Cancels current request. \end{DoxyCompactList}\item 
+void \hyperlink{classMotorDriver_a04e97c6adc4df4d186d6799dfd8165b2}{Update\+Calib\+Params} (\hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} calib\+\_\+param)
+\begin{DoxyCompactList}\small\item\em Updates calibration parameters to be used by motor driver. \end{DoxyCompactList}\item 
+void \hyperlink{classMotorDriver_a43c47b4f550a3ee08e7da340e699ba76}{Stop\+Handler} ()
+\begin{DoxyCompactList}\small\item\em Stop handler thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classMotorDriver_a74f208c889afd6ed5cf5008fbb0fdb63}{Interrupt\+For\+Index} ()
+\begin{DoxyCompactList}\small\item\em Runs on a timer, supplies step and direction signal to motor driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMotorDriver_a1eee734aa12c1565d6ae629924962115}{Handler} ()
+\begin{DoxyCompactList}\small\item\em Motor Driver class handler, communicates with driver and is responsible for reading latest motion request, cancellationof request, and acting upon it i.\+e. moving the motor and stopping it when stall is detected, or motor reached destination or stop is requested or timer limit is reached. \end{DoxyCompactList}\item 
+bool \hyperlink{classMotorDriver_a754252fe0d18118e074cbdc1fe42da57}{Enable\+Driver} (bool enable)
+\begin{DoxyCompactList}\small\item\em Enable Motor Driver Give argument as true for enabling, false for disabling the driver. \end{DoxyCompactList}\item 
+void \hyperlink{classMotorDriver_a9151c6649515b7ff61dc6159456ffa80}{Initialize\+Driver} ()
+\begin{DoxyCompactList}\small\item\em Sets needed parameters for the driver. \end{DoxyCompactList}\item 
+void \hyperlink{classMotorDriver_a5ebab90ca98fa04463de1cbae76af994}{Start\+Motor} ()
+\begin{DoxyCompactList}\small\item\em Responsible for starting the motor, i.\+e. setups the driver and sets required velocity of motor. \end{DoxyCompactList}\item 
+void \hyperlink{classMotorDriver_aff8659e64841fb4b97c23b3494cd0575}{Stop\+Motor} ()
+\begin{DoxyCompactList}\small\item\em Responsible for stopping the motor, i.\+e. disables the driver and sets velocity of motor to zero. \end{DoxyCompactList}\item 
+void \hyperlink{classMotorDriver_a64827491330490668bb8f8e57d0f3942}{Start\+Handler} ()
+\begin{DoxyCompactList}\small\item\em Starts handler thread. \end{DoxyCompactList}\item 
+void \hyperlink{classMotorDriver_a19833e114feff56c3a7d1d032a455e0a}{Reset\+Steps} ()
+\begin{DoxyCompactList}\small\item\em Reset the current steps of motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+US} \hyperlink{classMotorDriver_ad99c6f2f224f78428b137f7856cfba4b}{driver\+\_\+status\+\_\+}
+\item 
+\hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} \hyperlink{classMotorDriver_aa2d3e952c7708106df0c86196490a499}{calib\+\_\+params\+\_\+}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \hyperlink{classMotorDriver_a6c443fae635cf2b50bfa205ac4f6418e}{logger\+\_\+}
+\item 
+bool \hyperlink{classMotorDriver_abbc66ce217161de9ed45003718cd6c0e}{is\+\_\+motor\+\_\+running\+\_\+} = false
+\item 
+hw\+\_\+timer\+\_\+t $\ast$ \hyperlink{classMotorDriver_a86d3f7015a61c62463ea3e718c5bba1c}{step\+\_\+timer\+\_\+} = N\+U\+LL
+\item 
+int \hyperlink{classMotorDriver_a140b9b922847586721725b7e76943c1e}{expected\+\_\+step\+\_\+} = 0
+\item 
+bool \hyperlink{classMotorDriver_acc772188969ac8c859d1e9c800eb0076}{blind\+\_\+traversal\+\_\+requested\+\_\+} = false
+\item 
+bool \hyperlink{classMotorDriver_a6c190777a6bcad1ea12f73707ed67de9}{stop\+\_\+requested\+\_\+} = false
+\item 
+bool \hyperlink{classMotorDriver_a930d873aa0a5961bd49b8b68553f5044}{keep\+\_\+handler\+\_\+running\+\_\+} = false
+\item 
+std\+::time\+\_\+t \hyperlink{classMotorDriver_a938712bd2b784e0db660fdb30ad312af}{last\+\_\+motor\+\_\+start\+\_\+time\+\_\+sec\+\_\+} = std\+::time(nullptr)
+\item 
+std\+::unique\+\_\+ptr$<$ std\+::thread $>$ \hyperlink{classMotorDriver_aec36906063e5e09d5bb7f7843f526874}{handler\+\_\+thread\+\_\+} \{nullptr\}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classMotorDriver_ab49b3ca9359af0016c206960887349b1}{full\+\_\+rot\+\_\+step\+\_\+count\+\_\+} = (4 $\ast$ \hyperlink{namespaceCONFIG__SET_a7028034ed96d5ef10a87d1cdc12c5d27}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+M\+I\+C\+R\+O\+S\+T\+EP})
+\item 
+static int \hyperlink{classMotorDriver_a9072fc26381b16a6a5e39ab1d7ed1e46}{current\+\_\+step\+\_\+} = 0
+\item 
+static bool \hyperlink{classMotorDriver_a09cb1d904ff0b9ce54f17fa54aec8c70}{direction\+\_\+} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMotorDriver_ac03c1c5c2ac455e46fe196881641b366}\label{classMotorDriver_ac03c1c5c2ac455e46fe196881641b366}} 
+\index{Motor\+Driver@{Motor\+Driver}!Motor\+Driver@{Motor\+Driver}}
+\index{Motor\+Driver@{Motor\+Driver}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Motor\+Driver()}{MotorDriver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Motor\+Driver\+::\+Motor\+Driver (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&}]{logging }\end{DoxyParamCaption})}
+
+
+
+Initializes motor drive T\+M\+C2209, and required pins. 
+
+\mbox{\Hypertarget{classMotorDriver_a534f4ca22b5dcffc9e40aafef09c76e5}\label{classMotorDriver_a534f4ca22b5dcffc9e40aafef09c76e5}} 
+\index{Motor\+Driver@{Motor\+Driver}!Motor\+Driver@{Motor\+Driver}}
+\index{Motor\+Driver@{Motor\+Driver}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Motor\+Driver()}{MotorDriver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Motor\+Driver\+::\+Motor\+Driver (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&}]{logging,  }\item[{\hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS}}]{calib\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+Initializes motor drive T\+M\+C2209, and required pins. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a534f4ca22b5dcffc9e40aafef09c76e5_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a6ead9d8f796501adf9889a8e5aa7afc5}\label{classMotorDriver_a6ead9d8f796501adf9889a8e5aa7afc5}} 
+\index{Motor\+Driver@{Motor\+Driver}!````~Motor\+Driver@{$\sim$\+Motor\+Driver}}
+\index{````~Motor\+Driver@{$\sim$\+Motor\+Driver}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{$\sim$\+Motor\+Driver()}{~MotorDriver()}}
+{\footnotesize\ttfamily Motor\+Driver\+::$\sim$\+Motor\+Driver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cleans and disables motor driver. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a6ead9d8f796501adf9889a8e5aa7afc5_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMotorDriver_af1a7f20e03d76a0c1dac5e2080edd832}\label{classMotorDriver_af1a7f20e03d76a0c1dac5e2080edd832}} 
+\index{Motor\+Driver@{Motor\+Driver}!Cancel\+Current\+Request@{Cancel\+Current\+Request}}
+\index{Cancel\+Current\+Request@{Cancel\+Current\+Request}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Cancel\+Current\+Request()}{CancelCurrentRequest()}}
+{\footnotesize\ttfamily bool Motor\+Driver\+::\+Cancel\+Current\+Request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancels current request. 
+
+\begin{DoxyReturn}{Returns}
+true\+: Cancellation successful 
+
+false\+: otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorDriver_a754252fe0d18118e074cbdc1fe42da57}\label{classMotorDriver_a754252fe0d18118e074cbdc1fe42da57}} 
+\index{Motor\+Driver@{Motor\+Driver}!Enable\+Driver@{Enable\+Driver}}
+\index{Enable\+Driver@{Enable\+Driver}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Enable\+Driver()}{EnableDriver()}}
+{\footnotesize\ttfamily bool Motor\+Driver\+::\+Enable\+Driver (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Enable Motor Driver Give argument as true for enabling, false for disabling the driver. 
+
+\begin{DoxyReturn}{Returns}
+true \+: if successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a754252fe0d18118e074cbdc1fe42da57_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a47d4e4a6cd3eec255eee3864a45e7e76}\label{classMotorDriver_a47d4e4a6cd3eec255eee3864a45e7e76}} 
+\index{Motor\+Driver@{Motor\+Driver}!Fulfill\+Request@{Fulfill\+Request}}
+\index{Fulfill\+Request@{Fulfill\+Request}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Fulfill\+Request()}{FulfillRequest()}}
+{\footnotesize\ttfamily bool Motor\+Driver\+::\+Fulfill\+Request (\begin{DoxyParamCaption}\item[{\hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST}}]{request }\end{DoxyParamCaption})}
+
+
+
+This is the primary contact function for external requests, it will handle all requests from the controller or anywhere else, run the thread for supplying steps. 
+
+\begin{DoxyReturn}{Returns}
+true \+: request accepted 
+
+false \+: rejected 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorDriver_a409447a5b649f11549d4c6764a304d11}\label{classMotorDriver_a409447a5b649f11549d4c6764a304d11}} 
+\index{Motor\+Driver@{Motor\+Driver}!Get\+Percentage@{Get\+Percentage}}
+\index{Get\+Percentage@{Get\+Percentage}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Get\+Percentage()}{GetPercentage()}}
+{\footnotesize\ttfamily int Motor\+Driver\+::\+Get\+Percentage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the current percentage of motor. 
+
+\begin{DoxyReturn}{Returns}
+current percentage 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorDriver_a1a33492e58ce3c13cd3c090c704b1734}\label{classMotorDriver_a1a33492e58ce3c13cd3c090c704b1734}} 
+\index{Motor\+Driver@{Motor\+Driver}!Get\+Status@{Get\+Status}}
+\index{Get\+Status@{Get\+Status}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Get\+Status()}{GetStatus()}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+US} Motor\+Driver\+::\+Get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the status of the motor driver, by checking if the motor is running or the driver is in fault, or the motor is available for next request. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+US} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorDriver_aaf134c97d67e0ce422853cc1cb7684a9}\label{classMotorDriver_aaf134c97d67e0ce422853cc1cb7684a9}} 
+\index{Motor\+Driver@{Motor\+Driver}!Get\+Steps@{Get\+Steps}}
+\index{Get\+Steps@{Get\+Steps}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Get\+Steps()}{GetSteps()}}
+{\footnotesize\ttfamily int Motor\+Driver\+::\+Get\+Steps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the current steps of motor. 
+
+\begin{DoxyReturn}{Returns}
+current\+\_\+steps 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorDriver_a1eee734aa12c1565d6ae629924962115}\label{classMotorDriver_a1eee734aa12c1565d6ae629924962115}} 
+\index{Motor\+Driver@{Motor\+Driver}!Handler@{Handler}}
+\index{Handler@{Handler}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Handler()}{Handler()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Motor Driver class handler, communicates with driver and is responsible for reading latest motion request, cancellationof request, and acting upon it i.\+e. moving the motor and stopping it when stall is detected, or motor reached destination or stop is requested or timer limit is reached. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a1eee734aa12c1565d6ae629924962115_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a1eee734aa12c1565d6ae629924962115_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a9151c6649515b7ff61dc6159456ffa80}\label{classMotorDriver_a9151c6649515b7ff61dc6159456ffa80}} 
+\index{Motor\+Driver@{Motor\+Driver}!Initialize\+Driver@{Initialize\+Driver}}
+\index{Initialize\+Driver@{Initialize\+Driver}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Initialize\+Driver()}{InitializeDriver()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::\+Initialize\+Driver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets needed parameters for the driver. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a9151c6649515b7ff61dc6159456ffa80_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a74f208c889afd6ed5cf5008fbb0fdb63}\label{classMotorDriver_a74f208c889afd6ed5cf5008fbb0fdb63}} 
+\index{Motor\+Driver@{Motor\+Driver}!Interrupt\+For\+Index@{Interrupt\+For\+Index}}
+\index{Interrupt\+For\+Index@{Interrupt\+For\+Index}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Interrupt\+For\+Index()}{InterruptForIndex()}}
+{\footnotesize\ttfamily void I\+R\+A\+M\+\_\+\+A\+T\+TR Motor\+Driver\+::\+Interrupt\+For\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Runs on a timer, supplies step and direction signal to motor driver. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a74f208c889afd6ed5cf5008fbb0fdb63_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a19833e114feff56c3a7d1d032a455e0a}\label{classMotorDriver_a19833e114feff56c3a7d1d032a455e0a}} 
+\index{Motor\+Driver@{Motor\+Driver}!Reset\+Steps@{Reset\+Steps}}
+\index{Reset\+Steps@{Reset\+Steps}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Reset\+Steps()}{ResetSteps()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::\+Reset\+Steps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reset the current steps of motor. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a19833e114feff56c3a7d1d032a455e0a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a64827491330490668bb8f8e57d0f3942}\label{classMotorDriver_a64827491330490668bb8f8e57d0f3942}} 
+\index{Motor\+Driver@{Motor\+Driver}!Start\+Handler@{Start\+Handler}}
+\index{Start\+Handler@{Start\+Handler}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Start\+Handler()}{StartHandler()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::\+Start\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Starts handler thread. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a64827491330490668bb8f8e57d0f3942_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a64827491330490668bb8f8e57d0f3942_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a5ebab90ca98fa04463de1cbae76af994}\label{classMotorDriver_a5ebab90ca98fa04463de1cbae76af994}} 
+\index{Motor\+Driver@{Motor\+Driver}!Start\+Motor@{Start\+Motor}}
+\index{Start\+Motor@{Start\+Motor}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Start\+Motor()}{StartMotor()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::\+Start\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Responsible for starting the motor, i.\+e. setups the driver and sets required velocity of motor. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a5ebab90ca98fa04463de1cbae76af994_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a5ebab90ca98fa04463de1cbae76af994_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a43c47b4f550a3ee08e7da340e699ba76}\label{classMotorDriver_a43c47b4f550a3ee08e7da340e699ba76}} 
+\index{Motor\+Driver@{Motor\+Driver}!Stop\+Handler@{Stop\+Handler}}
+\index{Stop\+Handler@{Stop\+Handler}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Stop\+Handler()}{StopHandler()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::\+Stop\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stop handler thread. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a43c47b4f550a3ee08e7da340e699ba76_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_aff8659e64841fb4b97c23b3494cd0575}\label{classMotorDriver_aff8659e64841fb4b97c23b3494cd0575}} 
+\index{Motor\+Driver@{Motor\+Driver}!Stop\+Motor@{Stop\+Motor}}
+\index{Stop\+Motor@{Stop\+Motor}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Stop\+Motor()}{StopMotor()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::\+Stop\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Responsible for stopping the motor, i.\+e. disables the driver and sets velocity of motor to zero. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_aff8659e64841fb4b97c23b3494cd0575_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_aff8659e64841fb4b97c23b3494cd0575_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMotorDriver_a04e97c6adc4df4d186d6799dfd8165b2}\label{classMotorDriver_a04e97c6adc4df4d186d6799dfd8165b2}} 
+\index{Motor\+Driver@{Motor\+Driver}!Update\+Calib\+Params@{Update\+Calib\+Params}}
+\index{Update\+Calib\+Params@{Update\+Calib\+Params}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{Update\+Calib\+Params()}{UpdateCalibParams()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::\+Update\+Calib\+Params (\begin{DoxyParamCaption}\item[{\hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS}}]{calib\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+Updates calibration parameters to be used by motor driver. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a04e97c6adc4df4d186d6799dfd8165b2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMotorDriver_a04e97c6adc4df4d186d6799dfd8165b2_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classMotorDriver_acc772188969ac8c859d1e9c800eb0076}\label{classMotorDriver_acc772188969ac8c859d1e9c800eb0076}} 
+\index{Motor\+Driver@{Motor\+Driver}!blind\+\_\+traversal\+\_\+requested\+\_\+@{blind\+\_\+traversal\+\_\+requested\+\_\+}}
+\index{blind\+\_\+traversal\+\_\+requested\+\_\+@{blind\+\_\+traversal\+\_\+requested\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{blind\+\_\+traversal\+\_\+requested\+\_\+}{blind\_traversal\_requested\_}}
+{\footnotesize\ttfamily bool Motor\+Driver\+::blind\+\_\+traversal\+\_\+requested\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_aa2d3e952c7708106df0c86196490a499}\label{classMotorDriver_aa2d3e952c7708106df0c86196490a499}} 
+\index{Motor\+Driver@{Motor\+Driver}!calib\+\_\+params\+\_\+@{calib\+\_\+params\+\_\+}}
+\index{calib\+\_\+params\+\_\+@{calib\+\_\+params\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{calib\+\_\+params\+\_\+}{calib\_params\_}}
+{\footnotesize\ttfamily \hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} Motor\+Driver\+::calib\+\_\+params\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_a9072fc26381b16a6a5e39ab1d7ed1e46}\label{classMotorDriver_a9072fc26381b16a6a5e39ab1d7ed1e46}} 
+\index{Motor\+Driver@{Motor\+Driver}!current\+\_\+step\+\_\+@{current\+\_\+step\+\_\+}}
+\index{current\+\_\+step\+\_\+@{current\+\_\+step\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{current\+\_\+step\+\_\+}{current\_step\_}}
+{\footnotesize\ttfamily int Motor\+Driver\+::current\+\_\+step\+\_\+ = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_a09cb1d904ff0b9ce54f17fa54aec8c70}\label{classMotorDriver_a09cb1d904ff0b9ce54f17fa54aec8c70}} 
+\index{Motor\+Driver@{Motor\+Driver}!direction\+\_\+@{direction\+\_\+}}
+\index{direction\+\_\+@{direction\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{direction\+\_\+}{direction\_}}
+{\footnotesize\ttfamily bool Motor\+Driver\+::direction\+\_\+ = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_ad99c6f2f224f78428b137f7856cfba4b}\label{classMotorDriver_ad99c6f2f224f78428b137f7856cfba4b}} 
+\index{Motor\+Driver@{Motor\+Driver}!driver\+\_\+status\+\_\+@{driver\+\_\+status\+\_\+}}
+\index{driver\+\_\+status\+\_\+@{driver\+\_\+status\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{driver\+\_\+status\+\_\+}{driver\_status\_}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+US} Motor\+Driver\+::driver\+\_\+status\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_a140b9b922847586721725b7e76943c1e}\label{classMotorDriver_a140b9b922847586721725b7e76943c1e}} 
+\index{Motor\+Driver@{Motor\+Driver}!expected\+\_\+step\+\_\+@{expected\+\_\+step\+\_\+}}
+\index{expected\+\_\+step\+\_\+@{expected\+\_\+step\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{expected\+\_\+step\+\_\+}{expected\_step\_}}
+{\footnotesize\ttfamily int Motor\+Driver\+::expected\+\_\+step\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_ab49b3ca9359af0016c206960887349b1}\label{classMotorDriver_ab49b3ca9359af0016c206960887349b1}} 
+\index{Motor\+Driver@{Motor\+Driver}!full\+\_\+rot\+\_\+step\+\_\+count\+\_\+@{full\+\_\+rot\+\_\+step\+\_\+count\+\_\+}}
+\index{full\+\_\+rot\+\_\+step\+\_\+count\+\_\+@{full\+\_\+rot\+\_\+step\+\_\+count\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{full\+\_\+rot\+\_\+step\+\_\+count\+\_\+}{full\_rot\_step\_count\_}}
+{\footnotesize\ttfamily int Motor\+Driver\+::full\+\_\+rot\+\_\+step\+\_\+count\+\_\+ = (4 $\ast$ \hyperlink{namespaceCONFIG__SET_a7028034ed96d5ef10a87d1cdc12c5d27}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+M\+I\+C\+R\+O\+S\+T\+EP})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_aec36906063e5e09d5bb7f7843f526874}\label{classMotorDriver_aec36906063e5e09d5bb7f7843f526874}} 
+\index{Motor\+Driver@{Motor\+Driver}!handler\+\_\+thread\+\_\+@{handler\+\_\+thread\+\_\+}}
+\index{handler\+\_\+thread\+\_\+@{handler\+\_\+thread\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{handler\+\_\+thread\+\_\+}{handler\_thread\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$std\+::thread$>$ Motor\+Driver\+::handler\+\_\+thread\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_abbc66ce217161de9ed45003718cd6c0e}\label{classMotorDriver_abbc66ce217161de9ed45003718cd6c0e}} 
+\index{Motor\+Driver@{Motor\+Driver}!is\+\_\+motor\+\_\+running\+\_\+@{is\+\_\+motor\+\_\+running\+\_\+}}
+\index{is\+\_\+motor\+\_\+running\+\_\+@{is\+\_\+motor\+\_\+running\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{is\+\_\+motor\+\_\+running\+\_\+}{is\_motor\_running\_}}
+{\footnotesize\ttfamily bool Motor\+Driver\+::is\+\_\+motor\+\_\+running\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_a930d873aa0a5961bd49b8b68553f5044}\label{classMotorDriver_a930d873aa0a5961bd49b8b68553f5044}} 
+\index{Motor\+Driver@{Motor\+Driver}!keep\+\_\+handler\+\_\+running\+\_\+@{keep\+\_\+handler\+\_\+running\+\_\+}}
+\index{keep\+\_\+handler\+\_\+running\+\_\+@{keep\+\_\+handler\+\_\+running\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{keep\+\_\+handler\+\_\+running\+\_\+}{keep\_handler\_running\_}}
+{\footnotesize\ttfamily bool Motor\+Driver\+::keep\+\_\+handler\+\_\+running\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_a938712bd2b784e0db660fdb30ad312af}\label{classMotorDriver_a938712bd2b784e0db660fdb30ad312af}} 
+\index{Motor\+Driver@{Motor\+Driver}!last\+\_\+motor\+\_\+start\+\_\+time\+\_\+sec\+\_\+@{last\+\_\+motor\+\_\+start\+\_\+time\+\_\+sec\+\_\+}}
+\index{last\+\_\+motor\+\_\+start\+\_\+time\+\_\+sec\+\_\+@{last\+\_\+motor\+\_\+start\+\_\+time\+\_\+sec\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{last\+\_\+motor\+\_\+start\+\_\+time\+\_\+sec\+\_\+}{last\_motor\_start\_time\_sec\_}}
+{\footnotesize\ttfamily std\+::time\+\_\+t Motor\+Driver\+::last\+\_\+motor\+\_\+start\+\_\+time\+\_\+sec\+\_\+ = std\+::time(nullptr)\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_a6c443fae635cf2b50bfa205ac4f6418e}\label{classMotorDriver_a6c443fae635cf2b50bfa205ac4f6418e}} 
+\index{Motor\+Driver@{Motor\+Driver}!logger\+\_\+@{logger\+\_\+}}
+\index{logger\+\_\+@{logger\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{logger\+\_\+}{logger\_}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classLogging}{Logging}$>$ Motor\+Driver\+::logger\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_a86d3f7015a61c62463ea3e718c5bba1c}\label{classMotorDriver_a86d3f7015a61c62463ea3e718c5bba1c}} 
+\index{Motor\+Driver@{Motor\+Driver}!step\+\_\+timer\+\_\+@{step\+\_\+timer\+\_\+}}
+\index{step\+\_\+timer\+\_\+@{step\+\_\+timer\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{step\+\_\+timer\+\_\+}{step\_timer\_}}
+{\footnotesize\ttfamily hw\+\_\+timer\+\_\+t$\ast$ Motor\+Driver\+::step\+\_\+timer\+\_\+ = N\+U\+LL\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotorDriver_a6c190777a6bcad1ea12f73707ed67de9}\label{classMotorDriver_a6c190777a6bcad1ea12f73707ed67de9}} 
+\index{Motor\+Driver@{Motor\+Driver}!stop\+\_\+requested\+\_\+@{stop\+\_\+requested\+\_\+}}
+\index{stop\+\_\+requested\+\_\+@{stop\+\_\+requested\+\_\+}!Motor\+Driver@{Motor\+Driver}}
+\subsubsection{\texorpdfstring{stop\+\_\+requested\+\_\+}{stop\_requested\_}}
+{\footnotesize\ttfamily bool Motor\+Driver\+::stop\+\_\+requested\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mvp/src/motor\+\_\+driver/\hyperlink{motor__driver_8h}{motor\+\_\+driver.\+h}\item 
+mvp/src/motor\+\_\+driver/\hyperlink{motor__driver_8cpp}{motor\+\_\+driver.\+cpp}\end{DoxyCompactItemize}

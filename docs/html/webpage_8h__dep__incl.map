@@ -1,0 +1,6 @@
+<map id="mvp/src/connectivity/webpage.h" name="mvp/src/connectivity/webpage.h">
+<area shape="rect" id="node2" href="$connectivity_8h.html" title="Define overall structure for class containing WiFi, OTA and webpage functionality. " alt="" coords="151,95,293,136"/>
+<area shape="rect" id="node3" href="$connectivity_8cpp.html" title="Contains algorithms related to connecting to WiFi, OTA updates and webpage display. " alt="" coords="5,184,148,225"/>
+<area shape="rect" id="node4" href="$controller_8h.html" title="Defines the structure of the main controller of the device. " alt="" coords="172,184,299,225"/>
+<area shape="rect" id="node5" href="$controller_8cpp.html" title="Contains algorithms which controls the whole device from initialization to giving commands to every s..." alt="" coords="223,273,349,315"/>
+</map>

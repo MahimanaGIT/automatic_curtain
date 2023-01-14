@@ -1,0 +1,5 @@
+<map id="Connectivity::StopHotspot" name="Connectivity::StopHotspot">
+<area shape="rect" id="node2" href="$classConnectivity.html#a0029e5f1650cb0152256d89595941e6a" title="Destroy the Connectivity object. " alt="" coords="463,23,647,50"/>
+<area shape="rect" id="node3" href="$classConnectivity.html#aa99aeadd725a7cd8edc7255775955807" title="Disable OTA. " alt="" coords="243,23,401,50"/>
+<area shape="rect" id="node4" href="$classConnectivity.html#a5a123ddd0c4ab4061d1fa564fe3e7490" title="Stops webpage server. " alt="" coords="229,74,415,100"/>
+</map>

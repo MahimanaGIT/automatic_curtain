@@ -1,0 +1,7 @@
+<map id="Controller::HandleResetMode" name="Controller::HandleResetMode">
+<area shape="rect" id="node2" href="$classController.html#ad486f7baff22f9371933d84f327638a2" title="Calibrate the motor driver, determine the stall value and total step count, updates internal calib_pa..." alt="" coords="299,5,437,32"/>
+<area shape="rect" id="node3" href="$classController.html#a718a2ae64edc1376a69d9dc08fa0ed44" title="Save all the parameters to storage. " alt="" coords="277,56,459,83"/>
+<area shape="rect" id="node4" href="$classController.html#a99d30681a2e92b92098745e6a3608d10" title="Restarts device. " alt="" coords="283,107,453,133"/>
+<area shape="rect" id="node5" href="$classController.html#a8088cca43391048e9285d395fbcebc06" title="Call when exiting reset mode. " alt="" coords="278,157,458,184"/>
+<area shape="rect" id="node6" href="$classController.html#ae727ee9be8a2b2d0a966d1c14f85f360" title="Initialize maintenance mode. " alt="" coords="248,208,488,235"/>
+</map>

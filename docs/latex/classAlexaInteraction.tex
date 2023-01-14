@@ -1,0 +1,195 @@
+\hypertarget{classAlexaInteraction}{}\section{Alexa\+Interaction Class Reference}
+\label{classAlexaInteraction}\index{Alexa\+Interaction@{Alexa\+Interaction}}
+
+
+{\ttfamily \#include $<$alexa\+\_\+interaction.\+h$>$}
+
+
+
+Inheritance diagram for Alexa\+Interaction\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=167pt]{classAlexaInteraction__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Alexa\+Interaction\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{classAlexaInteraction__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAlexaInteraction_acae42695173d2ad4b9296d64d4a2dbb2}{Alexa\+Interaction} (std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&logging, String device\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{classAlexaInteraction}{Alexa\+Interaction} object, initializes fauxmoesp. \end{DoxyCompactList}\item 
+\hyperlink{classAlexaInteraction_a469eb0982e4de6c665b46e4b510b2503}{$\sim$\+Alexa\+Interaction} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{classAlexaInteraction}{Alexa\+Interaction} object. \end{DoxyCompactList}\item 
+std\+::tuple$<$ bool, \hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST} $>$ \hyperlink{classAlexaInteraction_afbee88db6199e92089d3d700a09bae85}{Get\+Alexa\+Request} ()
+\begin{DoxyCompactList}\small\item\em Get the latest Alexa Request object. \end{DoxyCompactList}\item 
+void \hyperlink{classAlexaInteraction_a8a7cf8511a1f9e1f40a752313d656b3d}{Handle\+Fauxmo} ()
+\begin{DoxyCompactList}\small\item\em Handler function for the class. \end{DoxyCompactList}\item 
+void \hyperlink{classAlexaInteraction_a223ede390439dbf2e1cecb925dc5b983}{Set\+State} (\hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST} request)
+\begin{DoxyCompactList}\small\item\em Set the object state to alexa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classAlexaInteraction_a32ec2c496edced2e4e62d9c562fa9fa9}{Callback} (unsigned char id, const char $\ast$device\+\_\+name, bool state, unsigned char percentage)
+\begin{DoxyCompactList}\small\item\em Gets called by fauxmo esp when a alexa calls the device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \hyperlink{classAlexaInteraction_adeb8bad9e21b64718a64333e879dd4fa}{logger\+\_\+}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::mutex \hyperlink{classAlexaInteraction_a958fffc5a4f26ea4b0d0e1c12f4392fd}{alexa\+\_\+request\+\_\+mutex\+\_\+}
+\item 
+static String \hyperlink{classAlexaInteraction_a3f55a06454bb3dd6cc112620b62e55d3}{device\+\_\+id\+\_\+} = \hyperlink{namespaceCONFIG__SET_a2ac88bd64607d4819d1bda478f469817}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID}
+\item 
+static bool \hyperlink{classAlexaInteraction_aef7835ccbb5103bc8e50239e023262ca}{is\+\_\+new\+\_\+request\+\_\+available\+\_\+} = false
+\item 
+static \hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST} \hyperlink{classAlexaInteraction_a9b77d3ac70d6d91af2ed19ea8921d174}{latest\+\_\+alexa\+\_\+request\+\_\+} = \hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST}()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAlexaInteraction_acae42695173d2ad4b9296d64d4a2dbb2}\label{classAlexaInteraction_acae42695173d2ad4b9296d64d4a2dbb2}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!Alexa\+Interaction@{Alexa\+Interaction}}
+\index{Alexa\+Interaction@{Alexa\+Interaction}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{Alexa\+Interaction()}{AlexaInteraction()}}
+{\footnotesize\ttfamily Alexa\+Interaction\+::\+Alexa\+Interaction (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&}]{logging,  }\item[{String}]{device\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Construct a new \hyperlink{classAlexaInteraction}{Alexa\+Interaction} object, initializes fauxmoesp. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classAlexaInteraction_acae42695173d2ad4b9296d64d4a2dbb2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classAlexaInteraction_a469eb0982e4de6c665b46e4b510b2503}\label{classAlexaInteraction_a469eb0982e4de6c665b46e4b510b2503}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!````~Alexa\+Interaction@{$\sim$\+Alexa\+Interaction}}
+\index{````~Alexa\+Interaction@{$\sim$\+Alexa\+Interaction}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{$\sim$\+Alexa\+Interaction()}{~AlexaInteraction()}}
+{\footnotesize\ttfamily Alexa\+Interaction\+::$\sim$\+Alexa\+Interaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{classAlexaInteraction}{Alexa\+Interaction} object. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classAlexaInteraction_a32ec2c496edced2e4e62d9c562fa9fa9}\label{classAlexaInteraction_a32ec2c496edced2e4e62d9c562fa9fa9}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!Callback@{Callback}}
+\index{Callback@{Callback}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{Callback()}{Callback()}}
+{\footnotesize\ttfamily void Alexa\+Interaction\+::\+Callback (\begin{DoxyParamCaption}\item[{unsigned char}]{id,  }\item[{const char $\ast$}]{device\+\_\+name,  }\item[{bool}]{state,  }\item[{unsigned char}]{percentage }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gets called by fauxmo esp when a alexa calls the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & device id number \\
+\hline
+{\em device\+\_\+name} & device name \\
+\hline
+{\em state} & on/off bool \\
+\hline
+{\em percentage} & 0-\/100 percentage \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classAlexaInteraction_a32ec2c496edced2e4e62d9c562fa9fa9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classAlexaInteraction_afbee88db6199e92089d3d700a09bae85}\label{classAlexaInteraction_afbee88db6199e92089d3d700a09bae85}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!Get\+Alexa\+Request@{Get\+Alexa\+Request}}
+\index{Get\+Alexa\+Request@{Get\+Alexa\+Request}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{Get\+Alexa\+Request()}{GetAlexaRequest()}}
+{\footnotesize\ttfamily std\+::tuple$<$ bool, \hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST} $>$ Alexa\+Interaction\+::\+Get\+Alexa\+Request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the latest Alexa Request object. 
+
+\begin{DoxyReturn}{Returns}
+std\+::tuple$<$bool, C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+S\+T$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAlexaInteraction_a8a7cf8511a1f9e1f40a752313d656b3d}\label{classAlexaInteraction_a8a7cf8511a1f9e1f40a752313d656b3d}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!Handle\+Fauxmo@{Handle\+Fauxmo}}
+\index{Handle\+Fauxmo@{Handle\+Fauxmo}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{Handle\+Fauxmo()}{HandleFauxmo()}}
+{\footnotesize\ttfamily void Alexa\+Interaction\+::\+Handle\+Fauxmo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handler function for the class. 
+
+\mbox{\Hypertarget{classAlexaInteraction_a223ede390439dbf2e1cecb925dc5b983}\label{classAlexaInteraction_a223ede390439dbf2e1cecb925dc5b983}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!Set\+State@{Set\+State}}
+\index{Set\+State@{Set\+State}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{Set\+State()}{SetState()}}
+{\footnotesize\ttfamily void Alexa\+Interaction\+::\+Set\+State (\begin{DoxyParamCaption}\item[{\hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST}}]{request }\end{DoxyParamCaption})}
+
+
+
+Set the object state to alexa. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classAlexaInteraction_a958fffc5a4f26ea4b0d0e1c12f4392fd}\label{classAlexaInteraction_a958fffc5a4f26ea4b0d0e1c12f4392fd}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!alexa\+\_\+request\+\_\+mutex\+\_\+@{alexa\+\_\+request\+\_\+mutex\+\_\+}}
+\index{alexa\+\_\+request\+\_\+mutex\+\_\+@{alexa\+\_\+request\+\_\+mutex\+\_\+}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{alexa\+\_\+request\+\_\+mutex\+\_\+}{alexa\_request\_mutex\_}}
+{\footnotesize\ttfamily std\+::mutex Alexa\+Interaction\+::alexa\+\_\+request\+\_\+mutex\+\_\+\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAlexaInteraction_a3f55a06454bb3dd6cc112620b62e55d3}\label{classAlexaInteraction_a3f55a06454bb3dd6cc112620b62e55d3}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!device\+\_\+id\+\_\+@{device\+\_\+id\+\_\+}}
+\index{device\+\_\+id\+\_\+@{device\+\_\+id\+\_\+}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{device\+\_\+id\+\_\+}{device\_id\_}}
+{\footnotesize\ttfamily String Alexa\+Interaction\+::device\+\_\+id\+\_\+ = \hyperlink{namespaceCONFIG__SET_a2ac88bd64607d4819d1bda478f469817}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAlexaInteraction_aef7835ccbb5103bc8e50239e023262ca}\label{classAlexaInteraction_aef7835ccbb5103bc8e50239e023262ca}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!is\+\_\+new\+\_\+request\+\_\+available\+\_\+@{is\+\_\+new\+\_\+request\+\_\+available\+\_\+}}
+\index{is\+\_\+new\+\_\+request\+\_\+available\+\_\+@{is\+\_\+new\+\_\+request\+\_\+available\+\_\+}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{is\+\_\+new\+\_\+request\+\_\+available\+\_\+}{is\_new\_request\_available\_}}
+{\footnotesize\ttfamily bool Alexa\+Interaction\+::is\+\_\+new\+\_\+request\+\_\+available\+\_\+ = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAlexaInteraction_a9b77d3ac70d6d91af2ed19ea8921d174}\label{classAlexaInteraction_a9b77d3ac70d6d91af2ed19ea8921d174}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!latest\+\_\+alexa\+\_\+request\+\_\+@{latest\+\_\+alexa\+\_\+request\+\_\+}}
+\index{latest\+\_\+alexa\+\_\+request\+\_\+@{latest\+\_\+alexa\+\_\+request\+\_\+}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{latest\+\_\+alexa\+\_\+request\+\_\+}{latest\_alexa\_request\_}}
+{\footnotesize\ttfamily \hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST} Alexa\+Interaction\+::latest\+\_\+alexa\+\_\+request\+\_\+ = \hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST}()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAlexaInteraction_adeb8bad9e21b64718a64333e879dd4fa}\label{classAlexaInteraction_adeb8bad9e21b64718a64333e879dd4fa}} 
+\index{Alexa\+Interaction@{Alexa\+Interaction}!logger\+\_\+@{logger\+\_\+}}
+\index{logger\+\_\+@{logger\+\_\+}!Alexa\+Interaction@{Alexa\+Interaction}}
+\subsubsection{\texorpdfstring{logger\+\_\+}{logger\_}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classLogging}{Logging}$>$ Alexa\+Interaction\+::logger\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mvp/src/alexa\+\_\+interaction/\hyperlink{alexa__interaction_8h}{alexa\+\_\+interaction.\+h}\item 
+mvp/src/alexa\+\_\+interaction/\hyperlink{alexa__interaction_8cpp}{alexa\+\_\+interaction.\+cpp}\end{DoxyCompactItemize}

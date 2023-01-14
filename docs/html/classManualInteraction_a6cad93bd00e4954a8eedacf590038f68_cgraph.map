@@ -1,0 +1,8 @@
+<map id="ManualInteraction::ManualInteraction" name="ManualInteraction::ManualInteraction">
+<area shape="rect" id="node2" href="$classManualInteraction.html#ad040212df8364f6e9ef9462055b1da3f" title="Hardware Interrrupt for up [red colored] button check for valid interrupt by software debouncing..." alt="" coords="195,5,381,47"/>
+<area shape="rect" id="node3" href="$classManualInteraction.html#a9a6c72bc26699b16fc328bcacde931fb" title="Hardware Interrrupt for down [black colored] button check for valid interrupt by software debouncing..." alt="" coords="187,71,389,112"/>
+<area shape="rect" id="node4" href="$classManualInteraction.html#a699be8c82fda18597d11caf8f3a07fe8" title="start button deque analyser function thread start button deque analyser function thread ..." alt="" coords="192,136,384,177"/>
+<area shape="rect" id="node5" href="$classManualInteraction.html#a7347f8414fc849ab263b3d717add9484" title="thread function to check the deque status and identify the manual interaction mode Function will chec..." alt="" coords="437,136,616,177"/>
+<area shape="rect" id="node6" href="$classManualInteraction.html#afce55b16a04782daf03a62477d3120ba" title="Set the CurrentButtonState object Function to sets the current buttonstate [0 &#45;&gt;NO_PUSH, 1&#45;&gt;LONGPRESS, 2&#45;&gt;DOUBLETAP]. " alt="" coords="673,103,828,144"/>
+<area shape="rect" id="node7" href="$classManualInteraction.html#afb8fd56c9e56af41d3dfad489fac7a4b" title="Set the Manual Action And Time object sets manual_action_ and manual_action_time_. " alt="" coords="664,168,837,209"/>
+</map>

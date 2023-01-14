@@ -1,0 +1,5 @@
+<map id="ManualInteraction::SetManualActionAndTime" name="ManualInteraction::SetManualActionAndTime">
+<area shape="rect" id="node2" href="$classManualInteraction.html#a7347f8414fc849ab263b3d717add9484" title="thread function to check the deque status and identify the manual interaction mode Function will chec..." alt="" coords="227,5,405,47"/>
+<area shape="rect" id="node3" href="$classManualInteraction.html#a699be8c82fda18597d11caf8f3a07fe8" title="start button deque analyser function thread start button deque analyser function thread ..." alt="" coords="453,5,645,47"/>
+<area shape="rect" id="node4" href="$classManualInteraction.html#a6cad93bd00e4954a8eedacf590038f68" title="ManualInteraction class constructor Setup pinmode and interrupt. " alt="" coords="693,5,827,47"/>
+</map>

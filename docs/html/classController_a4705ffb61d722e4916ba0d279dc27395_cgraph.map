@@ -1,0 +1,11 @@
+<map id="Controller::Handle" name="Controller::Handle">
+<area shape="rect" id="node2" href="$classController.html#ae512c48c1ebafb35c90948835361cf0c" title="Handle reset mode. " alt="" coords="199,132,394,159"/>
+<area shape="rect" id="node8" href="$classController.html#a78080d5bfa37c5e783a630255846b721" title="Handle reset mode. " alt="" coords="180,259,413,285"/>
+<area shape="rect" id="node9" href="$classController.html#a431dc67f69757e96cfc9b42454c71097" title="Handle operation mode. " alt="" coords="189,208,404,235"/>
+<area shape="rect" id="node3" href="$classController.html#ad486f7baff22f9371933d84f327638a2" title="Calibrate the motor driver, determine the stall value and total step count, updates internal calib_pa..." alt="" coords="512,5,651,32"/>
+<area shape="rect" id="node4" href="$classController.html#a718a2ae64edc1376a69d9dc08fa0ed44" title="Save all the parameters to storage. " alt="" coords="490,56,673,83"/>
+<area shape="rect" id="node5" href="$classController.html#a99d30681a2e92b92098745e6a3608d10" title="Restarts device. " alt="" coords="496,259,667,285"/>
+<area shape="rect" id="node6" href="$classController.html#a8088cca43391048e9285d395fbcebc06" title="Call when exiting reset mode. " alt="" coords="491,107,671,133"/>
+<area shape="rect" id="node7" href="$classController.html#ae727ee9be8a2b2d0a966d1c14f85f360" title="Initialize maintenance mode. " alt="" coords="461,157,701,184"/>
+<area shape="rect" id="node10" href="$classController.html#ac462515d6845e176608cecf75c696eac" title="Call when exiting operation mode. " alt="" coords="481,208,682,235"/>
+</map>

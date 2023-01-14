@@ -1,0 +1,4 @@
+<map id="Controller::Calibrate" name="Controller::Calibrate">
+<area shape="rect" id="node2" href="$classController.html#ae512c48c1ebafb35c90948835361cf0c" title="Handle reset mode. " alt="" coords="192,5,387,32"/>
+<area shape="rect" id="node3" href="$classController.html#a4705ffb61d722e4916ba0d279dc27395" title="Continous loop after initialization, handles the controlling of the device Performs following functio..." alt="" coords="435,5,561,32"/>
+</map>

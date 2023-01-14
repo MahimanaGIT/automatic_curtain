@@ -1,0 +1,5 @@
+<map id="MotorDriver::Handler" name="MotorDriver::Handler">
+<area shape="rect" id="node2" href="$classMotorDriver.html#aff8659e64841fb4b97c23b3494cd0575" title="Responsible for stopping the motor, i.e. disables the driver and sets velocity of motor to zero..." alt="" coords="196,5,355,32"/>
+<area shape="rect" id="node4" href="$classMotorDriver.html#a5ebab90ca98fa04463de1cbae76af994" title="Responsible for starting the motor, i.e. setups the driver and sets required velocity of motor..." alt="" coords="196,56,355,83"/>
+<area shape="rect" id="node3" href="$classMotorDriver.html#a754252fe0d18118e074cbdc1fe42da57" title="Enable Motor Driver Give argument as true for enabling, false for disabling the driver. " alt="" coords="403,31,576,57"/>
+</map>

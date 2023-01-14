@@ -1,0 +1,355 @@
+\hypertarget{classManualInteraction}{}\section{Manual\+Interaction Class Reference}
+\label{classManualInteraction}\index{Manual\+Interaction@{Manual\+Interaction}}
+
+
+{\ttfamily \#include $<$manual\+\_\+interaction.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classManualInteraction_a6cad93bd00e4954a8eedacf590038f68}{Manual\+Interaction} (int freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser, std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&logging)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classManualInteraction}{Manual\+Interaction} class constructor Setup pinmode and interrupt. \end{DoxyCompactList}\item 
+\hyperlink{classManualInteraction_a761406994ea72ce26d6bef061fb5ae2b}{$\sim$\+Manual\+Interaction} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classManualInteraction}{Manual\+Interaction} class destructor Destroy the \hyperlink{classManualInteraction}{Manual\+Interaction} object. \end{DoxyCompactList}\item 
+void \hyperlink{classManualInteraction_a251516a6a71bd8a966cfa771733e501b}{Stop\+Button\+Deque\+Analyser\+Fn} ()
+\begin{DoxyCompactList}\small\item\em Stop button deque analyser function set\+\_\+button\+\_\+deque\+\_\+analyser varible to ture so it stops the threaded function. \end{DoxyCompactList}\item 
+void \hyperlink{classManualInteraction_a699be8c82fda18597d11caf8f3a07fe8}{Start\+Button\+Deque\+Analyser\+Fn} ()
+\begin{DoxyCompactList}\small\item\em start button deque analyser function thread start button deque analyser function thread \end{DoxyCompactList}\item 
+std\+::tuple$<$ \hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+SH}, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} $>$ \hyperlink{classManualInteraction_ae1279a3bd154b517aa9ad701a93f88c6}{Get\+Manual\+Action\+And\+Time} ()
+\begin{DoxyCompactList}\small\item\em Get the Manual Action And Time object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classManualInteraction_ad040212df8364f6e9ef9462055b1da3f}{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Up} ()
+\begin{DoxyCompactList}\small\item\em Hardware Interrrupt for up \mbox{[}red colored\mbox{]} button check for valid interrupt by software debouncing,switch state cheking and adds it to the button deque up. \end{DoxyCompactList}\item 
+static void \hyperlink{classManualInteraction_a9a6c72bc26699b16fc328bcacde931fb}{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Down} ()
+\begin{DoxyCompactList}\small\item\em Hardware Interrrupt for down \mbox{[}black colored\mbox{]} button check for valid interrupt by software debouncing,switch state cheking and adds it to the button deque down. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classManualInteraction_a7347f8414fc849ab263b3d717add9484}{Buttonstate\+Deque\+Analyser} ()
+\begin{DoxyCompactList}\small\item\em thread function to check the deque status and identify the manual interaction mode Function will check state and time of occurance for objects in deque for determining mode \end{DoxyCompactList}\item 
+void \hyperlink{classManualInteraction_afce55b16a04782daf03a62477d3120ba}{Set\+Current\+Button\+State} (std\+::deque$<$ std\+::pair$<$ bool, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} $>$$>$ \&button\+\_\+press\+\_\+deque\+\_\+, \hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+SS} \&button\+\_\+state, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \&time)
+\begin{DoxyCompactList}\small\item\em Set the Current\+Button\+State object Function to sets the current buttonstate \mbox{[}0 -\/$>$N\+O\+\_\+\+P\+U\+SH, 1-\/$>$L\+O\+N\+G\+P\+R\+E\+SS, 2-\/$>$D\+O\+U\+B\+L\+E\+T\+AP\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{classManualInteraction_afb8fd56c9e56af41d3dfad489fac7a4b}{Set\+Manual\+Action\+And\+Time} (\hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+SS} \&button\+\_\+1\+\_\+state, \hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+SS} \&button\+\_\+2\+\_\+state, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \&time\+\_\+button\+\_\+1, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \&time\+\_\+button\+\_\+2)
+\begin{DoxyCompactList}\small\item\em Set the Manual Action And Time object sets manual\+\_\+action\+\_\+ and manual\+\_\+action\+\_\+time\+\_\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+SH} \hyperlink{classManualInteraction_ac271049856ad498238f794be25f62567}{manual\+\_\+action\+\_\+} = \hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748a201be4da83bb4099ea70c0fa017f69d5}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+N\+O\+\_\+\+P\+U\+SH}
+\item 
+\hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \hyperlink{classManualInteraction_accf9dcfcfad7a49a55c24a317d271eaa}{manual\+\_\+action\+\_\+time\+\_\+}
+\item 
+bool \hyperlink{classManualInteraction_a6f70c5fb6ba8b34a2c1af7be33164e06}{stop\+\_\+button\+\_\+deque\+\_\+analyser\+\_\+} = true
+\item 
+std\+::unique\+\_\+ptr$<$ std\+::thread $>$ \hyperlink{classManualInteraction_a46721312c5b254495e3b3ed7252fb246}{deque\+\_\+analyser\+\_\+} \{nullptr\}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \hyperlink{classManualInteraction_a0a8af39f1b2758f70c4162eaac6befdb}{logger\+\_\+} \{nullptr\}
+\item 
+const int \hyperlink{classManualInteraction_a2d033183cf7d8ad10325eeefce587b30}{freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+}
+\item 
+int \hyperlink{classManualInteraction_a8e06f10a945fba499533c43eadb8a5f8}{delay\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::deque$<$ std\+::pair$<$ bool, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} $>$ $>$ \hyperlink{classManualInteraction_a5df30b855c3ff96adc45094788a13a4c}{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+up\+\_\+}
+\item 
+static std\+::deque$<$ std\+::pair$<$ bool, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} $>$ $>$ \hyperlink{classManualInteraction_ab2a0ebf12ae3ab8cf6149e46406d32f0}{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+down\+\_\+}
+\item 
+static bool \hyperlink{classManualInteraction_a713dc9f822950e681926ccd0262ff43d}{s\+\_\+class\+\_\+setup\+\_\+flag\+\_\+} = false
+\item 
+static std\+::mutex \hyperlink{classManualInteraction_a3045262cebc202b03be78d14d74ebec2}{s\+\_\+deque\+\_\+mutex\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classManualInteraction_a6cad93bd00e4954a8eedacf590038f68}\label{classManualInteraction_a6cad93bd00e4954a8eedacf590038f68}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!Manual\+Interaction@{Manual\+Interaction}}
+\index{Manual\+Interaction@{Manual\+Interaction}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{Manual\+Interaction()}{ManualInteraction()}}
+{\footnotesize\ttfamily Manual\+Interaction\+::\+Manual\+Interaction (\begin{DoxyParamCaption}\item[{int}]{freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&}]{logging }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{classManualInteraction}{Manual\+Interaction} class constructor Setup pinmode and interrupt. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_a6cad93bd00e4954a8eedacf590038f68_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classManualInteraction_a761406994ea72ce26d6bef061fb5ae2b}\label{classManualInteraction_a761406994ea72ce26d6bef061fb5ae2b}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!````~Manual\+Interaction@{$\sim$\+Manual\+Interaction}}
+\index{````~Manual\+Interaction@{$\sim$\+Manual\+Interaction}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{$\sim$\+Manual\+Interaction()}{~ManualInteraction()}}
+{\footnotesize\ttfamily Manual\+Interaction\+::$\sim$\+Manual\+Interaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{classManualInteraction}{Manual\+Interaction} class destructor Destroy the \hyperlink{classManualInteraction}{Manual\+Interaction} object. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_a761406994ea72ce26d6bef061fb5ae2b_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classManualInteraction_a7347f8414fc849ab263b3d717add9484}\label{classManualInteraction_a7347f8414fc849ab263b3d717add9484}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!Buttonstate\+Deque\+Analyser@{Buttonstate\+Deque\+Analyser}}
+\index{Buttonstate\+Deque\+Analyser@{Buttonstate\+Deque\+Analyser}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{Buttonstate\+Deque\+Analyser()}{ButtonstateDequeAnalyser()}}
+{\footnotesize\ttfamily void Manual\+Interaction\+::\+Buttonstate\+Deque\+Analyser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+thread function to check the deque status and identify the manual interaction mode Function will check state and time of occurance for objects in deque for determining mode 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_a7347f8414fc849ab263b3d717add9484_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_a7347f8414fc849ab263b3d717add9484_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classManualInteraction_ae1279a3bd154b517aa9ad701a93f88c6}\label{classManualInteraction_ae1279a3bd154b517aa9ad701a93f88c6}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!Get\+Manual\+Action\+And\+Time@{Get\+Manual\+Action\+And\+Time}}
+\index{Get\+Manual\+Action\+And\+Time@{Get\+Manual\+Action\+And\+Time}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{Get\+Manual\+Action\+And\+Time()}{GetManualActionAndTime()}}
+{\footnotesize\ttfamily std\+::tuple$<$ \hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+SH}, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} $>$ Manual\+Interaction\+::\+Get\+Manual\+Action\+And\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Manual Action And Time object. 
+
+\begin{DoxyReturn}{Returns}
+std\+::tuple$<$\+C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H, C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classManualInteraction_a9a6c72bc26699b16fc328bcacde931fb}\label{classManualInteraction_a9a6c72bc26699b16fc328bcacde931fb}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Down@{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Down}}
+\index{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Down@{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Down}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Down()}{s\_IntrAddToButtonDequeDown()}}
+{\footnotesize\ttfamily void Manual\+Interaction\+::s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Hardware Interrrupt for down \mbox{[}black colored\mbox{]} button check for valid interrupt by software debouncing,switch state cheking and adds it to the button deque down. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_a9a6c72bc26699b16fc328bcacde931fb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classManualInteraction_ad040212df8364f6e9ef9462055b1da3f}\label{classManualInteraction_ad040212df8364f6e9ef9462055b1da3f}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Up@{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Up}}
+\index{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Up@{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Up}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Up()}{s\_IntrAddToButtonDequeUp()}}
+{\footnotesize\ttfamily void Manual\+Interaction\+::s\+\_\+\+Intr\+Add\+To\+Button\+Deque\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Hardware Interrrupt for up \mbox{[}red colored\mbox{]} button check for valid interrupt by software debouncing,switch state cheking and adds it to the button deque up. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_ad040212df8364f6e9ef9462055b1da3f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classManualInteraction_afce55b16a04782daf03a62477d3120ba}\label{classManualInteraction_afce55b16a04782daf03a62477d3120ba}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!Set\+Current\+Button\+State@{Set\+Current\+Button\+State}}
+\index{Set\+Current\+Button\+State@{Set\+Current\+Button\+State}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{Set\+Current\+Button\+State()}{SetCurrentButtonState()}}
+{\footnotesize\ttfamily void Manual\+Interaction\+::\+Set\+Current\+Button\+State (\begin{DoxyParamCaption}\item[{std\+::deque$<$ std\+::pair$<$ bool, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} $>$$>$ \&}]{button\+\_\+press\+\_\+deque\+\_\+,  }\item[{\hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+SS} \&}]{button\+\_\+state,  }\item[{\hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \&}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Set the Current\+Button\+State object Function to sets the current buttonstate \mbox{[}0 -\/$>$N\+O\+\_\+\+P\+U\+SH, 1-\/$>$L\+O\+N\+G\+P\+R\+E\+SS, 2-\/$>$D\+O\+U\+B\+L\+E\+T\+AP\mbox{]}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em button\+\_\+press\+\_\+deque\+\_\+} & deque to analyse and set button\+\_\+state \\
+\hline
+\mbox{\tt out}  & {\em button\+\_\+state} & refrence to button\+\_\+state passed \\
+\hline
+\mbox{\tt out}  & {\em time} & refrence to time variable for change of button\+\_\+state \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_afce55b16a04782daf03a62477d3120ba_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classManualInteraction_afb8fd56c9e56af41d3dfad489fac7a4b}\label{classManualInteraction_afb8fd56c9e56af41d3dfad489fac7a4b}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!Set\+Manual\+Action\+And\+Time@{Set\+Manual\+Action\+And\+Time}}
+\index{Set\+Manual\+Action\+And\+Time@{Set\+Manual\+Action\+And\+Time}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{Set\+Manual\+Action\+And\+Time()}{SetManualActionAndTime()}}
+{\footnotesize\ttfamily void Manual\+Interaction\+::\+Set\+Manual\+Action\+And\+Time (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+SS} \&}]{button\+\_\+1\+\_\+state,  }\item[{\hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+SS} \&}]{button\+\_\+2\+\_\+state,  }\item[{\hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \&}]{time\+\_\+button\+\_\+1,  }\item[{\hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \&}]{time\+\_\+button\+\_\+2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Set the Manual Action And Time object sets manual\+\_\+action\+\_\+ and manual\+\_\+action\+\_\+time\+\_\+. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em button\+\_\+1\+\_\+state} & current button state 1 \mbox{[}red\mbox{]} \\
+\hline
+\mbox{\tt in}  & {\em button\+\_\+2\+\_\+state} & current button state 2 \mbox{[}black\mbox{]} \\
+\hline
+\mbox{\tt in}  & {\em time\+\_\+button\+\_\+1} & time the current button state 1 was set \\
+\hline
+\mbox{\tt in}  & {\em time\+\_\+button\+\_\+2} & time the current button state 2 was set \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_afb8fd56c9e56af41d3dfad489fac7a4b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classManualInteraction_a699be8c82fda18597d11caf8f3a07fe8}\label{classManualInteraction_a699be8c82fda18597d11caf8f3a07fe8}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!Start\+Button\+Deque\+Analyser\+Fn@{Start\+Button\+Deque\+Analyser\+Fn}}
+\index{Start\+Button\+Deque\+Analyser\+Fn@{Start\+Button\+Deque\+Analyser\+Fn}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{Start\+Button\+Deque\+Analyser\+Fn()}{StartButtonDequeAnalyserFn()}}
+{\footnotesize\ttfamily void Manual\+Interaction\+::\+Start\+Button\+Deque\+Analyser\+Fn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+start button deque analyser function thread start button deque analyser function thread 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_a699be8c82fda18597d11caf8f3a07fe8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_a699be8c82fda18597d11caf8f3a07fe8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classManualInteraction_a251516a6a71bd8a966cfa771733e501b}\label{classManualInteraction_a251516a6a71bd8a966cfa771733e501b}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!Stop\+Button\+Deque\+Analyser\+Fn@{Stop\+Button\+Deque\+Analyser\+Fn}}
+\index{Stop\+Button\+Deque\+Analyser\+Fn@{Stop\+Button\+Deque\+Analyser\+Fn}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{Stop\+Button\+Deque\+Analyser\+Fn()}{StopButtonDequeAnalyserFn()}}
+{\footnotesize\ttfamily void Manual\+Interaction\+::\+Stop\+Button\+Deque\+Analyser\+Fn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stop button deque analyser function set\+\_\+button\+\_\+deque\+\_\+analyser varible to ture so it stops the threaded function. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classManualInteraction_a251516a6a71bd8a966cfa771733e501b_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classManualInteraction_a8e06f10a945fba499533c43eadb8a5f8}\label{classManualInteraction_a8e06f10a945fba499533c43eadb8a5f8}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!delay\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+@{delay\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+}}
+\index{delay\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+@{delay\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{delay\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+}{delay\_to\_run\_deque\_analyser\_}}
+{\footnotesize\ttfamily int Manual\+Interaction\+::delay\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_a46721312c5b254495e3b3ed7252fb246}\label{classManualInteraction_a46721312c5b254495e3b3ed7252fb246}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!deque\+\_\+analyser\+\_\+@{deque\+\_\+analyser\+\_\+}}
+\index{deque\+\_\+analyser\+\_\+@{deque\+\_\+analyser\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{deque\+\_\+analyser\+\_\+}{deque\_analyser\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$std\+::thread$>$ Manual\+Interaction\+::deque\+\_\+analyser\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_a2d033183cf7d8ad10325eeefce587b30}\label{classManualInteraction_a2d033183cf7d8ad10325eeefce587b30}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+@{freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+}}
+\index{freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+@{freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+}{freq\_to\_run\_deque\_analyser\_}}
+{\footnotesize\ttfamily const int Manual\+Interaction\+::freq\+\_\+to\+\_\+run\+\_\+deque\+\_\+analyser\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_a0a8af39f1b2758f70c4162eaac6befdb}\label{classManualInteraction_a0a8af39f1b2758f70c4162eaac6befdb}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!logger\+\_\+@{logger\+\_\+}}
+\index{logger\+\_\+@{logger\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{logger\+\_\+}{logger\_}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classLogging}{Logging}$>$ Manual\+Interaction\+::logger\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_ac271049856ad498238f794be25f62567}\label{classManualInteraction_ac271049856ad498238f794be25f62567}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!manual\+\_\+action\+\_\+@{manual\+\_\+action\+\_\+}}
+\index{manual\+\_\+action\+\_\+@{manual\+\_\+action\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{manual\+\_\+action\+\_\+}{manual\_action\_}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+SH} Manual\+Interaction\+::manual\+\_\+action\+\_\+ = \hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748a201be4da83bb4099ea70c0fa017f69d5}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+N\+O\+\_\+\+P\+U\+SH}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_accf9dcfcfad7a49a55c24a317d271eaa}\label{classManualInteraction_accf9dcfcfad7a49a55c24a317d271eaa}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!manual\+\_\+action\+\_\+time\+\_\+@{manual\+\_\+action\+\_\+time\+\_\+}}
+\index{manual\+\_\+action\+\_\+time\+\_\+@{manual\+\_\+action\+\_\+time\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{manual\+\_\+action\+\_\+time\+\_\+}{manual\_action\_time\_}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} Manual\+Interaction\+::manual\+\_\+action\+\_\+time\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_ab2a0ebf12ae3ab8cf6149e46406d32f0}\label{classManualInteraction_ab2a0ebf12ae3ab8cf6149e46406d32f0}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!s\+\_\+button\+\_\+state\+\_\+deque\+\_\+down\+\_\+@{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+down\+\_\+}}
+\index{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+down\+\_\+@{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+down\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+down\+\_\+}{s\_button\_state\_deque\_down\_}}
+{\footnotesize\ttfamily std\+::deque$<$ std\+::pair$<$ bool, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} $>$ $>$ Manual\+Interaction\+::s\+\_\+button\+\_\+state\+\_\+deque\+\_\+down\+\_\+\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_a5df30b855c3ff96adc45094788a13a4c}\label{classManualInteraction_a5df30b855c3ff96adc45094788a13a4c}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!s\+\_\+button\+\_\+state\+\_\+deque\+\_\+up\+\_\+@{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+up\+\_\+}}
+\index{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+up\+\_\+@{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+up\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{s\+\_\+button\+\_\+state\+\_\+deque\+\_\+up\+\_\+}{s\_button\_state\_deque\_up\_}}
+{\footnotesize\ttfamily std\+::deque$<$ std\+::pair$<$ bool, \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} $>$ $>$ Manual\+Interaction\+::s\+\_\+button\+\_\+state\+\_\+deque\+\_\+up\+\_\+\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_a713dc9f822950e681926ccd0262ff43d}\label{classManualInteraction_a713dc9f822950e681926ccd0262ff43d}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!s\+\_\+class\+\_\+setup\+\_\+flag\+\_\+@{s\+\_\+class\+\_\+setup\+\_\+flag\+\_\+}}
+\index{s\+\_\+class\+\_\+setup\+\_\+flag\+\_\+@{s\+\_\+class\+\_\+setup\+\_\+flag\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{s\+\_\+class\+\_\+setup\+\_\+flag\+\_\+}{s\_class\_setup\_flag\_}}
+{\footnotesize\ttfamily bool Manual\+Interaction\+::s\+\_\+class\+\_\+setup\+\_\+flag\+\_\+ = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_a3045262cebc202b03be78d14d74ebec2}\label{classManualInteraction_a3045262cebc202b03be78d14d74ebec2}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!s\+\_\+deque\+\_\+mutex\+\_\+@{s\+\_\+deque\+\_\+mutex\+\_\+}}
+\index{s\+\_\+deque\+\_\+mutex\+\_\+@{s\+\_\+deque\+\_\+mutex\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{s\+\_\+deque\+\_\+mutex\+\_\+}{s\_deque\_mutex\_}}
+{\footnotesize\ttfamily std\+::mutex Manual\+Interaction\+::s\+\_\+deque\+\_\+mutex\+\_\+\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classManualInteraction_a6f70c5fb6ba8b34a2c1af7be33164e06}\label{classManualInteraction_a6f70c5fb6ba8b34a2c1af7be33164e06}} 
+\index{Manual\+Interaction@{Manual\+Interaction}!stop\+\_\+button\+\_\+deque\+\_\+analyser\+\_\+@{stop\+\_\+button\+\_\+deque\+\_\+analyser\+\_\+}}
+\index{stop\+\_\+button\+\_\+deque\+\_\+analyser\+\_\+@{stop\+\_\+button\+\_\+deque\+\_\+analyser\+\_\+}!Manual\+Interaction@{Manual\+Interaction}}
+\subsubsection{\texorpdfstring{stop\+\_\+button\+\_\+deque\+\_\+analyser\+\_\+}{stop\_button\_deque\_analyser\_}}
+{\footnotesize\ttfamily bool Manual\+Interaction\+::stop\+\_\+button\+\_\+deque\+\_\+analyser\+\_\+ = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mvp/src/manual\+\_\+interaction/\hyperlink{manual__interaction_8h}{manual\+\_\+interaction.\+h}\item 
+mvp/src/manual\+\_\+interaction/\hyperlink{manual__interaction_8cpp}{manual\+\_\+interaction.\+cpp}\end{DoxyCompactItemize}

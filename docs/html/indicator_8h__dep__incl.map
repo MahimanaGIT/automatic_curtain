@@ -1,0 +1,5 @@
+<map id="mvp/src/indicator/indicator.h" name="mvp/src/indicator/indicator.h">
+<area shape="rect" id="node2" href="$controller_8h.html" title="Defines the structure of the main controller of the device. " alt="" coords="5,80,132,121"/>
+<area shape="rect" id="node3" href="$controller_8cpp.html" title="Contains algorithms which controls the whole device from initialization to giving commands to every s..." alt="" coords="56,169,183,211"/>
+<area shape="rect" id="node4" href="$indicator_8cpp.html" title="Contains algorithms for RGB LED. " alt="" coords="207,87,407,114"/>
+</map>

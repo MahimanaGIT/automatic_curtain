@@ -1,0 +1,6 @@
+var namespaceCONFIG__SET =
+[
+    [ "CALIB_PARAMS", "structCONFIG__SET_1_1CALIB__PARAMS.html", "structCONFIG__SET_1_1CALIB__PARAMS" ],
+    [ "DEVICE_CRED", "structCONFIG__SET_1_1DEVICE__CRED.html", "structCONFIG__SET_1_1DEVICE__CRED" ],
+    [ "MOTION_REQUEST", "structCONFIG__SET_1_1MOTION__REQUEST.html", "structCONFIG__SET_1_1MOTION__REQUEST" ]
+];

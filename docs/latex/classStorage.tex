@@ -1,0 +1,181 @@
+\hypertarget{classStorage}{}\section{Storage Class Reference}
+\label{classStorage}\index{Storage@{Storage}}
+
+
+{\ttfamily \#include $<$storage.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classStorage_a6b40766d93f003a117435135e6c790bb}{Storage} (std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$)
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{classStorage}{Storage} object, initializes logger and calls \hyperlink{classStorage_a6b40766d93f003a117435135e6c790bb}{Storage()} \end{DoxyCompactList}\item 
+\hyperlink{classStorage_a73cf30f0a34250396f9eabee7dc5c93d}{$\sim$\+Storage} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{classStorage}{Storage} object, closes Flash. \end{DoxyCompactList}\item 
+bool \hyperlink{classStorage_a6a1b8fc3b64a382e6b81228a40057677}{Save\+Device\+Cred} (const \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} $\ast$device\+\_\+cred)
+\begin{DoxyCompactList}\small\item\em Saves the wifi creds and device id to Flash, fetching the data from the variable whose pointer is provided as an argument. \end{DoxyCompactList}\item 
+bool \hyperlink{classStorage_a6cd2e67130f5b1b753eea6e977ec4256}{Populate\+Device\+Cred} (\hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} $\ast$device\+\_\+cred)
+\begin{DoxyCompactList}\small\item\em Retrieves the wifi creds and device id from the flash and populates them in variable whose pointer is provided as an argument. \end{DoxyCompactList}\item 
+bool \hyperlink{classStorage_a93011e30e7b8371f711f73f40c585026}{Save\+Calib\+Param} (const \hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} $\ast$calib\+\_\+param)
+\begin{DoxyCompactList}\small\item\em Saves the calib params to Flash, fetching the data from the variable whose pointer is provided as an argument. \end{DoxyCompactList}\item 
+bool \hyperlink{classStorage_a92d3e34f9365b3a2b5e84ba5be442038}{Populate\+Calib\+Param} (\hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} $\ast$calib\+\_\+param)
+\begin{DoxyCompactList}\small\item\em Retrieves the calib params from the flash and populates them in variable whose pointer is provided as an argument. \end{DoxyCompactList}\item 
+bool \hyperlink{classStorage_ab7c03d2d026178e06e72507f643fcf4a}{Save\+Operation\+Mode} (const \hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+DE} $\ast$mode)
+\begin{DoxyCompactList}\small\item\em Saves the operation mode to Flash, fetching the data from the variable whose pointer is provided as an argument. \end{DoxyCompactList}\item 
+bool \hyperlink{classStorage_adc744139f574c6b1f28c7e29756b0591}{Populate\+Operation\+Mode} (\hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+DE} $\ast$mode)
+\begin{DoxyCompactList}\small\item\em Retrieves the operation mode from the flash and populates them in variable whose pointer is provided as an argument. \end{DoxyCompactList}\item 
+void \hyperlink{classStorage_acffef9e721035589505c170f2f612b07}{Clear} ()
+\begin{DoxyCompactList}\small\item\em Clears the memory for \hyperlink{namespaceCONFIG__SET_adc424e5a5b81f2016a88456fd2f383d9}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+S\+T\+O\+R\+A\+G\+E\+\_\+\+N\+A\+M\+E\+S\+P\+A\+CE} workspace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Preferences \hyperlink{classStorage_a732ba8eb7553eb54c85f8595ff3db787}{preferences\+\_\+}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \hyperlink{classStorage_ae18c6eef49561af14d0e08988a9def40}{logger\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStorage_a6b40766d93f003a117435135e6c790bb}\label{classStorage_a6b40766d93f003a117435135e6c790bb}} 
+\index{Storage@{Storage}!Storage@{Storage}}
+\index{Storage@{Storage}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{Storage()}{Storage()}}
+{\footnotesize\ttfamily Storage\+::\+Storage (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$}]{logging }\end{DoxyParamCaption})}
+
+
+
+Construct a new \hyperlink{classStorage}{Storage} object, initializes logger and calls \hyperlink{classStorage_a6b40766d93f003a117435135e6c790bb}{Storage()} 
+
+\mbox{\Hypertarget{classStorage_a73cf30f0a34250396f9eabee7dc5c93d}\label{classStorage_a73cf30f0a34250396f9eabee7dc5c93d}} 
+\index{Storage@{Storage}!````~Storage@{$\sim$\+Storage}}
+\index{````~Storage@{$\sim$\+Storage}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{$\sim$\+Storage()}{~Storage()}}
+{\footnotesize\ttfamily Storage\+::$\sim$\+Storage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{classStorage}{Storage} object, closes Flash. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classStorage_acffef9e721035589505c170f2f612b07}\label{classStorage_acffef9e721035589505c170f2f612b07}} 
+\index{Storage@{Storage}!Clear@{Clear}}
+\index{Clear@{Clear}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}}
+{\footnotesize\ttfamily void Storage\+::\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears the memory for \hyperlink{namespaceCONFIG__SET_adc424e5a5b81f2016a88456fd2f383d9}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+S\+T\+O\+R\+A\+G\+E\+\_\+\+N\+A\+M\+E\+S\+P\+A\+CE} workspace. 
+
+\mbox{\Hypertarget{classStorage_a92d3e34f9365b3a2b5e84ba5be442038}\label{classStorage_a92d3e34f9365b3a2b5e84ba5be442038}} 
+\index{Storage@{Storage}!Populate\+Calib\+Param@{Populate\+Calib\+Param}}
+\index{Populate\+Calib\+Param@{Populate\+Calib\+Param}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{Populate\+Calib\+Param()}{PopulateCalibParam()}}
+{\footnotesize\ttfamily bool Storage\+::\+Populate\+Calib\+Param (\begin{DoxyParamCaption}\item[{\hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} $\ast$}]{calib\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+Retrieves the calib params from the flash and populates them in variable whose pointer is provided as an argument. 
+
+\begin{DoxyReturn}{Returns}
+true \+: populate successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStorage_a6cd2e67130f5b1b753eea6e977ec4256}\label{classStorage_a6cd2e67130f5b1b753eea6e977ec4256}} 
+\index{Storage@{Storage}!Populate\+Device\+Cred@{Populate\+Device\+Cred}}
+\index{Populate\+Device\+Cred@{Populate\+Device\+Cred}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{Populate\+Device\+Cred()}{PopulateDeviceCred()}}
+{\footnotesize\ttfamily bool Storage\+::\+Populate\+Device\+Cred (\begin{DoxyParamCaption}\item[{\hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} $\ast$}]{device\+\_\+cred }\end{DoxyParamCaption})}
+
+
+
+Retrieves the wifi creds and device id from the flash and populates them in variable whose pointer is provided as an argument. 
+
+\begin{DoxyReturn}{Returns}
+true \+: populate successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStorage_adc744139f574c6b1f28c7e29756b0591}\label{classStorage_adc744139f574c6b1f28c7e29756b0591}} 
+\index{Storage@{Storage}!Populate\+Operation\+Mode@{Populate\+Operation\+Mode}}
+\index{Populate\+Operation\+Mode@{Populate\+Operation\+Mode}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{Populate\+Operation\+Mode()}{PopulateOperationMode()}}
+{\footnotesize\ttfamily bool Storage\+::\+Populate\+Operation\+Mode (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+DE} $\ast$}]{mode }\end{DoxyParamCaption})}
+
+
+
+Retrieves the operation mode from the flash and populates them in variable whose pointer is provided as an argument. 
+
+\begin{DoxyReturn}{Returns}
+true \+: populate successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStorage_a93011e30e7b8371f711f73f40c585026}\label{classStorage_a93011e30e7b8371f711f73f40c585026}} 
+\index{Storage@{Storage}!Save\+Calib\+Param@{Save\+Calib\+Param}}
+\index{Save\+Calib\+Param@{Save\+Calib\+Param}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{Save\+Calib\+Param()}{SaveCalibParam()}}
+{\footnotesize\ttfamily bool Storage\+::\+Save\+Calib\+Param (\begin{DoxyParamCaption}\item[{const \hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS} $\ast$}]{calib\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+Saves the calib params to Flash, fetching the data from the variable whose pointer is provided as an argument. 
+
+\begin{DoxyReturn}{Returns}
+true \+: if save successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStorage_a6a1b8fc3b64a382e6b81228a40057677}\label{classStorage_a6a1b8fc3b64a382e6b81228a40057677}} 
+\index{Storage@{Storage}!Save\+Device\+Cred@{Save\+Device\+Cred}}
+\index{Save\+Device\+Cred@{Save\+Device\+Cred}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{Save\+Device\+Cred()}{SaveDeviceCred()}}
+{\footnotesize\ttfamily bool Storage\+::\+Save\+Device\+Cred (\begin{DoxyParamCaption}\item[{const \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} $\ast$}]{device\+\_\+cred }\end{DoxyParamCaption})}
+
+
+
+Saves the wifi creds and device id to Flash, fetching the data from the variable whose pointer is provided as an argument. 
+
+\begin{DoxyReturn}{Returns}
+true \+: if save successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStorage_ab7c03d2d026178e06e72507f643fcf4a}\label{classStorage_ab7c03d2d026178e06e72507f643fcf4a}} 
+\index{Storage@{Storage}!Save\+Operation\+Mode@{Save\+Operation\+Mode}}
+\index{Save\+Operation\+Mode@{Save\+Operation\+Mode}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{Save\+Operation\+Mode()}{SaveOperationMode()}}
+{\footnotesize\ttfamily bool Storage\+::\+Save\+Operation\+Mode (\begin{DoxyParamCaption}\item[{const \hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+DE} $\ast$}]{mode }\end{DoxyParamCaption})}
+
+
+
+Saves the operation mode to Flash, fetching the data from the variable whose pointer is provided as an argument. 
+
+\begin{DoxyReturn}{Returns}
+true \+: if save successful 
+
+false \+: otherwise 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classStorage_ae18c6eef49561af14d0e08988a9def40}\label{classStorage_ae18c6eef49561af14d0e08988a9def40}} 
+\index{Storage@{Storage}!logger\+\_\+@{logger\+\_\+}}
+\index{logger\+\_\+@{logger\+\_\+}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{logger\+\_\+}{logger\_}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classLogging}{Logging}$>$ Storage\+::logger\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classStorage_a732ba8eb7553eb54c85f8595ff3db787}\label{classStorage_a732ba8eb7553eb54c85f8595ff3db787}} 
+\index{Storage@{Storage}!preferences\+\_\+@{preferences\+\_\+}}
+\index{preferences\+\_\+@{preferences\+\_\+}!Storage@{Storage}}
+\subsubsection{\texorpdfstring{preferences\+\_\+}{preferences\_}}
+{\footnotesize\ttfamily Preferences Storage\+::preferences\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mvp/src/storage/\hyperlink{storage_8h}{storage.\+h}\item 
+mvp/src/storage/\hyperlink{storage_8cpp}{storage.\+cpp}\end{DoxyCompactItemize}

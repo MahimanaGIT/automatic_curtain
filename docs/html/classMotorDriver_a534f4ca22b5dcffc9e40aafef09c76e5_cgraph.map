@@ -1,0 +1,11 @@
+<map id="MotorDriver::MotorDriver" name="MotorDriver::MotorDriver">
+<area shape="rect" id="node2" href="$classMotorDriver.html#a19833e114feff56c3a7d1d032a455e0a" title="Reset the current steps of motor. " alt="" coords="222,5,389,32"/>
+<area shape="rect" id="node3" href="$classMotorDriver.html#a04e97c6adc4df4d186d6799dfd8165b2" title="Updates calibration parameters to be used by motor driver. " alt="" coords="220,57,391,98"/>
+<area shape="rect" id="node6" href="$classMotorDriver.html#a74f208c889afd6ed5cf5008fbb0fdb63" title="Runs on a timer, supplies step and direction signal to motor driver. " alt="" coords="223,122,388,163"/>
+<area shape="rect" id="node7" href="$classMotorDriver.html#a64827491330490668bb8f8e57d0f3942" title="Starts handler thread. " alt="" coords="220,188,391,215"/>
+<area shape="rect" id="node4" href="$classMotorDriver.html#a754252fe0d18118e074cbdc1fe42da57" title="Enable Motor Driver Give argument as true for enabling, false for disabling the driver. " alt="" coords="875,125,1048,152"/>
+<area shape="rect" id="node5" href="$classMotorDriver.html#a9151c6649515b7ff61dc6159456ffa80" title="Sets needed parameters for the driver. " alt="" coords="439,115,620,141"/>
+<area shape="rect" id="node8" href="$classMotorDriver.html#a1eee734aa12c1565d6ae629924962115" title="Motor Driver class handler, communicates with driver and is responsible for reading latest motion req..." alt="" coords="458,176,601,203"/>
+<area shape="rect" id="node9" href="$classMotorDriver.html#aff8659e64841fb4b97c23b3494cd0575" title="Responsible for stopping the motor, i.e. disables the driver and sets velocity of motor to zero..." alt="" coords="668,125,827,152"/>
+<area shape="rect" id="node10" href="$classMotorDriver.html#a5ebab90ca98fa04463de1cbae76af994" title="Responsible for starting the motor, i.e. setups the driver and sets required velocity of motor..." alt="" coords="668,176,827,203"/>
+</map>

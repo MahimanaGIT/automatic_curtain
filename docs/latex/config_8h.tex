@@ -1,0 +1,208 @@
+\hypertarget{config_8h}{}\section{mvp/src/config/config.h File Reference}
+\label{config_8h}\index{mvp/src/config/config.\+h@{mvp/src/config/config.\+h}}
+
+
+This header file contains all the constants and enum that will be used throughout the repository like specific pins, mapping from state to led color etc.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$deque$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for config.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{config_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{config_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structCONFIG__SET_1_1MOTION__REQUEST}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+I\+O\+N\+\_\+\+R\+E\+Q\+U\+E\+ST}
+\item 
+struct \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED}
+\item 
+struct \hyperlink{structCONFIG__SET_1_1CALIB__PARAMS}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+C\+A\+L\+I\+B\+\_\+\+P\+A\+R\+A\+MS}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceCONFIG__SET}{C\+O\+N\+F\+I\+G\+\_\+\+S\+ET}
+\begin{DoxyCompactList}\small\item\em Namespace to be used for constants/enums. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} = std\+::chrono\+::time\+\_\+point$<$ std\+::chrono\+::system\+\_\+clock $>$
+\item 
+using \hyperlink{namespaceCONFIG__SET_a7a1c6f926aead4885c03f1fbeee693ce}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::current\+\_\+time} = std\+::chrono\+::system\+\_\+clock
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+DE} \{ \hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6ab5859d8721cfdc0312b2838b9c985bc1}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+D\+E\+::\+R\+E\+S\+ET}, 
+\hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6aa49182544bf417d2e02cae1f35c9c8b8}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+D\+E\+::\+M\+A\+I\+N\+T\+E\+N\+A\+N\+CE}, 
+\hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6a2e40ad879e955201df4dedbf8d479a12}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+D\+E\+::\+U\+S\+ER}, 
+\hyperlink{namespaceCONFIG__SET_ac5c2592b79bead7e6497c37cddc401e6ad4cd0dabcf4caa22ad92fab40844c786}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+D\+E\+::\+NA}
+ \}
+\item 
+enum \hyperlink{namespaceCONFIG__SET_aaf9764960ee214f0eaabd2461e30e932}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+T\+Y\+PE} \{ \hyperlink{namespaceCONFIG__SET_aaf9764960ee214f0eaabd2461e30e932a551b723eafd6a31d444fcb2f5920fbd3}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+T\+Y\+P\+E\+::\+I\+N\+FO}, 
+\hyperlink{namespaceCONFIG__SET_aaf9764960ee214f0eaabd2461e30e932abb1ca97ec761fc37101737ba0aa2e7c5}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+T\+Y\+P\+E\+::\+E\+R\+R\+OR}, 
+\hyperlink{namespaceCONFIG__SET_aaf9764960ee214f0eaabd2461e30e932a32bd8a1db2275458673903bdb84cb277}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+T\+Y\+P\+E\+::\+W\+A\+RN}
+ \}
+\item 
+enum \hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+SS} \{ \newline
+\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863a42e074e8564dad9034ef033c6a6cf8b6}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+S\+S\+::\+C\+O\+N\+T\+R\+O\+L\+L\+ER}, 
+\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863afe45874d234b693c3648a37d604b0865}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+S\+S\+::\+C\+O\+N\+N\+E\+C\+T\+I\+V\+I\+TY}, 
+\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863a2b254b1e77ef0d4fe30639ee576bf05d}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+S\+S\+::\+I\+N\+D\+I\+C\+A\+T\+OR}, 
+\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863a042bca9f4ffd4cb8530fa2a9035e00c3}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+S\+S\+::\+L\+O\+G\+G\+I\+NG}, 
+\newline
+\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863a0b83d32b63ae6ca0805d471c407c39a8}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+S\+S\+::\+M\+A\+N\+U\+A\+L\+\_\+\+I\+N\+T\+E\+R\+A\+C\+T\+I\+ON}, 
+\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863aef2f278882c5090b495fea73f0f14150}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+S\+S\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+ER}, 
+\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863a754a5d433173b5ddc7debc2110ac575f}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+S\+S\+::\+S\+T\+O\+R\+A\+GE}, 
+\hyperlink{namespaceCONFIG__SET_a3c4daebec2ea4e9f6affb5b3abbeb863ad42bdb2009ad11a7ac3dd12ca97e81da}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+\_\+\+C\+L\+A\+S\+S\+::\+A\+L\+E\+X\+A\+\_\+\+I\+N\+T\+E\+R\+A\+C\+T\+I\+ON}
+ \}
+\item 
+enum \hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+SH} \{ \newline
+\hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748a201be4da83bb4099ea70c0fa017f69d5}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+N\+O\+\_\+\+P\+U\+SH}, 
+\hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748a452fd0059d3faa302e1e7b98eb0b1e81}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+L\+O\+N\+G\+\_\+\+P\+R\+E\+S\+S\+\_\+\+UP}, 
+\hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748aab27af1260dbe253aac03e395b9b23ff}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+L\+O\+N\+G\+\_\+\+P\+R\+E\+S\+S\+\_\+\+D\+O\+WN}, 
+\hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748a88803b906ab3fb49d793794cccc85713}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+L\+O\+N\+G\+\_\+\+P\+R\+E\+S\+S\+\_\+\+B\+O\+TH}, 
+\newline
+\hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748ab985c91c3413dee3833c52f7587927d4}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+D\+O\+U\+B\+L\+E\+\_\+\+T\+A\+P\+\_\+\+UP}, 
+\hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748a344b76ee59e91ead4475cd148aba681f}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+D\+O\+U\+B\+L\+E\+\_\+\+T\+A\+P\+\_\+\+D\+O\+WN}, 
+\hyperlink{namespaceCONFIG__SET_a627706be626fd4e58c539ed120c27748ab6e371bad37f26516750c7661c68f491}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+N\+U\+A\+L\+\_\+\+P\+U\+S\+H\+::\+D\+O\+U\+B\+L\+E\+\_\+\+T\+A\+P\+\_\+\+B\+O\+TH}
+ \}
+\item 
+enum \hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+SS} \{ \hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72a201be4da83bb4099ea70c0fa017f69d5}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+S\+S\+::\+N\+O\+\_\+\+P\+U\+SH}, 
+\hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72a6cfd612b64bbe4bd62ea3eacec312f2a}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+S\+S\+::\+L\+O\+N\+G\+\_\+\+P\+R\+E\+SS}, 
+\hyperlink{namespaceCONFIG__SET_a94751f576b4a29d791e7871295c48b72a69262b7d2d5f239bbdeff40c30d17662}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+S\+S\+::\+D\+O\+U\+B\+L\+E\+\_\+\+T\+AP}
+ \}
+\item 
+enum \hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081a}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+US} \{ \hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081aa893b3aaf1661e3717b18e8335ff93a72}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+U\+S\+::\+F\+A\+U\+LT}, 
+\hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081aa3fe019c6817599387124ce924e33c70b}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+U\+S\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+M\+O\+DE}, 
+\hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081aaba12d2493fc3be7067212035e03a7c04}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+U\+S\+::\+R\+E\+S\+E\+T\+\_\+\+M\+O\+DE}, 
+\hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081aaaf0bd6c96a36aa63de9f0ac59060deea}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+U\+S\+::\+M\+A\+I\+N\+T\+E\+N\+A\+N\+C\+E\+\_\+\+M\+O\+DE}
+ \}
+\item 
+enum \hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+US} \{ \hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0a1588118736b5ecdb1ac20c16428d8ea7}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+U\+S\+::\+A\+V\+A\+I\+L\+A\+B\+LE}, 
+\hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0a802706a9238e2928077f97736854bad4}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+U\+S\+::\+B\+U\+SY}, 
+\hyperlink{namespaceCONFIG__SET_a722f4ba49e35faf1a2504aa23677b2f0a81ec94fc396b06d900dfec53805d1732}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+R\+I\+V\+E\+R\+\_\+\+S\+T\+A\+T\+U\+S\+::\+I\+N\+\_\+\+A\+C\+T\+I\+VE}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{namespaceCONFIG__SET_aa9d9cee85d0c1416ccb5ed5f801de6db}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+O\+G\+G\+I\+N\+G\+\_\+\+B\+A\+U\+D\+\_\+\+R\+A\+TE} = 115200
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a7db23e13f6ec09a9be65fad30733470e}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+B\+A\+U\+D\+\_\+\+R\+A\+TE} = 115200
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a0d526cb827f2f3c5236874a4157448af}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+T\+R\+Y\+\_\+\+R\+E\+C\+O\+N\+N\+E\+CT} = 3
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a4a1488bbde32db8f3d362761adc7c637}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+A\+X\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+\+L\+O\+S\+T\+\_\+\+W\+I\+FI} = 600
+\item 
+const std\+::string \hyperlink{namespaceCONFIG__SET_adc424e5a5b81f2016a88456fd2f383d9}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+S\+T\+O\+R\+A\+G\+E\+\_\+\+N\+A\+M\+E\+S\+P\+A\+CE} = \char`\"{}madac\char`\"{}
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a91d987372150d727ecbb41b39d482911}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+L\+E\+DS} = 1
+\item 
+const int \hyperlink{namespaceCONFIG__SET_ae380133af7dbc440e94dd1d32ca8011c}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+L\+E\+D\+\_\+\+B\+R\+I\+G\+H\+T\+N\+E\+SS} = 25
+\item 
+const int \hyperlink{namespaceCONFIG__SET_af30cde25aaad1a3f7c1056df78fe44ef}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+Q\+U\+E\+\_\+\+A\+N\+A\+L\+Y\+Z\+E\+R\+\_\+\+F\+R\+EQ} = 2
+\item 
+const std\+::string \hyperlink{namespaceCONFIG__SET_adc315222607c5e3c4aa1e0d13b6987ee}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+K\+E\+Y\+\_\+\+S\+S\+ID} = \char`\"{}ssid\char`\"{}
+\item 
+const std\+::string \hyperlink{namespaceCONFIG__SET_a19f24640ed129493b066d05e146deaf3}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+K\+E\+Y\+\_\+\+P\+A\+S\+S\+W\+O\+RD} = \char`\"{}password\char`\"{}
+\item 
+const std\+::string \hyperlink{namespaceCONFIG__SET_af0e474e6061134d6cbf04e0c890552d9}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+K\+E\+Y\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID} = \char`\"{}device\+ID\char`\"{}
+\item 
+const std\+::string \hyperlink{namespaceCONFIG__SET_acb991fe6c1317a4bf770b8b1a049ad25}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+K\+E\+Y\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+T\+E\+P\+\_\+\+C\+O\+U\+NT} = \char`\"{}total\+Step\+Count\char`\"{}
+\item 
+const std\+::string \hyperlink{namespaceCONFIG__SET_a01f506112394a3ac18b3a731a710984c}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+K\+E\+Y\+\_\+\+D\+I\+R\+E\+C\+T\+I\+ON} = \char`\"{}direction\char`\"{}
+\item 
+const std\+::string \hyperlink{namespaceCONFIG__SET_a77febd18d2a2712e1357b057a52e9be3}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+K\+E\+Y\+\_\+\+M\+O\+DE} = \char`\"{}mode\char`\"{}
+\item 
+const String \hyperlink{namespaceCONFIG__SET_a2ac88bd64607d4819d1bda478f469817}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID} = \char`\"{}madac\+\_\+blinds\char`\"{}
+\item 
+const float \hyperlink{namespaceCONFIG__SET_a8f23ef59b087dff79c434bd84525a915}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+R\+\_\+\+S\+E\+N\+SE} = 0.\+11f
+\item 
+const uint8\+\_\+t \hyperlink{namespaceCONFIG__SET_a6a76f57577e628d797a633669d8adced}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+A\+D\+D\+R\+E\+SS} = 0b00
+\item 
+const uint8\+\_\+t \hyperlink{namespaceCONFIG__SET_a9cd2f24701a5f7debb61387d734af3f7}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+T\+O\+FF} = 4
+\item 
+const uint8\+\_\+t \hyperlink{namespaceCONFIG__SET_abd06bbb93246b7d98d1e7c2e5e4954b4}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+B\+L\+A\+N\+K\+\_\+\+T\+I\+ME} = 24
+\item 
+const uint16\+\_\+t \hyperlink{namespaceCONFIG__SET_a367788b61bc20c95602dec7063093fce}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+R\+M\+S\+\_\+\+C\+U\+R\+R\+E\+NT} = 2000
+\item 
+const uint16\+\_\+t \hyperlink{namespaceCONFIG__SET_a7028034ed96d5ef10a87d1cdc12c5d27}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+M\+I\+C\+R\+O\+S\+T\+EP} = 16
+\item 
+const uint32\+\_\+t \hyperlink{namespaceCONFIG__SET_aaaf7add03a2bd7b4a1cad95838dc6545}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+T\+C\+O\+O\+L\+\_\+\+T\+H\+RS} = 0x\+F\+F\+F\+FF
+\item 
+const uint8\+\_\+t \hyperlink{namespaceCONFIG__SET_a32dc4d5c8cc5890bf7f9be0a7f15bdb2}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+S\+E\+\_\+\+M\+IN} = 0
+\item 
+const uint8\+\_\+t \hyperlink{namespaceCONFIG__SET_a790b63a59051c9e242aff5b4123a9ca5}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+S\+E\+\_\+\+M\+AX} = 2
+\item 
+const uint8\+\_\+t \hyperlink{namespaceCONFIG__SET_a957a048d0f02b3bca4145248c6d79c77}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+S\+E\+DN} = 0b01
+\item 
+const uint32\+\_\+t \hyperlink{namespaceCONFIG__SET_ad8683609012e266d026138915afb2c4c}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+M\+A\+X\+\_\+\+S\+P\+E\+ED} = 5000
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a56ca50a3b66685f81410683733371590}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+S\+G\+\_\+\+T\+H\+R\+E\+SH} = 45
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a4cfa726833e14a8607e9c4c8b5895792}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+T\+O\+R\+\_\+\+S\+T\+O\+P\+\_\+\+T\+I\+M\+E\+\_\+\+S\+EC} = 120
+\item 
+const float \hyperlink{namespaceCONFIG__SET_ae98d33bba82717c83e577914428d2f87}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+S\+T\+E\+P\+\_\+\+F\+R\+A\+C\+T\+I\+O\+N\+\_\+\+A\+L\+L\+O\+W\+A\+N\+CE} = 0.\+05
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a4e51168ed48d5e6ff6bdd26da8fd0244}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+M\+O\+D\+E\+\_\+\+E\+X\+P\+I\+R\+E\+\_\+\+T\+I\+M\+E\+\_\+\+L\+I\+M\+IT} = 300
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a538190e043ad035b08b9fc653d6a0491}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+W\+I\+F\+I\+\_\+\+D\+I\+S\+C\+O\+N\+N\+E\+C\+T\+\_\+\+R\+E\+S\+T\+A\+R\+T\+\_\+\+T\+I\+M\+E\+\_\+\+L\+I\+M\+IT} = 60
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a932d38d647f5793b7ebb07de5c7baf7b}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+R\+G\+B\+\_\+\+L\+ED} = 32
+\item 
+static const int \hyperlink{namespaceCONFIG__SET_a2a69cb92b89581f4a67d29a1a808327b}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+UP} = 33
+\item 
+static const int \hyperlink{namespaceCONFIG__SET_a5bf40b051395303a194e7afab2a66d43}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+D\+O\+WN} = 25
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a76e1dbd32a24123a8e1c6f1032553e9e}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+E\+N\+A\+B\+LE} = 4
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a3cd5a807c53edf90423ef292df549a2c}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+RX} = 16
+\item 
+const int \hyperlink{namespaceCONFIG__SET_ae14a96410643d22f30b5e7f98bbc2e98}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+TX} = 17
+\item 
+const int \hyperlink{namespaceCONFIG__SET_af93fc82a783571bf68af757e1a59be8d}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+M\+S1} = 5
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a3ae1a9238a4c2ef99018a568fb407188}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+M\+S2} = 18
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a6ff1241febf3c05949aa4e9615126aaa}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+S\+T\+EP} = 22
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a893c9a17e861d557ec6e6d009d02f1fd}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+D\+IR} = 23
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a77c4124103e0be77050f54fed8f46cbe}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+I\+N\+D\+EX} = 21
+\item 
+const int \hyperlink{namespaceCONFIG__SET_a24d0005db5d888efec3ad54d1d21d319}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+P\+I\+N\+\_\+\+M\+D\+\_\+\+D\+I\+AG} = 19
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This header file contains all the constants and enum that will be used throughout the repository like specific pins, mapping from state to led color etc. 
+
+\begin{DoxyAuthor}{Author}
+Mahimana Bhatt (\href{mailto:mahimanabhatt@gmail.com}{\tt mahimanabhatt@gmail.\+com}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/07-\/19
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}

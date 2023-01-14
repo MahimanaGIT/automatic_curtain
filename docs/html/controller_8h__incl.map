@@ -1,0 +1,11 @@
+<map id="mvp/src/controller/controller.h" name="mvp/src/controller/controller.h">
+<area shape="rect" id="node3" href="$alexa__interaction_8h.html" title="Defines structure for class which will be interacting with alexa API. " alt="" coords="233,95,368,136"/>
+<area shape="rect" id="node8" href="$config_8h.html" title="This header file contains all the constants and enum that will be used throughout the repository like..." alt="" coords="1348,259,1467,285"/>
+<area shape="rect" id="node14" href="$logging_8h.html" title="Defines code structure for logging of device. " alt="" coords="1393,184,1523,211"/>
+<area shape="rect" id="node16" href="$connectivity_8h.html" title="Define overall structure for class containing WiFi, OTA and webpage functionality. " alt="" coords="881,102,1070,129"/>
+<area shape="rect" id="node23" href="$indicator_8h.html" title="Contains structure for RGB LED (COM 11821), uses FASTLed library for controlling the LED..." alt="" coords="1274,102,1421,129"/>
+<area shape="rect" id="node25" href="$manual__interaction_8h.html" title="Defines structure for manual interaction with device. " alt="" coords="1817,95,1963,136"/>
+<area shape="rect" id="node28" href="$motor__driver_8h.html" title="Defines structure for controller of stepper motor, uses library TMC2209 for this usecase. " alt="" coords="2044,95,2187,136"/>
+<area shape="rect" id="node32" href="$storage_8h.html" title="Defines structure for Flash storage for ESP32. " alt="" coords="1496,102,1631,129"/>
+<area shape="rect" id="node22" href="$webpage_8h.html" title="Contains resources related to webpage for eg. html code. " alt="" coords="534,184,619,211"/>
+</map>

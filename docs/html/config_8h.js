@@ -1,0 +1,97 @@
+var config_8h =
+[
+    [ "MOTION_REQUEST", "structCONFIG__SET_1_1MOTION__REQUEST.html", "structCONFIG__SET_1_1MOTION__REQUEST" ],
+    [ "DEVICE_CRED", "structCONFIG__SET_1_1DEVICE__CRED.html", "structCONFIG__SET_1_1DEVICE__CRED" ],
+    [ "CALIB_PARAMS", "structCONFIG__SET_1_1CALIB__PARAMS.html", "structCONFIG__SET_1_1CALIB__PARAMS" ],
+    [ "current_time", "config_8h.html#a7a1c6f926aead4885c03f1fbeee693ce", null ],
+    [ "time_var", "config_8h.html#a8816a22e7885d027a52bfa0d24fa9008", null ],
+    [ "BUTTON_PRESS", "config_8h.html#a94751f576b4a29d791e7871295c48b72", [
+      [ "NO_PUSH", "config_8h.html#a94751f576b4a29d791e7871295c48b72a201be4da83bb4099ea70c0fa017f69d5", null ],
+      [ "LONG_PRESS", "config_8h.html#a94751f576b4a29d791e7871295c48b72a6cfd612b64bbe4bd62ea3eacec312f2a", null ],
+      [ "DOUBLE_TAP", "config_8h.html#a94751f576b4a29d791e7871295c48b72a69262b7d2d5f239bbdeff40c30d17662", null ]
+    ] ],
+    [ "DEVICE_STATUS", "config_8h.html#a8379cbe9f81ee38829b156f47261081a", [
+      [ "FAULT", "config_8h.html#a8379cbe9f81ee38829b156f47261081aa893b3aaf1661e3717b18e8335ff93a72", null ],
+      [ "OPERATION_MODE", "config_8h.html#a8379cbe9f81ee38829b156f47261081aa3fe019c6817599387124ce924e33c70b", null ],
+      [ "RESET_MODE", "config_8h.html#a8379cbe9f81ee38829b156f47261081aaba12d2493fc3be7067212035e03a7c04", null ],
+      [ "MAINTENANCE_MODE", "config_8h.html#a8379cbe9f81ee38829b156f47261081aaaf0bd6c96a36aa63de9f0ac59060deea", null ]
+    ] ],
+    [ "DRIVER_STATUS", "config_8h.html#a722f4ba49e35faf1a2504aa23677b2f0", [
+      [ "AVAILABLE", "config_8h.html#a722f4ba49e35faf1a2504aa23677b2f0a1588118736b5ecdb1ac20c16428d8ea7", null ],
+      [ "BUSY", "config_8h.html#a722f4ba49e35faf1a2504aa23677b2f0a802706a9238e2928077f97736854bad4", null ],
+      [ "IN_ACTIVE", "config_8h.html#a722f4ba49e35faf1a2504aa23677b2f0a81ec94fc396b06d900dfec53805d1732", null ]
+    ] ],
+    [ "LOG_CLASS", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863", [
+      [ "CONTROLLER", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863a42e074e8564dad9034ef033c6a6cf8b6", null ],
+      [ "CONNECTIVITY", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863afe45874d234b693c3648a37d604b0865", null ],
+      [ "INDICATOR", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863a2b254b1e77ef0d4fe30639ee576bf05d", null ],
+      [ "LOGGING", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863a042bca9f4ffd4cb8530fa2a9035e00c3", null ],
+      [ "MANUAL_INTERACTION", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863a0b83d32b63ae6ca0805d471c407c39a8", null ],
+      [ "MOTOR_DRIVER", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863aef2f278882c5090b495fea73f0f14150", null ],
+      [ "STORAGE", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863a754a5d433173b5ddc7debc2110ac575f", null ],
+      [ "ALEXA_INTERACTION", "config_8h.html#a3c4daebec2ea4e9f6affb5b3abbeb863ad42bdb2009ad11a7ac3dd12ca97e81da", null ]
+    ] ],
+    [ "LOG_TYPE", "config_8h.html#aaf9764960ee214f0eaabd2461e30e932", [
+      [ "INFO", "config_8h.html#aaf9764960ee214f0eaabd2461e30e932a551b723eafd6a31d444fcb2f5920fbd3", null ],
+      [ "ERROR", "config_8h.html#aaf9764960ee214f0eaabd2461e30e932abb1ca97ec761fc37101737ba0aa2e7c5", null ],
+      [ "WARN", "config_8h.html#aaf9764960ee214f0eaabd2461e30e932a32bd8a1db2275458673903bdb84cb277", null ]
+    ] ],
+    [ "MANUAL_PUSH", "config_8h.html#a627706be626fd4e58c539ed120c27748", [
+      [ "NO_PUSH", "config_8h.html#a627706be626fd4e58c539ed120c27748a201be4da83bb4099ea70c0fa017f69d5", null ],
+      [ "LONG_PRESS_UP", "config_8h.html#a627706be626fd4e58c539ed120c27748a452fd0059d3faa302e1e7b98eb0b1e81", null ],
+      [ "LONG_PRESS_DOWN", "config_8h.html#a627706be626fd4e58c539ed120c27748aab27af1260dbe253aac03e395b9b23ff", null ],
+      [ "LONG_PRESS_BOTH", "config_8h.html#a627706be626fd4e58c539ed120c27748a88803b906ab3fb49d793794cccc85713", null ],
+      [ "DOUBLE_TAP_UP", "config_8h.html#a627706be626fd4e58c539ed120c27748ab985c91c3413dee3833c52f7587927d4", null ],
+      [ "DOUBLE_TAP_DOWN", "config_8h.html#a627706be626fd4e58c539ed120c27748a344b76ee59e91ead4475cd148aba681f", null ],
+      [ "DOUBLE_TAP_BOTH", "config_8h.html#a627706be626fd4e58c539ed120c27748ab6e371bad37f26516750c7661c68f491", null ]
+    ] ],
+    [ "OPERATION_MODE", "config_8h.html#ac5c2592b79bead7e6497c37cddc401e6", [
+      [ "RESET", "config_8h.html#ac5c2592b79bead7e6497c37cddc401e6ab5859d8721cfdc0312b2838b9c985bc1", null ],
+      [ "MAINTENANCE", "config_8h.html#ac5c2592b79bead7e6497c37cddc401e6aa49182544bf417d2e02cae1f35c9c8b8", null ],
+      [ "USER", "config_8h.html#ac5c2592b79bead7e6497c37cddc401e6a2e40ad879e955201df4dedbf8d479a12", null ],
+      [ "NA", "config_8h.html#ac5c2592b79bead7e6497c37cddc401e6ad4cd0dabcf4caa22ad92fab40844c786", null ]
+    ] ],
+    [ "DEFAULT_DEVICE_ID", "config_8h.html#a2ac88bd64607d4819d1bda478f469817", null ],
+    [ "DEQUE_ANALYZER_FREQ", "config_8h.html#af30cde25aaad1a3f7c1056df78fe44ef", null ],
+    [ "KEY_DEVICE_ID", "config_8h.html#af0e474e6061134d6cbf04e0c890552d9", null ],
+    [ "KEY_DIRECTION", "config_8h.html#a01f506112394a3ac18b3a731a710984c", null ],
+    [ "KEY_MODE", "config_8h.html#a77febd18d2a2712e1357b057a52e9be3", null ],
+    [ "KEY_PASSWORD", "config_8h.html#a19f24640ed129493b066d05e146deaf3", null ],
+    [ "KEY_SSID", "config_8h.html#adc315222607c5e3c4aa1e0d13b6987ee", null ],
+    [ "KEY_TOTAL_STEP_COUNT", "config_8h.html#acb991fe6c1317a4bf770b8b1a049ad25", null ],
+    [ "LED_BRIGHTNESS", "config_8h.html#ae380133af7dbc440e94dd1d32ca8011c", null ],
+    [ "LOGGING_BAUD_RATE", "config_8h.html#aa9d9cee85d0c1416ccb5ed5f801de6db", null ],
+    [ "MAX_SECONDS_LOST_WIFI", "config_8h.html#a4a1488bbde32db8f3d362761adc7c637", null ],
+    [ "MODE_EXPIRE_TIME_LIMIT", "config_8h.html#a4e51168ed48d5e6ff6bdd26da8fd0244", null ],
+    [ "MOTOR_DRIVER_ADDRESS", "config_8h.html#a6a76f57577e628d797a633669d8adced", null ],
+    [ "MOTOR_DRIVER_BAUD_RATE", "config_8h.html#a7db23e13f6ec09a9be65fad30733470e", null ],
+    [ "MOTOR_DRIVER_BLANK_TIME", "config_8h.html#abd06bbb93246b7d98d1e7c2e5e4954b4", null ],
+    [ "MOTOR_DRIVER_MAX_SPEED", "config_8h.html#ad8683609012e266d026138915afb2c4c", null ],
+    [ "MOTOR_DRIVER_MICROSTEP", "config_8h.html#a7028034ed96d5ef10a87d1cdc12c5d27", null ],
+    [ "MOTOR_DRIVER_R_SENSE", "config_8h.html#a8f23ef59b087dff79c434bd84525a915", null ],
+    [ "MOTOR_DRIVER_RMS_CURRENT", "config_8h.html#a367788b61bc20c95602dec7063093fce", null ],
+    [ "MOTOR_DRIVER_SE_MAX", "config_8h.html#a790b63a59051c9e242aff5b4123a9ca5", null ],
+    [ "MOTOR_DRIVER_SE_MIN", "config_8h.html#a32dc4d5c8cc5890bf7f9be0a7f15bdb2", null ],
+    [ "MOTOR_DRIVER_SEDN", "config_8h.html#a957a048d0f02b3bca4145248c6d79c77", null ],
+    [ "MOTOR_DRIVER_SG_THRESH", "config_8h.html#a56ca50a3b66685f81410683733371590", null ],
+    [ "MOTOR_DRIVER_TCOOL_THRS", "config_8h.html#aaaf7add03a2bd7b4a1cad95838dc6545", null ],
+    [ "MOTOR_DRIVER_TOFF", "config_8h.html#a9cd2f24701a5f7debb61387d734af3f7", null ],
+    [ "MOTOR_STOP_TIME_SEC", "config_8h.html#a4cfa726833e14a8607e9c4c8b5895792", null ],
+    [ "NUMBER_OF_LEDS", "config_8h.html#a91d987372150d727ecbb41b39d482911", null ],
+    [ "PIN_BUTTON_DOWN", "config_8h.html#a5bf40b051395303a194e7afab2a66d43", null ],
+    [ "PIN_BUTTON_UP", "config_8h.html#a2a69cb92b89581f4a67d29a1a808327b", null ],
+    [ "PIN_MD_DIAG", "config_8h.html#a24d0005db5d888efec3ad54d1d21d319", null ],
+    [ "PIN_MD_DIR", "config_8h.html#a893c9a17e861d557ec6e6d009d02f1fd", null ],
+    [ "PIN_MD_ENABLE", "config_8h.html#a76e1dbd32a24123a8e1c6f1032553e9e", null ],
+    [ "PIN_MD_INDEX", "config_8h.html#a77c4124103e0be77050f54fed8f46cbe", null ],
+    [ "PIN_MD_MS1", "config_8h.html#af93fc82a783571bf68af757e1a59be8d", null ],
+    [ "PIN_MD_MS2", "config_8h.html#a3ae1a9238a4c2ef99018a568fb407188", null ],
+    [ "PIN_MD_RX", "config_8h.html#a3cd5a807c53edf90423ef292df549a2c", null ],
+    [ "PIN_MD_STEP", "config_8h.html#a6ff1241febf3c05949aa4e9615126aaa", null ],
+    [ "PIN_MD_TX", "config_8h.html#ae14a96410643d22f30b5e7f98bbc2e98", null ],
+    [ "PIN_RGB_LED", "config_8h.html#a932d38d647f5793b7ebb07de5c7baf7b", null ],
+    [ "STEP_FRACTION_ALLOWANCE", "config_8h.html#ae98d33bba82717c83e577914428d2f87", null ],
+    [ "STORAGE_NAMESPACE", "config_8h.html#adc424e5a5b81f2016a88456fd2f383d9", null ],
+    [ "TRY_RECONNECT", "config_8h.html#a0d526cb827f2f3c5236874a4157448af", null ],
+    [ "WIFI_DISCONNECT_RESTART_TIME_LIMIT", "config_8h.html#a538190e043ad035b08b9fc653d6a0491", null ]
+];

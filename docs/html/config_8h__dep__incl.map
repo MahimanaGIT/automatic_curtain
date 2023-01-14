@@ -1,0 +1,18 @@
+<map id="mvp/src/config/config.h" name="mvp/src/config/config.h">
+<area shape="rect" id="node2" href="$alexa__interaction_8h.html" title="Defines structure for class which will be interacting with alexa API. " alt="" coords="919,155,1090,196"/>
+<area shape="rect" id="node3" href="$alexa__interaction_8cpp.html" title="Contains algorithms for handling alexa requests and make appropriate call at every request..." alt="" coords="796,244,967,285"/>
+<area shape="rect" id="node4" href="$controller_8h.html" title="Defines the structure of the main controller of the device. " alt="" coords="1042,244,1169,285"/>
+<area shape="rect" id="node5" href="$controller_8cpp.html" title="Contains algorithms which controls the whole device from initialization to giving commands to every s..." alt="" coords="941,333,1068,375"/>
+<area shape="rect" id="node6" href="$logging_8h.html" title="Defines code structure for logging of device. " alt="" coords="887,80,1058,107"/>
+<area shape="rect" id="node7" href="$connectivity_8h.html" title="Define overall structure for class containing WiFi, OTA and webpage functionality. " alt="" coords="181,155,324,196"/>
+<area shape="rect" id="node8" href="$connectivity_8cpp.html" title="Contains algorithms related to connecting to WiFi, OTA updates and webpage display. " alt="" coords="45,244,188,285"/>
+<area shape="rect" id="node9" href="$indicator_8h.html" title="Contains structure for RGB LED (COM 11821), uses FASTLed library for controlling the LED..." alt="" coords="658,162,844,189"/>
+<area shape="rect" id="node10" href="$indicator_8cpp.html" title="Contains algorithms for RGB LED. " alt="" coords="522,251,722,278"/>
+<area shape="rect" id="node11" href="$manual__interaction_8h.html" title="Defines structure for manual interaction with device. " alt="" coords="400,155,582,196"/>
+<area shape="rect" id="node12" href="$manual__interaction_8cpp.html" title="Contains algorithms to detect a users manual interaction with the device, specifically push buttons..." alt="" coords="264,244,446,285"/>
+<area shape="rect" id="node13" href="$motor__driver_8h.html" title="Defines structure for controller of stepper motor, uses library TMC2209 for this usecase. " alt="" coords="1216,155,1361,196"/>
+<area shape="rect" id="node14" href="$motor__driver_8cpp.html" title="Contains algorithms for controlling stepper motor. " alt="" coords="1326,244,1472,285"/>
+<area shape="rect" id="node15" href="$storage_8h.html" title="Defines structure for Flash storage for ESP32. " alt="" coords="1797,162,1972,189"/>
+<area shape="rect" id="node16" href="$storage_8cpp.html" title="Contains algorithms to read and write appropriate device data to Flash. " alt="" coords="1658,251,1846,278"/>
+<area shape="rect" id="node17" href="$logging_8cpp.html" title="Contains all algorithms for maintaing device logs. " alt="" coords="1487,162,1671,189"/>
+</map>

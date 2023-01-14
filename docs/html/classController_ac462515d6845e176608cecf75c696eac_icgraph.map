@@ -1,0 +1,4 @@
+<map id="Controller::StopOperationMode" name="Controller::StopOperationMode">
+<area shape="rect" id="node2" href="$classController.html#a431dc67f69757e96cfc9b42454c71097" title="Handle operation mode. " alt="" coords="255,5,469,32"/>
+<area shape="rect" id="node3" href="$classController.html#a4705ffb61d722e4916ba0d279dc27395" title="Continous loop after initialization, handles the controlling of the device Performs following functio..." alt="" coords="517,5,644,32"/>
+</map>

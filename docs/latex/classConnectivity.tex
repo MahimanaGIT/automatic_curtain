@@ -1,0 +1,466 @@
+\hypertarget{classConnectivity}{}\section{Connectivity Class Reference}
+\label{classConnectivity}\index{Connectivity@{Connectivity}}
+
+
+{\ttfamily \#include $<$connectivity.\+h$>$}
+
+
+
+Collaboration diagram for Connectivity\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{classConnectivity__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classConnectivity_ad5b40b0c07375786dd882379e93df2fc}{Connectivity} (std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&logging, \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} $\ast$device\+\_\+cred)
+\begin{DoxyCompactList}\small\item\em Fetches the L\+ED pin from config, setups pin mode, setup W\+S2812 R\+G\+B\+L\+ED, initializes logger. \end{DoxyCompactList}\item 
+\hyperlink{classConnectivity_a0029e5f1650cb0152256d89595941e6a}{$\sim$\+Connectivity} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{classConnectivity}{Connectivity} object. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_a08efeeef7c1096e4244224846f70f04c}{Start\+O\+TA} ()
+\begin{DoxyCompactList}\small\item\em Set the up Arduino O\+TA. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_a15482263a17c51293756870cdb516f81}{Start\+Ensure\+Connectivity} (const \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} device\+\_\+cred)
+\begin{DoxyCompactList}\small\item\em Start ensuring connectivity. \end{DoxyCompactList}\item 
+int \hyperlink{classConnectivity_a8bf62c0db2251d2c9072986eae231673}{Get\+Sec\+Lost\+Connection} ()
+\begin{DoxyCompactList}\small\item\em Return number of seconds of lost connection. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_a29f2a5d6cbd259bcae65b7f7ba53b730}{Handle\+O\+TA} ()
+\begin{DoxyCompactList}\small\item\em Regular call function for syncing O\+TA requests. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_aa99aeadd725a7cd8edc7255775955807}{Stop\+O\+TA} ()
+\begin{DoxyCompactList}\small\item\em Disable O\+TA. \end{DoxyCompactList}\item 
+bool \hyperlink{classConnectivity_a806034c9ce5234a7fcc5370d5b6e8362}{Is\+Connected} ()
+\begin{DoxyCompactList}\small\item\em Checks if the device is connected to the Wi\+Fi. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_a72b0edad6e98830701aea73f90efd5b0}{Start\+Webpage} ()
+\begin{DoxyCompactList}\small\item\em Creates a server and starts hosting webpage. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_a5a123ddd0c4ab4061d1fa564fe3e7490}{Stop\+Webpage} ()
+\begin{DoxyCompactList}\small\item\em Stops webpage server. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_a5c562f136d52c4a91eedba957e68b71e}{Stop\+Wi\+Fi} ()
+\begin{DoxyCompactList}\small\item\em disconnects Wi\+Fi \end{DoxyCompactList}\item 
+std\+::tuple$<$ bool, \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} $>$ \hyperlink{classConnectivity_a00c4168c7ac1db84abb5aa70f8f168c5}{Get\+Webpage\+Submission} ()
+\begin{DoxyCompactList}\small\item\em Get the latest submission. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classConnectivity_af7622ce70021dd32fd1ba18f62f4df62}{Start\+Hotspot} ()
+\begin{DoxyCompactList}\small\item\em Starts wifi hotspot, basically start wifi in soft access point mode. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_aaa9ca6a4b59d47cd1135101af1056a22}{Stop\+Hotspot} ()
+\begin{DoxyCompactList}\small\item\em Stops wifi hotspot. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_ac97b309654c5c550f430c5cb45850d29}{Ensure\+Connectivity} ()
+\begin{DoxyCompactList}\small\item\em Check if the device is connected, if not, try to connect it. \end{DoxyCompactList}\item 
+void \hyperlink{classConnectivity_a8d01492828472cc2edf8af89682b40e9}{Stop\+Ensuring\+Connectivity} ()
+\begin{DoxyCompactList}\small\item\em Check if the device is connected, if not, try to connect it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \hyperlink{classConnectivity_abc35eab84d55841433807a011e4fc934}{logger\+\_\+}
+\item 
+std\+::unique\+\_\+ptr$<$ Async\+Web\+Server $>$ \hyperlink{classConnectivity_a515f9aa8e3c2fae750ea2a6cd40b2d55}{webpage\+\_\+server\+\_\+} \{nullptr\}
+\item 
+bool \hyperlink{classConnectivity_a2aa5c1cf91cd091b26ddba14545d5dc4}{ota\+\_\+enabled\+\_\+} = false
+\item 
+bool \hyperlink{classConnectivity_ac43fe86c25a622135065153b1d48fd23}{webpage\+\_\+enabled\+\_\+} = false
+\item 
+bool \hyperlink{classConnectivity_a66be1641c52bc974aa25d8fd03c71341}{hotspot\+\_\+enabled\+\_\+} = false
+\item 
+bool \hyperlink{classConnectivity_aa25bae37c163e7126f3817330200f35e}{keep\+\_\+handler\+\_\+running\+\_\+} = false
+\item 
+bool \hyperlink{classConnectivity_aa8ebaf115b2b8163647231dd7cf5bd4a}{is\+\_\+new\+\_\+submission\+\_\+available\+\_\+} = false
+\item 
+\hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} \hyperlink{classConnectivity_ab09df23ebb472e3c1228cf0fab6617ba}{time\+\_\+last\+\_\+connected\+\_\+}
+\item 
+\hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} \hyperlink{classConnectivity_a6e95d5e8ad64b301cf95a0df5ddff9a6}{webpage\+\_\+submitted\+\_\+device\+\_\+cred\+\_\+}
+\item 
+\hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} \hyperlink{classConnectivity_abed78a2ba39529d90841f555a81ef04a}{device\+\_\+cred\+\_\+}
+\item 
+std\+::unique\+\_\+ptr$<$ std\+::thread $>$ \hyperlink{classConnectivity_afb016a3f11d6d59e9e6feb3869ea5329}{ensure\+\_\+conn\+\_\+thread\+\_\+} \{nullptr\}
+\item 
+std\+::mutex \hyperlink{classConnectivity_aa0df63a2602190d6db2e7d7352208307}{webpage\+\_\+submission\+\_\+mutex\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classConnectivity_ad5b40b0c07375786dd882379e93df2fc}\label{classConnectivity_ad5b40b0c07375786dd882379e93df2fc}} 
+\index{Connectivity@{Connectivity}!Connectivity@{Connectivity}}
+\index{Connectivity@{Connectivity}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Connectivity()}{Connectivity()}}
+{\footnotesize\ttfamily Connectivity\+::\+Connectivity (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&}]{logging,  }\item[{\hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} $\ast$}]{device\+\_\+cred }\end{DoxyParamCaption})}
+
+
+
+Fetches the L\+ED pin from config, setups pin mode, setup W\+S2812 R\+G\+B\+L\+ED, initializes logger. 
+
+\mbox{\Hypertarget{classConnectivity_a0029e5f1650cb0152256d89595941e6a}\label{classConnectivity_a0029e5f1650cb0152256d89595941e6a}} 
+\index{Connectivity@{Connectivity}!````~Connectivity@{$\sim$\+Connectivity}}
+\index{````~Connectivity@{$\sim$\+Connectivity}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{$\sim$\+Connectivity()}{~Connectivity()}}
+{\footnotesize\ttfamily Connectivity\+::$\sim$\+Connectivity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{classConnectivity}{Connectivity} object. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a0029e5f1650cb0152256d89595941e6a_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classConnectivity_ac97b309654c5c550f430c5cb45850d29}\label{classConnectivity_ac97b309654c5c550f430c5cb45850d29}} 
+\index{Connectivity@{Connectivity}!Ensure\+Connectivity@{Ensure\+Connectivity}}
+\index{Ensure\+Connectivity@{Ensure\+Connectivity}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Ensure\+Connectivity()}{EnsureConnectivity()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Ensure\+Connectivity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Check if the device is connected, if not, try to connect it. 
+
+\begin{DoxyReturn}{Returns}
+true \+: wifi is connected 
+
+false \+: failed to connect, device is no longer connected, despite of trying 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_ac97b309654c5c550f430c5cb45850d29_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_ac97b309654c5c550f430c5cb45850d29_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_a8bf62c0db2251d2c9072986eae231673}\label{classConnectivity_a8bf62c0db2251d2c9072986eae231673}} 
+\index{Connectivity@{Connectivity}!Get\+Sec\+Lost\+Connection@{Get\+Sec\+Lost\+Connection}}
+\index{Get\+Sec\+Lost\+Connection@{Get\+Sec\+Lost\+Connection}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Get\+Sec\+Lost\+Connection()}{GetSecLostConnection()}}
+{\footnotesize\ttfamily int Connectivity\+::\+Get\+Sec\+Lost\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return number of seconds of lost connection. 
+
+\mbox{\Hypertarget{classConnectivity_a00c4168c7ac1db84abb5aa70f8f168c5}\label{classConnectivity_a00c4168c7ac1db84abb5aa70f8f168c5}} 
+\index{Connectivity@{Connectivity}!Get\+Webpage\+Submission@{Get\+Webpage\+Submission}}
+\index{Get\+Webpage\+Submission@{Get\+Webpage\+Submission}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Get\+Webpage\+Submission()}{GetWebpageSubmission()}}
+{\footnotesize\ttfamily std\+::tuple$<$ bool, \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} $>$ Connectivity\+::\+Get\+Webpage\+Submission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the latest submission. 
+
+\begin{DoxyReturn}{Returns}
+std\+::tuple$<$bool, C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+E\+D$>$\+: bool returning if there is a new submission available, device\+\_\+cred\+: new submission 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classConnectivity_a29f2a5d6cbd259bcae65b7f7ba53b730}\label{classConnectivity_a29f2a5d6cbd259bcae65b7f7ba53b730}} 
+\index{Connectivity@{Connectivity}!Handle\+O\+TA@{Handle\+O\+TA}}
+\index{Handle\+O\+TA@{Handle\+O\+TA}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Handle\+O\+T\+A()}{HandleOTA()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Handle\+O\+TA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Regular call function for syncing O\+TA requests. 
+
+\mbox{\Hypertarget{classConnectivity_a806034c9ce5234a7fcc5370d5b6e8362}\label{classConnectivity_a806034c9ce5234a7fcc5370d5b6e8362}} 
+\index{Connectivity@{Connectivity}!Is\+Connected@{Is\+Connected}}
+\index{Is\+Connected@{Is\+Connected}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Is\+Connected()}{IsConnected()}}
+{\footnotesize\ttfamily bool Connectivity\+::\+Is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the device is connected to the Wi\+Fi. 
+
+\begin{DoxyReturn}{Returns}
+true \+: if connected 
+
+false \+: otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a806034c9ce5234a7fcc5370d5b6e8362_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_a15482263a17c51293756870cdb516f81}\label{classConnectivity_a15482263a17c51293756870cdb516f81}} 
+\index{Connectivity@{Connectivity}!Start\+Ensure\+Connectivity@{Start\+Ensure\+Connectivity}}
+\index{Start\+Ensure\+Connectivity@{Start\+Ensure\+Connectivity}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Start\+Ensure\+Connectivity()}{StartEnsureConnectivity()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Start\+Ensure\+Connectivity (\begin{DoxyParamCaption}\item[{const \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED}}]{device\+\_\+cred }\end{DoxyParamCaption})}
+
+
+
+Start ensuring connectivity. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a15482263a17c51293756870cdb516f81_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_af7622ce70021dd32fd1ba18f62f4df62}\label{classConnectivity_af7622ce70021dd32fd1ba18f62f4df62}} 
+\index{Connectivity@{Connectivity}!Start\+Hotspot@{Start\+Hotspot}}
+\index{Start\+Hotspot@{Start\+Hotspot}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Start\+Hotspot()}{StartHotspot()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Start\+Hotspot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Starts wifi hotspot, basically start wifi in soft access point mode. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_af7622ce70021dd32fd1ba18f62f4df62_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_a08efeeef7c1096e4244224846f70f04c}\label{classConnectivity_a08efeeef7c1096e4244224846f70f04c}} 
+\index{Connectivity@{Connectivity}!Start\+O\+TA@{Start\+O\+TA}}
+\index{Start\+O\+TA@{Start\+O\+TA}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Start\+O\+T\+A()}{StartOTA()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Start\+O\+TA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the up Arduino O\+TA. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a08efeeef7c1096e4244224846f70f04c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_a72b0edad6e98830701aea73f90efd5b0}\label{classConnectivity_a72b0edad6e98830701aea73f90efd5b0}} 
+\index{Connectivity@{Connectivity}!Start\+Webpage@{Start\+Webpage}}
+\index{Start\+Webpage@{Start\+Webpage}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Start\+Webpage()}{StartWebpage()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Start\+Webpage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a server and starts hosting webpage. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a72b0edad6e98830701aea73f90efd5b0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_a8d01492828472cc2edf8af89682b40e9}\label{classConnectivity_a8d01492828472cc2edf8af89682b40e9}} 
+\index{Connectivity@{Connectivity}!Stop\+Ensuring\+Connectivity@{Stop\+Ensuring\+Connectivity}}
+\index{Stop\+Ensuring\+Connectivity@{Stop\+Ensuring\+Connectivity}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Stop\+Ensuring\+Connectivity()}{StopEnsuringConnectivity()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Stop\+Ensuring\+Connectivity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Check if the device is connected, if not, try to connect it. 
+
+\begin{DoxyReturn}{Returns}
+true \+: wifi is connected 
+
+false \+: failed to connect, device is no longer connected, despite of trying 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a8d01492828472cc2edf8af89682b40e9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_aaa9ca6a4b59d47cd1135101af1056a22}\label{classConnectivity_aaa9ca6a4b59d47cd1135101af1056a22}} 
+\index{Connectivity@{Connectivity}!Stop\+Hotspot@{Stop\+Hotspot}}
+\index{Stop\+Hotspot@{Stop\+Hotspot}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Stop\+Hotspot()}{StopHotspot()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Stop\+Hotspot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Stops wifi hotspot. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_aaa9ca6a4b59d47cd1135101af1056a22_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_aa99aeadd725a7cd8edc7255775955807}\label{classConnectivity_aa99aeadd725a7cd8edc7255775955807}} 
+\index{Connectivity@{Connectivity}!Stop\+O\+TA@{Stop\+O\+TA}}
+\index{Stop\+O\+TA@{Stop\+O\+TA}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Stop\+O\+T\+A()}{StopOTA()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Stop\+O\+TA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Disable O\+TA. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_aa99aeadd725a7cd8edc7255775955807_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_aa99aeadd725a7cd8edc7255775955807_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_a5a123ddd0c4ab4061d1fa564fe3e7490}\label{classConnectivity_a5a123ddd0c4ab4061d1fa564fe3e7490}} 
+\index{Connectivity@{Connectivity}!Stop\+Webpage@{Stop\+Webpage}}
+\index{Stop\+Webpage@{Stop\+Webpage}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Stop\+Webpage()}{StopWebpage()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Stop\+Webpage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stops webpage server. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a5a123ddd0c4ab4061d1fa564fe3e7490_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a5a123ddd0c4ab4061d1fa564fe3e7490_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConnectivity_a5c562f136d52c4a91eedba957e68b71e}\label{classConnectivity_a5c562f136d52c4a91eedba957e68b71e}} 
+\index{Connectivity@{Connectivity}!Stop\+Wi\+Fi@{Stop\+Wi\+Fi}}
+\index{Stop\+Wi\+Fi@{Stop\+Wi\+Fi}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{Stop\+Wi\+Fi()}{StopWiFi()}}
+{\footnotesize\ttfamily void Connectivity\+::\+Stop\+Wi\+Fi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+disconnects Wi\+Fi 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConnectivity_a5c562f136d52c4a91eedba957e68b71e_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classConnectivity_abed78a2ba39529d90841f555a81ef04a}\label{classConnectivity_abed78a2ba39529d90841f555a81ef04a}} 
+\index{Connectivity@{Connectivity}!device\+\_\+cred\+\_\+@{device\+\_\+cred\+\_\+}}
+\index{device\+\_\+cred\+\_\+@{device\+\_\+cred\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{device\+\_\+cred\+\_\+}{device\_cred\_}}
+{\footnotesize\ttfamily \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} Connectivity\+::device\+\_\+cred\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_afb016a3f11d6d59e9e6feb3869ea5329}\label{classConnectivity_afb016a3f11d6d59e9e6feb3869ea5329}} 
+\index{Connectivity@{Connectivity}!ensure\+\_\+conn\+\_\+thread\+\_\+@{ensure\+\_\+conn\+\_\+thread\+\_\+}}
+\index{ensure\+\_\+conn\+\_\+thread\+\_\+@{ensure\+\_\+conn\+\_\+thread\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{ensure\+\_\+conn\+\_\+thread\+\_\+}{ensure\_conn\_thread\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$std\+::thread$>$ Connectivity\+::ensure\+\_\+conn\+\_\+thread\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_a66be1641c52bc974aa25d8fd03c71341}\label{classConnectivity_a66be1641c52bc974aa25d8fd03c71341}} 
+\index{Connectivity@{Connectivity}!hotspot\+\_\+enabled\+\_\+@{hotspot\+\_\+enabled\+\_\+}}
+\index{hotspot\+\_\+enabled\+\_\+@{hotspot\+\_\+enabled\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{hotspot\+\_\+enabled\+\_\+}{hotspot\_enabled\_}}
+{\footnotesize\ttfamily bool Connectivity\+::hotspot\+\_\+enabled\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_aa8ebaf115b2b8163647231dd7cf5bd4a}\label{classConnectivity_aa8ebaf115b2b8163647231dd7cf5bd4a}} 
+\index{Connectivity@{Connectivity}!is\+\_\+new\+\_\+submission\+\_\+available\+\_\+@{is\+\_\+new\+\_\+submission\+\_\+available\+\_\+}}
+\index{is\+\_\+new\+\_\+submission\+\_\+available\+\_\+@{is\+\_\+new\+\_\+submission\+\_\+available\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{is\+\_\+new\+\_\+submission\+\_\+available\+\_\+}{is\_new\_submission\_available\_}}
+{\footnotesize\ttfamily bool Connectivity\+::is\+\_\+new\+\_\+submission\+\_\+available\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_aa25bae37c163e7126f3817330200f35e}\label{classConnectivity_aa25bae37c163e7126f3817330200f35e}} 
+\index{Connectivity@{Connectivity}!keep\+\_\+handler\+\_\+running\+\_\+@{keep\+\_\+handler\+\_\+running\+\_\+}}
+\index{keep\+\_\+handler\+\_\+running\+\_\+@{keep\+\_\+handler\+\_\+running\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{keep\+\_\+handler\+\_\+running\+\_\+}{keep\_handler\_running\_}}
+{\footnotesize\ttfamily bool Connectivity\+::keep\+\_\+handler\+\_\+running\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_abc35eab84d55841433807a011e4fc934}\label{classConnectivity_abc35eab84d55841433807a011e4fc934}} 
+\index{Connectivity@{Connectivity}!logger\+\_\+@{logger\+\_\+}}
+\index{logger\+\_\+@{logger\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{logger\+\_\+}{logger\_}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classLogging}{Logging}$>$ Connectivity\+::logger\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_a2aa5c1cf91cd091b26ddba14545d5dc4}\label{classConnectivity_a2aa5c1cf91cd091b26ddba14545d5dc4}} 
+\index{Connectivity@{Connectivity}!ota\+\_\+enabled\+\_\+@{ota\+\_\+enabled\+\_\+}}
+\index{ota\+\_\+enabled\+\_\+@{ota\+\_\+enabled\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{ota\+\_\+enabled\+\_\+}{ota\_enabled\_}}
+{\footnotesize\ttfamily bool Connectivity\+::ota\+\_\+enabled\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_ab09df23ebb472e3c1228cf0fab6617ba}\label{classConnectivity_ab09df23ebb472e3c1228cf0fab6617ba}} 
+\index{Connectivity@{Connectivity}!time\+\_\+last\+\_\+connected\+\_\+@{time\+\_\+last\+\_\+connected\+\_\+}}
+\index{time\+\_\+last\+\_\+connected\+\_\+@{time\+\_\+last\+\_\+connected\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{time\+\_\+last\+\_\+connected\+\_\+}{time\_last\_connected\_}}
+{\footnotesize\ttfamily \hyperlink{namespaceCONFIG__SET_a8816a22e7885d027a52bfa0d24fa9008}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::time\+\_\+var} Connectivity\+::time\+\_\+last\+\_\+connected\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_ac43fe86c25a622135065153b1d48fd23}\label{classConnectivity_ac43fe86c25a622135065153b1d48fd23}} 
+\index{Connectivity@{Connectivity}!webpage\+\_\+enabled\+\_\+@{webpage\+\_\+enabled\+\_\+}}
+\index{webpage\+\_\+enabled\+\_\+@{webpage\+\_\+enabled\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{webpage\+\_\+enabled\+\_\+}{webpage\_enabled\_}}
+{\footnotesize\ttfamily bool Connectivity\+::webpage\+\_\+enabled\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_a515f9aa8e3c2fae750ea2a6cd40b2d55}\label{classConnectivity_a515f9aa8e3c2fae750ea2a6cd40b2d55}} 
+\index{Connectivity@{Connectivity}!webpage\+\_\+server\+\_\+@{webpage\+\_\+server\+\_\+}}
+\index{webpage\+\_\+server\+\_\+@{webpage\+\_\+server\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{webpage\+\_\+server\+\_\+}{webpage\_server\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$Async\+Web\+Server$>$ Connectivity\+::webpage\+\_\+server\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_aa0df63a2602190d6db2e7d7352208307}\label{classConnectivity_aa0df63a2602190d6db2e7d7352208307}} 
+\index{Connectivity@{Connectivity}!webpage\+\_\+submission\+\_\+mutex\+\_\+@{webpage\+\_\+submission\+\_\+mutex\+\_\+}}
+\index{webpage\+\_\+submission\+\_\+mutex\+\_\+@{webpage\+\_\+submission\+\_\+mutex\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{webpage\+\_\+submission\+\_\+mutex\+\_\+}{webpage\_submission\_mutex\_}}
+{\footnotesize\ttfamily std\+::mutex Connectivity\+::webpage\+\_\+submission\+\_\+mutex\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classConnectivity_a6e95d5e8ad64b301cf95a0df5ddff9a6}\label{classConnectivity_a6e95d5e8ad64b301cf95a0df5ddff9a6}} 
+\index{Connectivity@{Connectivity}!webpage\+\_\+submitted\+\_\+device\+\_\+cred\+\_\+@{webpage\+\_\+submitted\+\_\+device\+\_\+cred\+\_\+}}
+\index{webpage\+\_\+submitted\+\_\+device\+\_\+cred\+\_\+@{webpage\+\_\+submitted\+\_\+device\+\_\+cred\+\_\+}!Connectivity@{Connectivity}}
+\subsubsection{\texorpdfstring{webpage\+\_\+submitted\+\_\+device\+\_\+cred\+\_\+}{webpage\_submitted\_device\_cred\_}}
+{\footnotesize\ttfamily \hyperlink{structCONFIG__SET_1_1DEVICE__CRED}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+C\+R\+ED} Connectivity\+::webpage\+\_\+submitted\+\_\+device\+\_\+cred\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mvp/src/connectivity/\hyperlink{connectivity_8h}{connectivity.\+h}\item 
+mvp/src/connectivity/\hyperlink{connectivity_8cpp}{connectivity.\+cpp}\end{DoxyCompactItemize}

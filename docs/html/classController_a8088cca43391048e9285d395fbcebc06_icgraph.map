@@ -1,0 +1,4 @@
+<map id="Controller::StopResetMode" name="Controller::StopResetMode">
+<area shape="rect" id="node2" href="$classController.html#ae512c48c1ebafb35c90948835361cf0c" title="Handle reset mode. " alt="" coords="233,5,428,32"/>
+<area shape="rect" id="node3" href="$classController.html#a4705ffb61d722e4916ba0d279dc27395" title="Continous loop after initialization, handles the controlling of the device Performs following functio..." alt="" coords="476,5,603,32"/>
+</map>

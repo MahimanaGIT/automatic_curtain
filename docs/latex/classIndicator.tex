@@ -1,0 +1,120 @@
+\hypertarget{classIndicator}{}\section{Indicator Class Reference}
+\label{classIndicator}\index{Indicator@{Indicator}}
+
+
+{\ttfamily \#include $<$indicator.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIndicator_a88d17656c2aa4c8e16c3b98176318837}{Indicator} (std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&logging)
+\begin{DoxyCompactList}\small\item\em Fetches the L\+ED pin from config, setups pin mode, setup W\+S2812 R\+G\+B\+L\+ED, initializes logger. \end{DoxyCompactList}\item 
+\hyperlink{classIndicator_a8099ca10ae3ae131b0423899f1abb61c}{$\sim$\+Indicator} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{classIndicator}{Indicator} object. \end{DoxyCompactList}\item 
+bool \hyperlink{classIndicator_a877e11943c90a02cc1a85a4d4ac3136c}{Update\+Status} (\hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081a}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+US} status)
+\begin{DoxyCompactList}\small\item\em Updates the color of L\+ED by using mapping from status to color of L\+ED. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classIndicator_ad5b03db5e614c409d69742bb6ec76ec9}{Initialize\+L\+ED} ()
+\begin{DoxyCompactList}\small\item\em Initializes R\+GB L\+ED. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \hyperlink{classIndicator_a52fa4ed25549f6ae99fba1743a15d628}{logger\+\_\+}
+\item 
+C\+R\+GB \hyperlink{classIndicator_a1b4352e0b1bbed1fa14daf4424120d27}{leds\+\_\+} \mbox{[}\hyperlink{namespaceCONFIG__SET_a91d987372150d727ecbb41b39d482911}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+L\+E\+DS}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classIndicator_a88d17656c2aa4c8e16c3b98176318837}\label{classIndicator_a88d17656c2aa4c8e16c3b98176318837}} 
+\index{Indicator@{Indicator}!Indicator@{Indicator}}
+\index{Indicator@{Indicator}!Indicator@{Indicator}}
+\subsubsection{\texorpdfstring{Indicator()}{Indicator()}}
+{\footnotesize\ttfamily Indicator\+::\+Indicator (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classLogging}{Logging} $>$ \&}]{logging }\end{DoxyParamCaption})}
+
+
+
+Fetches the L\+ED pin from config, setups pin mode, setup W\+S2812 R\+G\+B\+L\+ED, initializes logger. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classIndicator_a88d17656c2aa4c8e16c3b98176318837_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classIndicator_a8099ca10ae3ae131b0423899f1abb61c}\label{classIndicator_a8099ca10ae3ae131b0423899f1abb61c}} 
+\index{Indicator@{Indicator}!````~Indicator@{$\sim$\+Indicator}}
+\index{````~Indicator@{$\sim$\+Indicator}!Indicator@{Indicator}}
+\subsubsection{\texorpdfstring{$\sim$\+Indicator()}{~Indicator()}}
+{\footnotesize\ttfamily Indicator\+::$\sim$\+Indicator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{classIndicator}{Indicator} object. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIndicator_ad5b03db5e614c409d69742bb6ec76ec9}\label{classIndicator_ad5b03db5e614c409d69742bb6ec76ec9}} 
+\index{Indicator@{Indicator}!Initialize\+L\+ED@{Initialize\+L\+ED}}
+\index{Initialize\+L\+ED@{Initialize\+L\+ED}!Indicator@{Indicator}}
+\subsubsection{\texorpdfstring{Initialize\+L\+E\+D()}{InitializeLED()}}
+{\footnotesize\ttfamily void Indicator\+::\+Initialize\+L\+ED (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes R\+GB L\+ED. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classIndicator_ad5b03db5e614c409d69742bb6ec76ec9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classIndicator_a877e11943c90a02cc1a85a4d4ac3136c}\label{classIndicator_a877e11943c90a02cc1a85a4d4ac3136c}} 
+\index{Indicator@{Indicator}!Update\+Status@{Update\+Status}}
+\index{Update\+Status@{Update\+Status}!Indicator@{Indicator}}
+\subsubsection{\texorpdfstring{Update\+Status()}{UpdateStatus()}}
+{\footnotesize\ttfamily bool Indicator\+::\+Update\+Status (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceCONFIG__SET_a8379cbe9f81ee38829b156f47261081a}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+US}}]{status }\end{DoxyParamCaption})}
+
+
+
+Updates the color of L\+ED by using mapping from status to color of L\+ED. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & Device Status to be used for updation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true\+: if the updation was successful 
+
+false\+: otherwise 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classIndicator_a1b4352e0b1bbed1fa14daf4424120d27}\label{classIndicator_a1b4352e0b1bbed1fa14daf4424120d27}} 
+\index{Indicator@{Indicator}!leds\+\_\+@{leds\+\_\+}}
+\index{leds\+\_\+@{leds\+\_\+}!Indicator@{Indicator}}
+\subsubsection{\texorpdfstring{leds\+\_\+}{leds\_}}
+{\footnotesize\ttfamily C\+R\+GB Indicator\+::leds\+\_\+\mbox{[}\hyperlink{namespaceCONFIG__SET_a91d987372150d727ecbb41b39d482911}{C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+::\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+L\+E\+DS}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classIndicator_a52fa4ed25549f6ae99fba1743a15d628}\label{classIndicator_a52fa4ed25549f6ae99fba1743a15d628}} 
+\index{Indicator@{Indicator}!logger\+\_\+@{logger\+\_\+}}
+\index{logger\+\_\+@{logger\+\_\+}!Indicator@{Indicator}}
+\subsubsection{\texorpdfstring{logger\+\_\+}{logger\_}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classLogging}{Logging}$>$ Indicator\+::logger\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mvp/src/indicator/\hyperlink{indicator_8h}{indicator.\+h}\item 
+mvp/src/indicator/\hyperlink{indicator_8cpp}{indicator.\+cpp}\end{DoxyCompactItemize}

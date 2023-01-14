@@ -1,0 +1,5 @@
+<map id="mvp/src/motor_driver/motor_driver.h" name="mvp/src/motor_driver/motor_driver.h">
+<area shape="rect" id="node2" href="$controller_8h.html" title="Defines the structure of the main controller of the device. " alt="" coords="5,95,132,136"/>
+<area shape="rect" id="node3" href="$controller_8cpp.html" title="Contains algorithms which controls the whole device from initialization to giving commands to every s..." alt="" coords="56,184,183,225"/>
+<area shape="rect" id="node4" href="$motor__driver_8cpp.html" title="Contains algorithms for controlling stepper motor. " alt="" coords="208,95,353,136"/>
+</map>

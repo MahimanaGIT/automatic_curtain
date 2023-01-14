@@ -1,0 +1,5 @@
+<map id="ManualInteraction::StartButtonDequeAnalyserFn" name="ManualInteraction::StartButtonDequeAnalyserFn">
+<area shape="rect" id="node2" href="$classManualInteraction.html#a7347f8414fc849ab263b3d717add9484" title="thread function to check the deque status and identify the manual interaction mode Function will chec..." alt="" coords="245,39,424,80"/>
+<area shape="rect" id="node3" href="$classManualInteraction.html#afce55b16a04782daf03a62477d3120ba" title="Set the CurrentButtonState object Function to sets the current buttonstate [0 &#45;&gt;NO_PUSH, 1&#45;&gt;LONGPRESS, 2&#45;&gt;DOUBLETAP]. " alt="" coords="481,5,636,47"/>
+<area shape="rect" id="node4" href="$classManualInteraction.html#afb8fd56c9e56af41d3dfad489fac7a4b" title="Set the Manual Action And Time object sets manual_action_ and manual_action_time_. " alt="" coords="472,71,645,112"/>
+</map>

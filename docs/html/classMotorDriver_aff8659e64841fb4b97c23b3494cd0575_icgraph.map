@@ -1,0 +1,5 @@
+<map id="MotorDriver::StopMotor" name="MotorDriver::StopMotor">
+<area shape="rect" id="node2" href="$classMotorDriver.html#a1eee734aa12c1565d6ae629924962115" title="Motor Driver class handler, communicates with driver and is responsible for reading latest motion req..." alt="" coords="212,5,355,32"/>
+<area shape="rect" id="node3" href="$classMotorDriver.html#a64827491330490668bb8f8e57d0f3942" title="Starts handler thread. " alt="" coords="403,5,573,32"/>
+<area shape="rect" id="node4" href="$classMotorDriver.html#a534f4ca22b5dcffc9e40aafef09c76e5" title="Initializes motor drive TMC2209, and required pins. " alt="" coords="621,5,788,32"/>
+</map>

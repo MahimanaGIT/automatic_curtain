@@ -1,0 +1,4 @@
+<map id="MotorDriver::UpdateCalibParams" name="MotorDriver::UpdateCalibParams">
+<area shape="rect" id="node2" href="$classMotorDriver.html#a754252fe0d18118e074cbdc1fe42da57" title="Enable Motor Driver Give argument as true for enabling, false for disabling the driver. " alt="" coords="228,5,401,32"/>
+<area shape="rect" id="node3" href="$classMotorDriver.html#a9151c6649515b7ff61dc6159456ffa80" title="Sets needed parameters for the driver. " alt="" coords="224,56,405,83"/>
+</map>
