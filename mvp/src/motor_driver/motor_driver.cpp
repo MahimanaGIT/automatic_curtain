@@ -24,7 +24,7 @@ bool MotorDriver::direction_ = false;
 int MotorDriver::current_step_ = 0;
 int MotorDriver::full_rot_step_count_ = (4 * CONFIG_SET::MOTOR_DRIVER_MICROSTEP);
 
-MotorDriver::MotorDriver(std::shared_ptr<Logging> logging, CONFIG_SET::CALIB_PARAMS calib_param)
+MotorDriver::MotorDriver(std::shared_ptr<Logging>& logging, CONFIG_SET::CALIB_PARAMS calib_param)
     : logger_(logging), TMC2209Stepper(&Serial2, CONFIG_SET::MOTOR_DRIVER_R_SENSE, CONFIG_SET::MOTOR_DRIVER_ADDRESS) {
     using namespace CONFIG_SET;
     pinMode(PIN_MD_DIAG, INPUT);
@@ -36,6 +36,7 @@ MotorDriver::MotorDriver(std::shared_ptr<Logging> logging, CONFIG_SET::CALIB_PAR
     pinMode(PIN_MD_INDEX, INPUT_PULLUP);
     digitalWrite(PIN_MD_MS1, LOW);
     digitalWrite(PIN_MD_MS2, LOW);
+    ResetSteps();
 
     Serial2.begin(MOTOR_DRIVER_BAUD_RATE, SERIAL_8N1, PIN_MD_RX, PIN_MD_TX);
 
@@ -48,10 +49,6 @@ MotorDriver::MotorDriver(std::shared_ptr<Logging> logging, CONFIG_SET::CALIB_PAR
 MotorDriver::~MotorDriver() {
     EnableDriver(false);
     StopHandler();
-}
-
-CONFIG_SET::CALIB_PARAMS MotorDriver::Calibrate() {
-    return CONFIG_SET::CALIB_PARAMS();
 }
 
 bool MotorDriver::FulfillRequest(CONFIG_SET::MOTION_REQUEST request) {
@@ -81,6 +78,7 @@ bool MotorDriver::EnableDriver(bool enable) {
 
 void MotorDriver::InitializeDriver() {
     using namespace CONFIG_SET;
+    logger_->Log(LOG_TYPE::INFO, LOG_CLASS::MOTOR_DRIVER, "Initializing driver");
     this->begin();
     this->toff(MOTOR_DRIVER_TOFF);
     this->blank_time(MOTOR_DRIVER_BLANK_TIME);
@@ -188,4 +186,8 @@ int MotorDriver::GetSteps() {
 
 void MotorDriver::ResetSteps() {
     current_step_ = 0;
+}
+
+int MotorDriver::GetPercentage() {
+    return (float(current_step_) / calib_params_.TOTAL_STEP_COUNT) * 100;
 }

@@ -19,20 +19,18 @@
 
 // mutex for locking access to status, to prevent updation and use of the
 // variable at the same time
-std::mutex status_mutex;
 
-Logging::Logging() {
+Logging::Logging(bool logging_status) : logging_status_(logging_status) {
     Serial.begin(CONFIG_SET::LOGGING_BAUD_RATE);
-    const std::lock_guard<std::mutex> lock(status_mutex);
-    logging_status_ = false;
+    std::lock_guard<std::mutex> lock(status_mutex);
 }
 
 Logging::~Logging() {
     Serial.end();
 }
 
-bool Logging::Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, const char* message) const {
-    const std::lock_guard<std::mutex> lock(status_mutex);
+bool Logging::Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, const char* message) {
+    std::lock_guard<std::mutex> lock(status_mutex);
     if (logging_status_) {
         switch (log_type) {
             case CONFIG_SET::LOG_TYPE::INFO:
@@ -79,15 +77,15 @@ bool Logging::Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class
     }
 }
 
-bool Logging::Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, String message) const {
+bool Logging::Log(CONFIG_SET::LOG_TYPE log_type, CONFIG_SET::LOG_CLASS log_class, String message) {
     Log(log_type, log_class, message.c_str());
 }
 
 void Logging::SetLoggingStatus(bool status) {
-    const std::lock_guard<std::mutex> lock(status_mutex);
+    std::lock_guard<std::mutex> lock(status_mutex);
     logging_status_ = status;
 }
 
-bool Logging::GetLoggingStatus() const {
+bool Logging::GetLoggingStatus() {
     return logging_status_;
 }
