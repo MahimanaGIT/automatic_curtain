@@ -31,80 +31,80 @@
 class MotorDriver : private TMC2209Stepper {
    public:
     /**
-     * @brief Initializes motor drive TMC2209, and required pins
-     *
-     */
-    MotorDriver(std::shared_ptr<Logging> logging);
+   * @brief Initializes motor drive TMC2209, and required pins
+   *
+   */
+    MotorDriver(std::shared_ptr<Logging>& logging);
 
     /**
-     * @brief Initializes motor drive TMC2209, and required pins
-     *
-     */
-    MotorDriver(std::shared_ptr<Logging> logging, CONFIG_SET::CALIB_PARAMS calib_param);
+   * @brief Initializes motor drive TMC2209, and required pins
+   *
+   */
+    MotorDriver(std::shared_ptr<Logging>& logging, CONFIG_SET::CALIB_PARAMS calib_param);
 
     /**
-     * @brief Cleans and disables motor driver
-     *
-     */
+   * @brief Cleans and disables motor driver
+   *
+   */
     ~MotorDriver();
 
     /**
-     * @brief Returns the status of the motor driver, by checking if the motor is
-     * running or the driver is in fault, or the motor is available for next
-     * request
-     *
-     * @return CONFIG_SET::DRIVER_STATUS
-     */
+   * @brief Returns the status of the motor driver, by checking if the motor is
+   * running or the driver is in fault, or the motor is available for next
+   * request
+   *
+   * @return CONFIG_SET::DRIVER_STATUS
+   */
     CONFIG_SET::DRIVER_STATUS GetStatus();
 
     /**
-     * @brief Returns the current steps of motor
-     *
-     * @return current_steps
-     */
+   * @brief Returns the current steps of motor
+   *
+   * @return current_steps
+   */
     int GetSteps();
 
     /**
-     * @brief Returns the current percentage of motor
-     *
-     * @return current percentage
-     */
+   * @brief Returns the current percentage of motor
+   *
+   * @return current percentage
+   */
     int GetPercentage();
 
     /**
-     * @brief This is the primary contact function for external requests, it will
-     * handle all requests from the controller or anywhere else, run the thread
-     * for supplying steps
-     *
-     * @return true : request accepted
-     * @return false : rejected
-     */
+   * @brief This is the primary contact function for external requests, it will
+   * handle all requests from the controller or anywhere else, run the thread
+   * for supplying steps
+   *
+   * @return true : request accepted
+   * @return false : rejected
+   */
     bool FulfillRequest(CONFIG_SET::MOTION_REQUEST request);
 
     /**
-     * @brief Cancels current request
-     *
-     * @return true: Cancellation successful
-     * @return false: otherwise
-     */
+   * @brief Cancels current request
+   *
+   * @return true: Cancellation successful
+   * @return false: otherwise
+   */
     bool CancelCurrentRequest();
 
     /**
-     * @brief Updates calibration parameters to be used by motor driver
-     *
-     */
+   * @brief Updates calibration parameters to be used by motor driver
+   *
+   */
     void UpdateCalibParams(CONFIG_SET::CALIB_PARAMS calib_param);
 
     /**
-     * @brief Runs on a timer, supplies step and direction signal to motor driver
-     *
-     */
+   * @brief Runs on a timer, supplies step and direction signal to motor driver
+   *
+   */
     static void InterruptForIndex();
 
     /**
-     * @brief Stop handler thread
-     * 
-     */
+   * @brief Stop handler thread
+   *
+   */
     void StopHandler();
 
    private:
@@ -126,53 +126,53 @@ class MotorDriver : private TMC2209Stepper {
     std::unique_ptr<std::thread> handler_thread_{nullptr};
 
     /**
-     * @brief Motor Driver class handler, communicates with driver and is
-     * responsible for reading latest motion request, cancellationof request, and
-     * acting upon it i.e. moving the motor and stopping it when stall is
-     * detected, or motor reached destination or stop is requested or timer limit
-     * is reached
-     *
-     */
+   * @brief Motor Driver class handler, communicates with driver and is
+   * responsible for reading latest motion request, cancellationof request, and
+   * acting upon it i.e. moving the motor and stopping it when stall is
+   * detected, or motor reached destination or stop is requested or timer limit
+   * is reached
+   *
+   */
     void Handler();
 
     /**
-     * @brief Enable Motor Driver
-     * Give argument as true for enabling, false for disabling the driver
-     * @return true : if successful
-     * @return false : otherwise
-     */
+   * @brief Enable Motor Driver
+   * Give argument as true for enabling, false for disabling the driver
+   * @return true : if successful
+   * @return false : otherwise
+   */
     bool EnableDriver(bool enable);
 
     /**
-     * @brief Sets needed parameters for the driver
-     * 
-     */
+   * @brief Sets needed parameters for the driver
+   *
+   */
     void InitializeDriver();
 
     /**
-     * @brief Responsible for starting the motor, i.e. setups the driver and sets
-     * required velocity of motor
-     *
-     */
+   * @brief Responsible for starting the motor, i.e. setups the driver and sets
+   * required velocity of motor
+   *
+   */
     void StartMotor();
 
     /**
-     * @brief Responsible for stopping the motor, i.e. disables the driver and
-     * sets velocity of motor to zero
-     * 
-     */
+   * @brief Responsible for stopping the motor, i.e. disables the driver and
+   * sets velocity of motor to zero
+   *
+   */
     void StopMotor();
 
     /**
-     * @brief Starts handler thread
-     * 
-     */
+   * @brief Starts handler thread
+   *
+   */
     void StartHandler();
 
     /**
-     * @brief Reset the current steps of motor
-     *
-     */
+   * @brief Reset the current steps of motor
+   *
+   */
     void ResetSteps();
 };
 

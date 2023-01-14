@@ -24,7 +24,7 @@ bool MotorDriver::direction_ = false;
 int MotorDriver::current_step_ = 0;
 int MotorDriver::full_rot_step_count_ = (4 * CONFIG_SET::MOTOR_DRIVER_MICROSTEP);
 
-MotorDriver::MotorDriver(std::shared_ptr<Logging> logging, CONFIG_SET::CALIB_PARAMS calib_param)
+MotorDriver::MotorDriver(std::shared_ptr<Logging>& logging, CONFIG_SET::CALIB_PARAMS calib_param)
     : logger_(logging), TMC2209Stepper(&Serial2, CONFIG_SET::MOTOR_DRIVER_R_SENSE, CONFIG_SET::MOTOR_DRIVER_ADDRESS) {
     using namespace CONFIG_SET;
     pinMode(PIN_MD_DIAG, INPUT);

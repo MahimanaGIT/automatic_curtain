@@ -23,26 +23,26 @@
 class Indicator {
    public:
     /**
-     * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
-     * RGBLED, initializes logger
-     *
-     */
-    Indicator(std::shared_ptr<Logging> logging);
+   * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
+   * RGBLED, initializes logger
+   *
+   */
+    Indicator(std::shared_ptr<Logging>& logging);
 
     /**
-     * @brief Destroy the Indicator object
-     *
-     */
+   * @brief Destroy the Indicator object
+   *
+   */
     ~Indicator();
 
     /**
-     * @brief Updates the color of LED by using mapping from status to color of
-     * LED
-     *
-     * @param status: Device Status to be used for updation
-     * @return true: if the updation was successful
-     * @return false: otherwise
-     */
+   * @brief Updates the color of LED by using mapping from status to color of
+   * LED
+   *
+   * @param status: Device Status to be used for updation
+   * @return true: if the updation was successful
+   * @return false: otherwise
+   */
     bool UpdateStatus(CONFIG_SET::DEVICE_STATUS status);
 
    private:
@@ -50,9 +50,9 @@ class Indicator {
     CRGB leds_[CONFIG_SET::NUMBER_OF_LEDS];
 
     /**
-     * @brief Initializes RGB LED
-     *
-     */
+   * @brief Initializes RGB LED
+   *
+   */
     void InitializeLED();
 };
 

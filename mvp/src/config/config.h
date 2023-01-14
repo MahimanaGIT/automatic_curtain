@@ -37,6 +37,9 @@ const std::string STORAGE_NAMESPACE = "madac";
 const int NUMBER_OF_LEDS = 1;
 const int LED_BRIGHTNESS = 25;
 
+// Freq var for Manual Interaction Class
+const int DEQUE_ANALYZER_FREQ = 2;
+
 /*
 ****** STORAGE KEYS ******
 These keys are used by Storage class to retrieve the data from FLASHs
@@ -63,7 +66,7 @@ const uint8_t MOTOR_DRIVER_SE_MIN = 0;
 const uint8_t MOTOR_DRIVER_SE_MAX = 2;
 const uint8_t MOTOR_DRIVER_SEDN = 0b01;
 const uint32_t MOTOR_DRIVER_MAX_SPEED = 5000;
-const int MOTOR_DRIVER_SG_THRESH = 52;
+const int MOTOR_DRIVER_SG_THRESH = 40;
 const int MOTOR_STOP_TIME_SEC = 120;                // 2 mins
 const float STEP_FRACTION_ALLOWANCE = 0.05;         // 5% Allowance allowed for motor reaching destination
 const int MODE_EXPIRE_TIME_LIMIT = 300;             // 5 mins
@@ -96,8 +99,8 @@ PIN_MD_INDEX    -> Index
 PIN_MD_DIAG     -> Diag (Stall)
 */
 const int PIN_RGB_LED = 32;
-const int PIN_BUTTON_UP = 33;
-const int PIN_BUTTON_DOWN = 25;
+static const int PIN_BUTTON_UP = 33;
+static const int PIN_BUTTON_DOWN = 25;
 const int PIN_MD_ENABLE = 4;
 const int PIN_MD_RX = 16;
 const int PIN_MD_TX = 17;
@@ -135,6 +138,12 @@ enum class MANUAL_PUSH {
     DOUBLE_TAP_BOTH,
 };
 
+enum class BUTTON_PRESS {
+    NO_PUSH,
+    LONG_PRESS,
+    DOUBLE_TAP,
+};
+
 enum class DEVICE_STATUS {
     FAULT,
     OPERATION_MODE,
@@ -163,16 +172,10 @@ struct CALIB_PARAMS {
     bool DIRECTION = false;
 };
 
-// short_name variable name for storing manual button clicks
-using button_press_deque = std::deque<std::pair<bool, std::chrono::time_point<std::chrono::system_clock>>>;
-
 // alias for time variables
 using time_var = std::chrono::time_point<std::chrono::system_clock>;
 using current_time = std::chrono::system_clock;
 
 }  // namespace CONFIG_SET
-
-// alias for CONFIG_SET namespace MyNamespace
-namespace C_S = CONFIG_SET;
 
 #endif

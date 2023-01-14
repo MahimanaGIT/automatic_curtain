@@ -24,50 +24,51 @@
 class AlexaInteraction : private fauxmoESP {
    public:
     /**
-     * @brief Construct a new AlexaInteraction object, initializes fauxmoesp
-     *
-     */
-    AlexaInteraction(std::shared_ptr<Logging> logging, String device_id);
+   * @brief Construct a new AlexaInteraction object, initializes fauxmoesp
+   *
+   */
+    AlexaInteraction(std::shared_ptr<Logging>& logging, String device_id);
 
     /**
-     * @brief Destroy the AlexaInteraction object
-     *
-     */
+   * @brief Destroy the AlexaInteraction object
+   *
+   */
     ~AlexaInteraction();
 
     /**
-     * @brief Get the latest Alexa Request object
-     *
-     * @return std::tuple<bool, CONFIG_SET::MOTION_REQUEST>
-     */
+   * @brief Get the latest Alexa Request object
+   *
+   * @return std::tuple<bool, CONFIG_SET::MOTION_REQUEST>
+   */
     std::tuple<bool, CONFIG_SET::MOTION_REQUEST> GetAlexaRequest();
 
     /**
-     * @brief Handler function for the class
-     *
-     */
+   * @brief Handler function for the class
+   *
+   */
     void HandleFauxmo();
 
     /**
-     * @brief Set the object state to alexa
-     *
-     */
+   * @brief Set the object state to alexa
+   *
+   */
     void SetState(CONFIG_SET::MOTION_REQUEST request);
 
    private:
     std::shared_ptr<Logging> logger_;
+    static std::mutex alexa_request_mutex_;
     static String device_id_;
     static bool is_new_request_available_;
     static CONFIG_SET::MOTION_REQUEST latest_alexa_request_;
 
     /**
-     * @brief Gets called by fauxmo esp when a alexa calls the device
-     *
-     * @param id: device id number
-     * @param device_name: device name
-     * @param state: on/off bool
-     * @param percentage: 0-100 percentage
-     */
+   * @brief Gets called by fauxmo esp when a alexa calls the device
+   *
+   * @param id: device id number
+   * @param device_name: device name
+   * @param state: on/off bool
+   * @param percentage: 0-100 percentage
+   */
     static void Callback(unsigned char id, const char* device_name, bool state, unsigned char percentage);
 };
 

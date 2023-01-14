@@ -18,7 +18,7 @@
 
 Indicator::~Indicator() {}
 
-Indicator::Indicator(std::shared_ptr<Logging> logging) : logger_(logging) {
+Indicator::Indicator(std::shared_ptr<Logging>& logging) : logger_(logging) {
     InitializeLED();
 }
 

@@ -20,13 +20,14 @@
 #include "../logging/logging.h"
 #include "fauxmoESP.h"
 
-std::mutex alexa_request_mutex_;
 // declaring static variables to be used by callback
 bool AlexaInteraction::is_new_request_available_ = false;
 CONFIG_SET::MOTION_REQUEST AlexaInteraction::latest_alexa_request_ = CONFIG_SET::MOTION_REQUEST();
 String AlexaInteraction::device_id_ = CONFIG_SET::DEFAULT_DEVICE_ID;
+std::mutex AlexaInteraction::alexa_request_mutex_;
 
-AlexaInteraction::AlexaInteraction(std::shared_ptr<Logging> logging, String device_id) : logger_(logging), fauxmoESP() {
+AlexaInteraction::AlexaInteraction(std::shared_ptr<Logging>& logging, String device_id)
+    : logger_(logging), fauxmoESP() {
     device_id_ = device_id;
     this->setPort(80);
     this->enable(true);

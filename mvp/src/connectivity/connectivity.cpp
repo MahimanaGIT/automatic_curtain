@@ -24,9 +24,7 @@
 #include "WiFi.h"
 #include "webpage.h"
 
-std::mutex webpage_submission_mutex;
-
-Connectivity::Connectivity(std::shared_ptr<Logging> logging, CONFIG_SET::DEVICE_CRED* device_cred) : logger_(logging) {
+Connectivity::Connectivity(std::shared_ptr<Logging>& logging, CONFIG_SET::DEVICE_CRED* device_cred) : logger_(logging) {
     using namespace CONFIG_SET;
     time_last_connected_ = current_time::now();
 }
@@ -200,7 +198,7 @@ void Connectivity::StartWebpage() {
         request->send_P(200, "text/html", dialog_html);
 
         logger_->Log(CONFIG_SET::LOG_TYPE::INFO, CONFIG_SET::LOG_CLASS::CONNECTIVITY, "Got webpage submission");
-        const std::lock_guard<std::mutex> lock(webpage_submission_mutex);
+        const std::lock_guard<std::mutex> lock(webpage_submission_mutex_);
         is_new_submission_available_ = true;
     });
 
@@ -222,7 +220,7 @@ void Connectivity::StopWebpage() {
 }
 
 std::tuple<bool, CONFIG_SET::DEVICE_CRED> Connectivity::GetWebpageSubmission() {
-    const std::lock_guard<std::mutex> lock(webpage_submission_mutex);
+    const std::lock_guard<std::mutex> lock(webpage_submission_mutex_);
     std::tuple<bool, CONFIG_SET::DEVICE_CRED> return_value(is_new_submission_available_,
                                                            webpage_submitted_device_cred_);
     is_new_submission_available_ = false;

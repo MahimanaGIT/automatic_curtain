@@ -28,97 +28,97 @@
 
 class ManualInteraction {
    public:
-    //! ManualInteraction class constructor
-    /*!
-    @brief Setup pinmode and interrupt
-  */
-    ManualInteraction();
+    /**
+   * @brief  ManualInteraction class constructor
+   * Setup pinmode and interrupt
+   */
+    ManualInteraction(int freq_to_run_deque_analyser, std::shared_ptr<Logging>& logging);
 
-    //! ManualInteraction class constructor
-    /*!
-    @brief  Destroy the ManualInteraction object
-  */
+    /**
+   * @brief  ManualInteraction class destructor
+   *  Destroy the ManualInteraction object
+   */
     ~ManualInteraction();
 
-    //! Hardware Interrupt for up(red colored) button
-    /*!
-    @brief check for valid interrupt by software debouncing,switch state cheking
-    and adds it to the button deque down
-  */
-    static void IntrAddToButtonDequeUp();
+    /**
+   * @brief  Hardware Interrrupt for up [red colored] button
+   * check for valid interrupt by software debouncing,switch state cheking
+   * and adds it to the button deque up
+   */
+    static void s_IntrAddToButtonDequeUp();
 
-    //! Hardware Interrupt for down(black colored) button
-    /*!
-    @brief check for valid interrupt by software debouncing,switch state cheking
-    and adds it to the button deque down
-  */
-    static void IntrAddToButtonDequeDown();
+    /**
+   * @brief  Hardware Interrrupt for down [black colored] button
+   * check for valid interrupt by software debouncing,switch state cheking
+   * and adds it to the button deque down
+   */
+    static void s_IntrAddToButtonDequeDown();
 
-    //! Stop button deque analyser function
-    /*!
-    @brief set_button_deque_analyser varible to ture so it stops the threaded
-    function
-  */
+    /**
+   * @brief Stop button deque analyser function
+   * set_button_deque_analyser varible to ture so it stops the threaded
+   * function
+   */
     void StopButtonDequeAnalyserFn();
 
-    //! start button deque analyser function thread
-    /*!
-    @brief start button deque analyser function thread
-  */
+    /**
+   * @brief start button deque analyser function thread
+   * start button deque analyser function thread
+   */
     void StartButtonDequeAnalyserFn();
 
-    //! Return manual_action
-    /*!
-    @brief Return value for manual_action and time with option of clearing the
-    variable
-  */
-    std::tuple<C_S::MANUAL_PUSH, C_S::time_var> GetManualActionAndTime();
-
-    //@{
     /**
-   * @brief class static varibles
+   * @brief Get the Manual Action And Time object
+   *
+   * @return std::tuple<CONFIG_SET::MANUAL_PUSH, CONFIG_SET::time_var>
    */
-    static C_S::button_press_deque button_state_deque_up_;
-    static C_S::button_press_deque button_state_deque_down_;
-    static const int pin_button_up_;
-    static const int pin_button_down_;
-    static bool class_setup_flag_;
-    //@}
+    std::tuple<CONFIG_SET::MANUAL_PUSH, CONFIG_SET::time_var> GetManualActionAndTime();
 
    private:
-    //! thread function to check the deque status and identify the manual
-    //! interaction mode
-    /*!
-    @brief Function will check state and time of occurance for objects in deque
-    for determining mode
-  */
+    /**
+   * @brief thread function to check the deque status and identify the manual
+   * interaction mode
+   * Function will check state and time of occurance for objects in deque for
+   * determining mode
+   */
     void ButtonstateDequeAnalyser();
 
-    //! Function to get the current buttonstate
-    /*!
-    @brief Function to sets the current buttonstate [0 ->NO_PUSH, 1->LONGPRESS,
-    2->DOUBLETAP]
-  */
-    void SETCurrentButtonState(C_S::button_press_deque& button_press_deque_, int& button_state, C_S::time_var& time);
-
-    //! set manual button action based on individual button state
-    /*!
-    @brief set manual button action based on individual button state
-  */
-    void SetManualActionAndTime(int& button_1_state, int& button_2_state, C_S::time_var& time_button_1,
-                                C_S::time_var& time_button_2);
-
-    //@{
     /**
-   * @brief private class varibles to communicate button action
+   * @brief Set the CurrentButtonState object
+   * Function to sets the current buttonstate [0 ->NO_PUSH, 1->LONGPRESS,
+   * 2->DOUBLETAP]
+   *
+   * @param[in] button_press_deque_ deque to analyse and set button_state
+   * @param[out] button_state refrence to button_state passed
+   * @param[out] time refrence to time variable for change of button_state
    */
-    C_S::MANUAL_PUSH manual_action_ = C_S::MANUAL_PUSH::NO_PUSH;
-    C_S::time_var manual_action_time_;
-    bool stop_button_deque_analyser_ = true;
-    std::unique_ptr<std::thread> m_deque_analyser_{nullptr};
-    //@}
-};
+    void SetCurrentButtonState(std::deque<std::pair<bool, CONFIG_SET::time_var>>& button_press_deque_,
+                               CONFIG_SET::BUTTON_PRESS& button_state, CONFIG_SET::time_var& time);
 
-using MI_Cls = ManualInteraction;
+    /**
+   * @brief Set the Manual Action And Time object
+   * sets manual_action_ and manual_action_time_
+   *
+   * @param[in] button_1_state current button state 1 [red]
+   * @param[in] button_2_state current button state 2 [black]
+   * @param[in] time_button_1 time the current button state 1 was set
+   * @param[in] time_button_2 time the current button state 2 was set
+   */
+    void SetManualActionAndTime(CONFIG_SET::BUTTON_PRESS& button_1_state, CONFIG_SET::BUTTON_PRESS& button_2_state,
+                                CONFIG_SET::time_var& time_button_1, CONFIG_SET::time_var& time_button_2);
+
+    CONFIG_SET::MANUAL_PUSH manual_action_ = CONFIG_SET::MANUAL_PUSH::NO_PUSH;
+    CONFIG_SET::time_var manual_action_time_;
+    bool stop_button_deque_analyser_ = true;
+    std::unique_ptr<std::thread> deque_analyser_{nullptr};
+    std::shared_ptr<Logging> logger_{nullptr};
+    const int freq_to_run_deque_analyser_;
+    int delay_to_run_deque_analyser_;
+
+    static std::deque<std::pair<bool, CONFIG_SET::time_var>> s_button_state_deque_up_;
+    static std::deque<std::pair<bool, CONFIG_SET::time_var>> s_button_state_deque_down_;
+    static bool s_class_setup_flag_;
+    static std::mutex s_deque_mutex_;
+};
 
 #endif

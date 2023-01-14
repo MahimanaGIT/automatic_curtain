@@ -18,9 +18,9 @@
 #include <ESPAsyncWebServer.h>
 
 #include <memory>
+#include <thread>
 #include <tuple>
 
-#include <thread>
 #include "../config/config.h"
 #include "../logging/logging.h"
 #include "WiFi.h"
@@ -29,80 +29,80 @@
 class Connectivity {
    public:
     /**
-     * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
-     * RGBLED, initializes logger
-     *
-     */
-    Connectivity(std::shared_ptr<Logging> logging, CONFIG_SET::DEVICE_CRED* device_cred);
+   * @brief Fetches the LED pin from config, setups pin mode, setup WS2812
+   * RGBLED, initializes logger
+   *
+   */
+    Connectivity(std::shared_ptr<Logging>& logging, CONFIG_SET::DEVICE_CRED* device_cred);
 
     /**
-     * @brief Destroy the Connectivity object
-     *
-     */
+   * @brief Destroy the Connectivity object
+   *
+   */
     ~Connectivity();
 
     /**
-     * @brief Set the up Arduino OTA
-     *
-     */
+   * @brief Set the up Arduino OTA
+   *
+   */
     void StartOTA();
 
     /**
-     * @brief Start ensuring connectivity
-     *
-     */
+   * @brief Start ensuring connectivity
+   *
+   */
     void StartEnsureConnectivity(const CONFIG_SET::DEVICE_CRED device_cred);
 
     /**
-     * @brief Return number of seconds of lost connection
-     *
-     */
+   * @brief Return number of seconds of lost connection
+   *
+   */
     int GetSecLostConnection();
 
     /**
-     * @brief Regular call function for syncing OTA requests
-     *
-     */
+   * @brief Regular call function for syncing OTA requests
+   *
+   */
     void HandleOTA();
 
     /**
-     * @brief Disable OTA
-     *
-     */
+   * @brief Disable OTA
+   *
+   */
     void StopOTA();
 
     /**
-     * @brief Checks if the device is connected to the WiFi
-     *
-     * @return true : if connected
-     * @return false : otherwise
-     */
+   * @brief Checks if the device is connected to the WiFi
+   *
+   * @return true : if connected
+   * @return false : otherwise
+   */
     bool IsConnected();
 
     /**
-     * @brief Creates a server and starts hosting webpage
-     *
-     */
+   * @brief Creates a server and starts hosting webpage
+   *
+   */
     void StartWebpage();
 
     /**
-     * @brief Stops webpage server
-     *
-     */
+   * @brief Stops webpage server
+   *
+   */
     void StopWebpage();
 
     /**
-     * @brief disconnects WiFi
-     *
-     */
+   * @brief disconnects WiFi
+   *
+   */
     void StopWiFi();
 
     /**
-     * @brief Get the latest submission
-     *
-     * @return std::tuple<bool, CONFIG_SET::DEVICE_CRED>: bool returning if there
-     * is a new submission available, device_cred: new submission
-     */
+   * @brief Get the latest submission
+   *
+   * @return std::tuple<bool, CONFIG_SET::DEVICE_CRED>: bool returning if there
+   * is a new submission available, device_cred: new submission
+   */
     std::tuple<bool, CONFIG_SET::DEVICE_CRED> GetWebpageSubmission();
 
    private:
@@ -118,35 +118,36 @@ class Connectivity {
     CONFIG_SET::time_var time_last_connected_;
     CONFIG_SET::DEVICE_CRED webpage_submitted_device_cred_, device_cred_;
     std::unique_ptr<std::thread> ensure_conn_thread_{nullptr};
+    std::mutex webpage_submission_mutex_;
 
     /**
-     * @brief Starts wifi hotspot, basically start wifi in soft access point mode
-     *
-     */
+   * @brief Starts wifi hotspot, basically start wifi in soft access point mode
+   *
+   */
     void StartHotspot();
 
     /**
-     * @brief Stops wifi hotspot
-     *
-     */
+   * @brief Stops wifi hotspot
+   *
+   */
     void StopHotspot();
 
     /**
-     * @brief Check if the device is connected, if not, try to connect it
-     *
-     * @return true : wifi is connected
-     * @return false : failed to connect, device is no longer connected, despite
-     * of trying
-     */
+   * @brief Check if the device is connected, if not, try to connect it
+   *
+   * @return true : wifi is connected
+   * @return false : failed to connect, device is no longer connected, despite
+   * of trying
+   */
     void EnsureConnectivity();
 
     /**
-     * @brief Check if the device is connected, if not, try to connect it
-     *
-     * @return true : wifi is connected
-     * @return false : failed to connect, device is no longer connected, despite
-     * of trying
-     */
+   * @brief Check if the device is connected, if not, try to connect it
+   *
+   * @return true : wifi is connected
+   * @return false : failed to connect, device is no longer connected, despite
+   * of trying
+   */
     void StopEnsuringConnectivity();
 };
 

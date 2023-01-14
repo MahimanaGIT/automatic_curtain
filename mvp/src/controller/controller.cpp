@@ -28,10 +28,10 @@
 #include "../storage/storage.h"
 
 Controller::Controller()
-    : logger_(new Logging()),
+    : logger_(new Logging(true)),
       store_(new Storage(logger_)),
       indicator_(new Indicator(logger_)),
-      manual_interaction_(new MI_Cls),
+      manual_interaction_(new ManualInteraction(CONFIG_SET::DEQUE_ANALYZER_FREQ, logger_)),
       connectivity_{nullptr},
       motor_driver_{nullptr},
       alexa_interaction_{nullptr},
@@ -39,9 +39,8 @@ Controller::Controller()
       last_blind_percentage_(0),
       last_motor_status_(CONFIG_SET::DRIVER_STATUS::AVAILABLE) {
     using namespace CONFIG_SET;
-    logger_->SetLoggingStatus(true);
-    calib_params_ = CONFIG_SET::CALIB_PARAMS();
-    device_cred_ = CONFIG_SET::DEVICE_CRED();
+    calib_params_ = CALIB_PARAMS();
+    device_cred_ = DEVICE_CRED();
     store_->PopulateOperationMode(&operation_mode_);
     switch (operation_mode_) {
         case OPERATION_MODE::RESET:
