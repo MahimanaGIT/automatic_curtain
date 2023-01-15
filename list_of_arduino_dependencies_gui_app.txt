@@ -1,9 +1,0 @@
-# install arduino core : 
-- esp32
-
-# list of libraries : 
-- https://github.com/me-no-dev/AsyncTCP.git 
-- https://github.com/vintlabs/fauxmoESP.git 
-- https://github.com/me-no-dev/ESPAsyncWebServer.git 
-- https://github.com/FastLED/FastLED.git 
-- https://github.com/teemuatlut/TMCStepper.git
