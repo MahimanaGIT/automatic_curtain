@@ -21,17 +21,14 @@ Automating blinds can provide convenience and energy efficiency. They can be pro
 
 ## ✨ Features
 
-- 📦 Easy to set up and integrate
-- 😎 Remote control - the ability to open and close the curtains with precision using Alexa app
+- 😎 Easy to set up and integrate
+- 📱 Remote control - the ability to open and close the curtains with precision using Alexa app
 - 🛡 Safety feature - the ability to detect obstacles and stop the motor to prevent injury or damage to the curtains
 - 💅 Manual Override - the ability to manually operate the curtains in case of Alexa not available
 - 🚀 Motorized operation - the ability to open and close the curtains using a motor, rather than manual operation
 - 📦 Smart home integration - the ability to connect the blinds to other smart home devices such as thermostat using alexa. Provides added convenience and energy efficiency
 
 ## 📋 [Doxygen Documentation](https://mahimanagit.github.io/automatic_curtain/)
-
-
-
 
 ## 🚀 Getting Started
 ### For how to use and build your own, refer [🗒 Manual](resources/MANUAL/manual.pdf)
