@@ -9,7 +9,7 @@
   </a>
 </div>
 
-<h1 align="center">Automatic Curtain.</h1>
+<h1 align="center">Automatic Curtain</h1>
 
 <div align="center">
 Elevate your home with IoT-enabled smart curtain controller for effortless living
