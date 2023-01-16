@@ -76,11 +76,6 @@ Automating blinds can provide convenience and energy efficiency. They can be pro
     - The files will be available in `doxygen` folder, click on or open `index.html` in **html** folder with any browser and you would be able to browse the documentation
 
 
-</br>
-## 💻 Need Help?
-
-We are more than happy to help you. If you are getting any errors or facing problems while working on this project, join our [slack](https://join.slack.com/t/mad-myj2315/shared_invite/zt-1n3oqsv1z-pdAomyv074gVCvfYfFaRgA) and ask for help. We are open to discussing anything related to the project.
-
 ## 🛡️ License
 
 Automatic Curtain is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
@@ -97,3 +92,13 @@ Thanks to the following repos for making the journey easier for the project:
 5. [TMCStepper](https://github.com/teemuatlut/TMCStepper.gi)
 
 For awesome readme help, referenced [novu](https://github.com/novuhq/novu)
+
+## ✏️ Contributors 
+
+- Mahimana Bhatt (mahimanabhatt@gmail.com)
+- Dhiraj Deshmukh (deshmukhdhiraj15@gmail.com)
+
+</br>
+## 💻 Need Help?
+
+We are more than happy to help you. If you are getting any errors or facing problems while working on this project, join our [slack](https://join.slack.com/t/mad-myj2315/shared_invite/zt-1n3oqsv1z-pdAomyv074gVCvfYfFaRgA) and ask for help. We are open to discussing anything related to the project.
