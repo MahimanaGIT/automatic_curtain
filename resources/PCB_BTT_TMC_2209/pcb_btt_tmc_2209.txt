@@ -31,5 +31,3 @@ UP                              31-XX                B3F-31XX                  h
 BTT        Bigtreetech TMC2209  Bigtreetech TMC2209  Pin Header                https://www.amazon.com/gp/product/B07YW7BM68/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1
 ADAPTER                                                                        https://www.amazon.com/gp/product/B08BXKNMZQ/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
 ESP32 Burner                                                                   https://a.co/d/jkIwICD
-Spacers                                                                        https://a.co/d/f1DOGHC  
-Screw nut set                                                                  https://a.co/d/1ob83sX
