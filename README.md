@@ -17,11 +17,9 @@ Elevate your home with IoT-enabled smart curtain controller for effortless livin
 
 ## ⭐️ Why Automatic Curtain?
 Automating blinds can provide convenience and energy efficiency. They can be programmed to open and close at specific times of the day, allowing natural light in to reduce the need of artificial lighting. They can also be controlled remotely, making it easy to adjust the amount of light and privacy in a room without having to physically adjust the blinds. Additionally, automatic blinds can help to regulate the temperature in a room.
-## 🔥 Watch the video
 
-<div style="text-align:center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/RMJ6SqKFGqU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+## 🔥 Watch the video
+[![Video](https://img.youtube.com/vi/RMJ6SqKFGqU/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
 ## ✨ Features
 
