@@ -1,14 +1,3 @@
-<!-- </br>
-
-<div align="center">
-  <a href="https://novu.co" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/8872447/165779319-34962ccc-3149-466c-b1da-97fd93254520.png">
-    <img src="https://user-images.githubusercontent.com/8872447/165779274-22a190da-3284-487e-bd1e-14983df12cbb.png" width="280" alt="Logo"/>
-  </picture>
-  </a>
-</div> -->
-
 <h1 align="center">Automatic Curtain</h1>
 
 <div align="center">
@@ -19,7 +8,12 @@ Elevate your home with IoT-enabled smart curtain controller for effortless livin
 Automating blinds can provide convenience and energy efficiency. They can be programmed to open and close at specific times of the day, allowing natural light in to reduce the need of artificial lighting. They can also be controlled remotely, making it easy to adjust the amount of light and privacy in a room without having to physically adjust the blinds. Additionally, automatic blinds can help to regulate the temperature in a room.
 
 ## 🔥 Watch the video
-[![Video](https://img.youtube.com/vi/RMJ6SqKFGqU/0.jpg)](https://youtu.be/RMJ6SqKFGqU)
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=RMJ6SqKFGqU">
+    <img src="https://img.youtube.com/vi/RMJ6SqKFGqU/0.jpg" alt="Video">
+  </a>
+</p>
 
 ## ✨ Features
 
@@ -97,8 +91,8 @@ For awesome readme help, referenced [novu](https://github.com/novuhq/novu)
 
 ## ✏️ Contributors 
 
-- Mahimana Bhatt (mahimanabhatt@gmail.com)
 - Dhiraj Deshmukh (deshmukhdhiraj15@gmail.com)
+- Mahimana Bhatt (mahimanabhatt@gmail.com)
 
 ## 💻 Need Help?
 
